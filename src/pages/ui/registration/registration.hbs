@@ -1,0 +1,1 @@
+<section>Регистрация</section>

@@ -1,0 +1,18 @@
+:root {
+    --bg-color: #f5f5f5;
+    --main-color: #1e1e1e;
+    --accent-color: #3369f3;
+
+    --bg-img: repeating-linear-gradient(#d3d3d3 0 2px, transparent 2px 4px),
+    repeating-linear-gradient(90deg, #d3d3d3 0 2px, transparent 2px 4px),
+    linear-gradient(#e7e7e7, #1a1a1a);
+    --border: 2px solid #000;
+    --main-font-size: 18px;
+    --header-padding-block-start: clamp(7.5rem, 7.1479rem + 1.5023vw, 8.5rem);
+    --font-weight-normal: 400;
+    --font-weight-bold: 700;
+    --container-inline-size: 48.6vw;
+    --label-stroke: rgb(255 255 255 / 0.5);
+    --button-text-color: #fff;
+    --font-family-decorative: "Press Start 2P", fantasy, sans-serif;
+}

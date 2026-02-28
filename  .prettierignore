@@ -1,0 +1,11 @@
+dist/
+coverage/
+tmp/
+out-tsc/
+node_modules/
+.idea/
+.prettierignore
+deploy/
+docker/
+package-lock.json
+package.json
