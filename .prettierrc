@@ -8,5 +8,14 @@
   "arrowParens": "always",
   "endOfLine": "auto",
   "useTabs": false,
-  "bracketSameLine": false
+  "bracketSameLine": false,
+
+  "overrides": [
+    {
+      "files": "*.hbs",
+      "options": {
+        "singleQuote": false
+      }
+    }
+  ]
 }

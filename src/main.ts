@@ -1,3 +1,53 @@
+// import { App } from './app/app';
+// import { navigate } from './app/router/router.ts';
+//
+// function render() {
+//   document.querySelector<HTMLDivElement>('#app')!.innerHTML = App();
+// }
+//
+// function initInputAuth() {
+//   document.addEventListener('focusin', (e) => {
+//     const target = e.target as HTMLInputElement;
+//
+//     if (target.classList.contains('input-auth')) {
+//       const label = target.parentElement?.querySelector('.label-auth');
+//       label?.classList.remove('visually-hidden');
+//     }
+//   });
+//
+//   document.addEventListener('focusout', (e) => {
+//     const target = e.target as HTMLInputElement;
+//
+//     if (target.classList.contains('input-auth')) {
+//       const label = target.parentElement?.querySelector('.label-auth');
+//
+//       if (target.value.trim() === '') {
+//         label?.classList.add('visually-hidden');
+//       }
+//     }
+//   });
+// }
+//
+// const init = (renderPage: () => void) => {
+//   window.addEventListener('popstate', renderPage);
+//
+//   renderPage();
+//
+//   const links = document.querySelectorAll<HTMLAnchorElement>('.navigation-link');
+//
+//   links.forEach((link) => {
+//     link.addEventListener('click', (event) => {
+//       event.preventDefault();
+//       navigate(link.pathname);
+//       renderPage();
+//     });
+//   });
+//   initInputAuth();
+// };
+//
+// init(render);
+// console.log('MAIN SCRIPT LOADED');
+
 import { App } from './app/app';
 import { navigate } from './app/router/router.ts';
 
@@ -5,20 +55,50 @@ function render() {
   document.querySelector<HTMLDivElement>('#app')!.innerHTML = App();
 }
 
-const init = (renderPage: () => void) => {
-  const links = document.querySelectorAll<HTMLAnchorElement>('.navigation-link');
+function initInputAuth() {
+  document.addEventListener('focusin', (e) => {
+    const target = e.target as HTMLInputElement;
 
-  links.forEach((link) => {
-    link.addEventListener('click', (event) => {
-      event.preventDefault();
-      navigate(link.pathname);
-      renderPage();
-    });
+    if (target.classList.contains('input-auth')) {
+      const label = target.parentElement?.querySelector('.label-auth');
+      label?.classList.remove('visually-hidden');
+    }
   });
 
-  window.addEventListener('popstate', renderPage);
+  document.addEventListener('focusout', (e) => {
+    const target = e.target as HTMLInputElement;
 
-  renderPage();
-};
+    if (target.classList.contains('input-auth')) {
+      const label = target.parentElement?.querySelector('.label-auth');
 
-init(render);
+      if (target.value.trim() === '') {
+        label?.classList.add('visually-hidden');
+      }
+    }
+  });
+}
+
+function initRouter() {
+  document.addEventListener('click', (event) => {
+    const target = event.target as HTMLElement;
+
+    const link = target.closest<HTMLAnchorElement>('.navigation-link');
+
+    if (!link) return;
+
+    event.preventDefault();
+    navigate(link.pathname);
+    render();
+  });
+
+  window.addEventListener('popstate', render);
+}
+
+function init() {
+  initRouter();
+  initInputAuth();
+  render();
+}
+
+init();
+console.log('Загрузка');

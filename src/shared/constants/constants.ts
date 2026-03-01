@@ -1,3 +1,5 @@
+import { URLS } from '@shared/constants/urls.ts';
+
 export const chats = [
   {
     id: 1,
@@ -22,3 +24,31 @@ export const chats = [
     },
   },
 ];
+
+export const LOGIN_FORM = {
+  login: {
+    type: 'text',
+    name: 'login',
+    placeholder: 'Логин',
+    label: 'Логин',
+  },
+  password: {
+    type: 'text',
+    name: 'password',
+    placeholder: 'Пароль',
+    label: 'Пароль',
+  },
+};
+
+export const FORM_CONTROL = {
+  login: {
+    buttonTitle: 'Авторизоваться',
+    linkTitle: 'Нет аккаунта?',
+    link: URLS.registration,
+  },
+  registration: {
+    buttonTitle: 'Зарегистрироваться',
+    linkTitle: 'Войти',
+    link: URLS.login,
+  },
+};

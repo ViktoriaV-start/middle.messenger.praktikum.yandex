@@ -3,6 +3,7 @@ import { Profile } from '@pages/ui/profile';
 import { Chats } from '@pages/ui/chats';
 import { NotFound } from '@pages/ui/not-found';
 import { ServerError } from '@pages/ui/serever-error';
+import { Login } from '@pages/ui/login';
 
 export type Route = {
   path: string;
@@ -10,6 +11,10 @@ export type Route = {
 };
 
 export const routes: Route[] = [
+  {
+    path: '/',
+    view: Login,
+  },
   {
     path: '/chats',
     view: Chats,
