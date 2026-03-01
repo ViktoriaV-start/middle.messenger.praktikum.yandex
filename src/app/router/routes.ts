@@ -1,7 +1,8 @@
-import { Registration } from '../../pages/ui/registration';
-import { Profile } from '../../pages/ui/profile';
-import { Chats } from '../../pages/ui/chats';
+import { Registration } from '@pages/ui/registration';
+import { Profile } from '@pages/ui/profile';
+import { Chats } from '@pages/ui/chats';
 import { NotFound } from '@pages/ui/not-found';
+import { ServerError } from '@pages/ui/serever-error';
 
 export type Route = {
   path: string;
@@ -20,6 +21,10 @@ export const routes: Route[] = [
   {
     path: '/registration',
     view: Registration,
+  },
+  {
+    path: '/error',
+    view: ServerError,
   },
   {
     path: '*',

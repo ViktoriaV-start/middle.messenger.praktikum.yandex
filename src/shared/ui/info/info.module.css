@@ -1,17 +1,17 @@
-.not-found {
+.info {
     margin: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.not-found__text {
+.info__text {
     margin-top: 1.25rem;
     font-size: 1.25rem;
     line-height: 1.25rem;
 }
 
-.not-found__link {
+.info__link {
     color: var(--accent-color);
     margin-block-start: 4.375rem;
     font-size: 0.6875rem;

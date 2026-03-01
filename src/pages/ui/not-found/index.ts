@@ -1,13 +1,12 @@
 import Handlebars from 'handlebars';
 import templateSource from './not-found.hbs?raw';
-import styles from './not-found.module.css';
-import { URLS } from '@shared/constants';
+import { Info } from '@shared/ui/info';
+import { NOT_FOUND_INFO } from '@pages/constants';
 
 const template = Handlebars.compile(templateSource);
 
 export function NotFound() {
   return template({
-    styles,
-    URLS,
+    information: Info(NOT_FOUND_INFO),
   });
 }
