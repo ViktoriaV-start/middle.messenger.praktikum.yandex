@@ -38,7 +38,52 @@ export const LOGIN_FORM = {
     placeholder: 'Пароль',
     label: 'Пароль',
   },
-};
+} as const;
+
+export const REGISTRATION_FORM = {
+  mail: {
+    type: 'text',
+    name: 'mail',
+    placeholder: 'Почта',
+    label: 'Почта',
+  },
+  login: {
+    type: 'text',
+    name: 'login',
+    placeholder: 'Логин',
+    label: 'Логин',
+  },
+  name: {
+    type: 'text',
+    name: 'name',
+    placeholder: 'Имя',
+    label: 'Имя',
+  },
+  lastName: {
+    type: 'text',
+    name: 'lastName',
+    placeholder: 'Фамилия',
+    label: 'Фамилия',
+  },
+  phone: {
+    type: 'text',
+    name: 'phone',
+    placeholder: 'Телефон',
+    label: 'Телефон',
+  },
+  password: {
+    type: 'text',
+    name: 'password',
+    placeholder: 'Пароль',
+    label: 'Пароль',
+  },
+  repeatPassword: {
+    type: 'text',
+    name: 'password',
+    placeholder: 'Пароль (еще раз)',
+    label: 'Пароль (еще раз)',
+  },
+} as const;
 
 export const FORM_CONTROL = {
   login: {
