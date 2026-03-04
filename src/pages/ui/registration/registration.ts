@@ -1,8 +1,9 @@
 import Handlebars from 'handlebars';
 import templateSource from './registration.hbs?raw';
 import styles from './registration.module.css';
-import { FORM_CONTROL, REGISTRATION_FORM } from '@shared/constants';
+
 import { AuthForm } from '@shared/ui/auth-form';
+import { FORM_CONTROL, REGISTRATION_FORM } from '@pages/constants';
 
 const template = Handlebars.compile(templateSource);
 

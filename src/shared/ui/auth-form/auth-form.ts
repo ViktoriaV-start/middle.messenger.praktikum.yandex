@@ -1,13 +1,13 @@
 import Handlebars from 'handlebars';
 import templateSource from './auth-form.hbs?raw';
 import styles from './auth-form.module.css';
-import type { AuthInputItem, FormControlItem } from '@shared/types';
+import type { InputProps, FormControlItem } from '@shared/types';
 import { InputAuth } from '@shared/ui/input-auth';
 import { BaseButton } from '@shared/ui/base-button';
 
 const template = Handlebars.compile(templateSource);
 
-export function AuthForm(data: Record<string, AuthInputItem>, formControl: FormControlItem) {
+export function AuthForm(data: Record<string, InputProps>, formControl: FormControlItem) {
   const inputs = Object.values(data)
     .map((item) => {
       return InputAuth(item);

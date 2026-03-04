@@ -5,18 +5,12 @@ export interface InfoProps {
   linkTitle: string;
 }
 
-export interface InputAuthProps {
+export interface InputProps {
   type: string;
   name: string;
   placeholder: string;
   label: string;
-}
-
-export interface AuthInputItem {
-  type: string;
-  name: string;
-  placeholder: string;
-  label: string;
+  value?: string;
 }
 
 export interface FormControlItem {

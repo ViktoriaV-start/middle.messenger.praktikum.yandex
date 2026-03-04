@@ -1,3 +1,20 @@
-<section>
-  Профиль
+<section class="{{styles.profile}}">
+
+
+    <div class="{{styles.profile__avatar}} {{styles.profile__avatar_mbe}}" id="avatar">
+    </div>
+
+  <h1 class="h {{styles.profile__user-name}} {{styles.profile__user-name_mbe}}">{{userName}}</h1>
+
+    <div class="{{styles.profile__inputs}} {{styles.profile__inputs_mbe}}">
+      {{{profileInputs}}}
+    </div>
+
+    <div class="{{styles.profile__buttons}}">{{{buttons}}}</div>
+    <a href="{{loginLink}}" class="navigation-link {{styles.profile__link}}">
+      <span>Выйти</span>
+    </a>
+
+
+
 </section>

@@ -18,6 +18,7 @@ body {
   color: var(--main-color);
   font-family: 'Inter', 'Arial', sans-serif;
   font-weight: 500;
+  line-height: var(--base-line-height);
   block-size: 100%;
 }
 

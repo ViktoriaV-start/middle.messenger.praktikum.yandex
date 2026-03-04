@@ -1,35 +1,37 @@
-.input-auth__label {
-  position: relative;
+.input__label {
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
   inline-size: 100%;
 }
 
-.input-auth__label-text {
+.input__label-text {
+  font-size: 0.8rem;
+  line-height: var(--base-line-height);
+  font-weight: 500;
 }
 
-.input-auth__field {
+.input__field {
   font-family: 'Inter', 'Arial', sans-serif;
   font-weight: 500;
   font-size: var(--main-font-size);
   line-height: var(--base-line-height);
-  border-width: 0 0 1px;
-  border-style: solid;
-  border-color: var(--accent-color);
+  border: none;
+  text-align: right;
   padding: 0.5rem 0 0.438rem;
-  color: currentColor;
+  color: var(--muted-color);
   background-color: transparent;
   cursor: text;
   appearance: none;
 }
 
-.input-auth__field::placeholder {
+.input__field::placeholder {
   color: var(--muted-color);
   font-size: var(--main-font-size);
   line-height: var(--base-line-height);
   font-weight: 500;
 }
 
-.input-auth__field:focus {
+.input__field:focus {
   outline: none;
 }

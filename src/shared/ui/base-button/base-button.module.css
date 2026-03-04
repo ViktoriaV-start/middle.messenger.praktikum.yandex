@@ -8,6 +8,6 @@
   border-radius: 0.5rem;
   border: 1px solid var(--accent-color);
   background-color: var(--accent-color);
-  font-size: var(--small-font-size);
+  font-size: var(--main-font-size);
   line-height: var(--base-line-height);
 }
