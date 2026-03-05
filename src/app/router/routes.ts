@@ -1,9 +1,8 @@
-import { Registration } from '@pages/ui/registration';
-import { Profile } from '@pages/ui/profile';
-import { Chats } from '@pages/ui/chats';
-import { NotFound } from '@pages/ui/not-found';
-import { ServerError } from '@pages/ui/serever-error';
-import { Login } from '@pages/ui/login';
+import { Registration } from '@pages/registration';
+import { Profile } from '@pages/profile';
+import { Chats } from '@pages/chats';
+import { NotFound, ServerError } from '@pages/error';
+import { Login } from '@pages/login';
 
 export type Route = {
   path: string;
@@ -28,7 +27,7 @@ export const routes: Route[] = [
     view: Registration,
   },
   {
-    path: '/error',
+    path: '/server-error',
     view: ServerError,
   },
   {

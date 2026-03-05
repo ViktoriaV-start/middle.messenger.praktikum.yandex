@@ -4,7 +4,7 @@ import './styles/variables.css';
 import './styles/app.css';
 
 import { resolveRoute } from './router';
-import { Navigation } from '@pages/ui/navigation';
+import { Navigation } from '@shared/ui/navigation';
 
 const template = Handlebars.compile(templateSource);
 
