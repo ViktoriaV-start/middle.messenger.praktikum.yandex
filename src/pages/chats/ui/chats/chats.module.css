@@ -2,7 +2,3 @@
   display: flex;
   min-block-size: 100%;
 }
-
-.chats__chat {
-  padding: 0 1.25rem;
-}
