@@ -1,0 +1,27 @@
+.message {
+  display: flex;
+  gap: 0.625rem;
+}
+
+.message__label {
+  flex-grow: 1;
+}
+
+.message__input {
+  width: 100%;
+  border: 1px solid #efefef;
+  background-color: #efefef;
+  border-radius: 1.875rem;
+  padding: 0.625rem 1.25rem;
+  font-family: 'Inter', 'Arial', sans-serif;
+  font-weight: 500;
+  font-size: var(--main-font-size);
+  line-height: var(--base-line-height);
+}
+
+.message__input::placeholder {
+  color: var(--muted-color);
+  font-size: var(--small-font-size);
+  line-height: var(--base-line-height);
+  font-weight: 500;
+}
