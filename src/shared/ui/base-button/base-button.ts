@@ -4,11 +4,12 @@ import baseStyles from './base-button.module.css';
 
 const template = Handlebars.compile(templateSource);
 
-export function BaseButton(title: string, styles = [baseStyles['base-button']]) {
-  const classNames = styles.join(' ');
+export function BaseButton(title: string, styles: string[] = [], type: string = 'submit') {
+  const classNames = [baseStyles['base-button'], ...styles].join(' ');
 
   return template({
     classNames,
     title,
+    type,
   });
 }

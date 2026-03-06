@@ -46,3 +46,7 @@
   gap: 0.875rem;
   margin-top: auto;
 }
+
+.auth-form__link_size {
+  font-size: 0.6875rem;
+}

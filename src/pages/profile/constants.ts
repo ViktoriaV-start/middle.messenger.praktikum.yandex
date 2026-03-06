@@ -46,7 +46,38 @@ export const USER = {
   phone: '89551234567',
 };
 
-export const PROFILE_BUTTONS = {
-  changeData: 'Изменить данные',
-  changePassword: 'Изменить пароль',
+export const PROFILE_LINKS = {
+  editProfile: {
+    title: 'Изменить данные',
+    type: 'edit-profile',
+  },
+  editPassword: {
+    title: 'Изменить пароль',
+    type: 'edit-password',
+  },
 } as const;
+
+export const BUTTONS = {
+  save: 'Сохранить',
+};
+
+export const PASSWORD_INPUTS = {
+  oldPassword: {
+    type: 'text',
+    name: 'old-password',
+    placeholder: '*********',
+    label: 'Старый пароль',
+  },
+  newPassword: {
+    type: 'text',
+    name: 'new-password',
+    placeholder: '*********',
+    label: 'Новый пароль',
+  },
+  repeatedPassword: {
+    type: 'text',
+    name: 'repeated-password',
+    placeholder: '*********',
+    label: 'Повторите новый пароль',
+  },
+};

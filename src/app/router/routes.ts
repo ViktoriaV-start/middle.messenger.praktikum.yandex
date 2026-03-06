@@ -3,6 +3,8 @@ import { Profile } from '@pages/profile';
 import { Chats } from '@pages/chats';
 import { NotFound, ServerError } from '@pages/error';
 import { Login } from '@pages/login';
+import { EditProfile } from '@pages/profile/ui/edit-profile';
+import { EditPassword } from '@pages/profile/ui/edit-password';
 
 export type Route = {
   path: string;
@@ -21,6 +23,14 @@ export const routes: Route[] = [
   {
     path: '/profile',
     view: Profile,
+  },
+  {
+    path: '/edit-profile',
+    view: EditProfile,
+  },
+  {
+    path: '/edit-password',
+    view: EditPassword,
   },
   {
     path: '/registration',

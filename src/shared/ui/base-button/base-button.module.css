@@ -10,4 +10,18 @@
   background-color: var(--accent-color);
   font-size: var(--main-font-size);
   line-height: var(--base-line-height);
+  transition:
+    background-color 0.3s ease,
+    border-color 0.3s ease;
+}
+
+.base-button:hover {
+  border: 1px solid #6892fd;
+  background-color: #6892fd;
+}
+
+.base-button:active {
+  background-color: var(--accent-color);
+  border-color: var(--accent-color);
+  transform: scale(0.98);
 }

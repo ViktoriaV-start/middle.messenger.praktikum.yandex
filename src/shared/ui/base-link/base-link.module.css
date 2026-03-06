@@ -1,0 +1,17 @@
+.base-link {
+  color: var(--accent-color);
+  text-decoration: none;
+  font-size: var(--main-font-size);
+  line-height: var(--base-line-height);
+  cursor: default;
+}
+
+.base-link:hover {
+  color: var(--dark-accent-color);
+}
+/*.link {*/
+/*  text-decoration: none;*/
+/*  color: var(--accent-color);*/
+/*  font-size: 0.6875rem;*/
+/*  line-height: var(--base-line-height);*/
+/*}*/

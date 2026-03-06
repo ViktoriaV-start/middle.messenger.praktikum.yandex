@@ -5,10 +5,14 @@ import type { InputProps } from '@shared/types';
 
 const template = Handlebars.compile(templateSource);
 
-export function Input(input: InputProps, editable = true) {
+export function Input(input: InputProps, isEditable: boolean = false) {
+  const readonly = isEditable ? '' : 'readonly';
+  const editableClass = isEditable ? styles.input__editable : '';
+
   return template({
     styles,
     input,
-    editable,
+    readonly,
+    editableClass,
   });
 }
