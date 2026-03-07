@@ -6,7 +6,7 @@
 }
 
 .input__label-text {
-  font-size: 0.8rem;
+  font-size: var(--main-font-size);
   line-height: var(--base-line-height);
   font-weight: 500;
 }
@@ -38,8 +38,7 @@
 
 .input__editable {
   background-color: var(--bg-color-secondary);
-  text-align: left;
-  padding-inline-start: 0.5rem;
+  padding-inline-end: 0.5rem;
   color: var(--main-color);
   border: 1px solid var(--bg-color-secondary);
   border-radius: 0.4rem;
