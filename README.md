@@ -15,6 +15,8 @@
 
 ## [Figma](https://www.figma.com/file/jF5fFFzgGOxQeB4CmKWTiE/Chat_external_link?node-id=0%3A1)
 
+## [Figma](https://www.figma.com/file/jF5fFFzgGOxQeB4CmKWTiE/Chat_external_link?node-id=0%3A1)
+
 ## Технологии
 
 - [FSD](https://feature-sliced.design/ru/docs/get-started/overview)
