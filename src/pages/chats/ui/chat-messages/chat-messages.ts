@@ -3,7 +3,7 @@ import templateSource from './chat-messages.hbs?raw';
 import styles from './chat-messages.module.css';
 import { MessageIn } from '@pages/chats/ui/message-in';
 import { MessageOut } from '@pages/chats/ui/message-out';
-import { Message } from '@pages/chats/ui/message/message.ts';
+import { Message } from '@pages/chats/ui/message';
 
 const template = Handlebars.compile(templateSource);
 

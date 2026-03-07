@@ -11,7 +11,9 @@
     - `npm run dev`
 
 ## Деплой
-- [Netlyfy](sparkly-buttercream-307007.netlify.app)
+- [Netlyfy](https://sparkly-buttercream-307007.netlify.app/)
+
+## [Figma](https://www.figma.com/file/jF5fFFzgGOxQeB4CmKWTiE/Chat_external_link?node-id=0%3A1)
 
 ## Технологии
 

@@ -26,3 +26,31 @@
   line-height: var(--base-line-height);
   font-weight: 500;
 }
+
+.message__send-btn {
+  border: none;
+  background-color: transparent;
+  padding: 0;
+}
+
+.message__send-btn {
+  display: flex;
+  align-items: center;
+  border: none;
+  background-color: transparent;
+  padding: 0;
+  color: var(--accent-color);
+}
+
+.message__send-btn svg {
+  transition: color 0.3s ease;
+}
+
+.message__send-btn:hover svg {
+  color: #6892fd;
+}
+
+.message__send-btn:active {
+  color: var(--accent-color);
+  transform: scale(0.9);
+}

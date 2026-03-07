@@ -36,4 +36,4 @@ export const FORM_CONTROL = {
     linkTitle: 'Войти',
     link: URLS.login,
   },
-};
+} as const;

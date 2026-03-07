@@ -4,13 +4,16 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "start": "vite",
     "build": "tsc -p . && vite build",
     "preview": "vite preview",
     "type-check": "tsc --noEmit",
     "format": "prettier --write \"src/**/*.{ts,js,json,md}\"",
     "format:check": "prettier --check \"src/**/*.{ts,js,json,md}\"",
     "format:hbs": "prettier --write \"src/**/*.hbs\""
+  },
+  "engines": {
+    "node": ">= 22"
   },
   "dependencies": {
     "dotenv": "^17.3.1",
