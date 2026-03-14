@@ -1,12 +1,20 @@
-import Handlebars from 'handlebars';
+import Block from '@app/block.ts';
 import templateSource from './not-found.hbs?raw';
-import { Info } from '@shared/ui/info';
 import { NOT_FOUND_INFO } from '../../constants';
 
-const template = Handlebars.compile(templateSource);
+export class NotFound extends Block<{}> {
+  static componentName = 'NotFound';
+  protected template = templateSource;
 
-export function NotFound() {
-  return template({
-    information: Info(NOT_FOUND_INFO),
-  });
+  constructor() {
+    super({
+      ...NOT_FOUND_INFO,
+    });
+  }
+
+  componentDidMount() {}
+
+  componentWillUnmount() {}
+
+  protected events = {};
 }

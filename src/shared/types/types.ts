@@ -1,11 +1,15 @@
-export interface InfoProps {
+import type { BlockOwnProps } from '@shared/types/global-types.ts';
+import { URLS } from '@shared/constants';
+
+export interface InfoProps extends BlockOwnProps {
   title: string;
   text: string;
   link: string;
   linkTitle: string;
+  styles?: Record<string, string>;
 }
 
-export interface InputProps {
+export interface InputProps extends BlockOwnProps {
   type: string;
   name: string;
   placeholder: string;
@@ -13,10 +17,34 @@ export interface InputProps {
   value?: string;
 }
 
+export interface AuthFormProps extends BlockOwnProps {
+  data: Record<string, InputProps>;
+  formControl: FormControlItem;
+}
+
+export interface BaseButtonProps extends BlockOwnProps {
+  title: string;
+  type: string;
+  classNames: string;
+  styles?: Record<string, string>;
+}
+
+export interface BaseLinkProps extends BlockOwnProps {
+  title: string;
+  href: string;
+  classNames: string;
+  styles?: Record<string, string>;
+}
+
 export interface FormControlItem {
   buttonTitle: string;
   linkTitle: string;
-  link: string;
+  link: (typeof URLS)[keyof typeof URLS];
+}
+
+export interface FormControl {
+  login: FormControlItem;
+  registration: FormControlItem;
 }
 
 export interface Profile {

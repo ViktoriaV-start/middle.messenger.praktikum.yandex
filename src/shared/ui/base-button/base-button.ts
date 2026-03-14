@@ -1,15 +1,33 @@
-import Handlebars from 'handlebars';
 import templateSource from './base-button.hbs?raw';
+import type { BaseButtonProps } from '@shared/types';
+
+import Block from '@app/block.ts';
 import baseStyles from './base-button.module.css';
 
-const template = Handlebars.compile(templateSource);
+export class BaseButton extends Block<BaseButtonProps> {
+  static componentName = 'BaseButton';
+  protected template = templateSource;
 
-export function BaseButton(title: string, styles: string[] = [], type: string = 'submit') {
-  const classNames = [baseStyles['base-button'], ...styles].join(' ');
+  constructor(props: BaseButtonProps) {
+    const styles = {
+      ...baseStyles,
+      ...props.styles,
+    };
 
-  return template({
-    classNames,
-    title,
-    type,
-  });
+    const classNames = props.styles
+      ? `${styles['base-button']} ${props.styles}`
+      : `${styles['base-button']}`;
+
+    super({ ...props, styles, classNames });
+  }
+
+  public setProps(props: BaseButtonProps) {
+    super.setProps(props);
+  }
+
+  componentDidMount() {}
+
+  componentWillUnmount() {}
+
+  protected events = {};
 }

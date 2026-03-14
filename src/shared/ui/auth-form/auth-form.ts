@@ -1,27 +1,25 @@
-import Handlebars from 'handlebars';
 import templateSource from './auth-form.hbs?raw';
 import styles from './auth-form.module.css';
-import type { InputProps, FormControlItem } from '@shared/types';
-import { InputAuth } from '@shared/ui/input-auth';
-import { BaseButton } from '@shared/ui/base-button';
-import { BaseLink } from '@shared/ui/base-link';
 
-const template = Handlebars.compile(templateSource);
+import Block from '@app/block.ts';
+import type { AuthFormProps } from '@shared/types';
 
-export function AuthForm(data: Record<string, InputProps>, formControl: FormControlItem) {
-  const inputs = Object.values(data)
-    .map((item) => {
-      return InputAuth(item);
-    })
-    .join('');
+export class AuthForm extends Block<AuthFormProps> {
+  static componentName = 'AuthForm';
 
-  const button = BaseButton(formControl.buttonTitle);
-  const link = BaseLink(formControl.linkTitle, formControl.link);
+  protected template = templateSource;
 
-  return template({
-    styles,
-    inputs,
-    button,
-    link,
-  });
+  constructor(props: any) {
+    super({ ...props, styles });
+  }
+
+  public setProps(props: any) {
+    super.setProps(props);
+  }
+
+  componentDidMount() {}
+
+  componentWillUnmount() {}
+
+  protected events = {};
 }

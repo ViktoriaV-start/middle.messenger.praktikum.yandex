@@ -1,7 +1,7 @@
 .base-link {
   color: var(--accent-color);
   text-decoration: none;
-  font-size: var(--main-font-size);
+  font-size: var(--small-font-size);
   line-height: var(--base-line-height);
   cursor: default;
 }

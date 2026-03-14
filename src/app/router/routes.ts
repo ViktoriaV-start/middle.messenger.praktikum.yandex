@@ -1,47 +1,40 @@
-import { Registration } from '@pages/registration';
-import { Profile } from '@pages/profile';
-import { Chats } from '@pages/chats';
-import { NotFound, ServerError } from '@pages/error';
-import { Login } from '@pages/login';
-import { EditProfile } from '@pages/profile/ui/edit-profile';
-import { EditPassword } from '@pages/profile/ui/edit-password';
-
 export type Route = {
   path: string;
-  view: () => string;
+  view: string;
 };
 
+// @ts-ignore
 export const routes: Route[] = [
   {
     path: '/',
-    view: Login,
+    view: `{{{ Login }}}`,
   },
-  {
-    path: '/chats',
-    view: Chats,
-  },
-  {
-    path: '/profile',
-    view: Profile,
-  },
-  {
-    path: '/edit-profile',
-    view: EditProfile,
-  },
-  {
-    path: '/edit-password',
-    view: EditPassword,
-  },
+  // {
+  //   path: '/chats',
+  //   view: Chats,
+  // },
+  // {
+  //   path: '/profile',
+  //   view: Profile,
+  // },
+  // {
+  //   path: '/edit-profile',
+  //   view: EditProfile,
+  // },
+  // {
+  //   path: '/edit-password',
+  //   view: EditPassword,
+  // },
   {
     path: '/registration',
-    view: Registration,
+    view: `{{{Registration}}}`,
   },
   {
     path: '/server-error',
-    view: ServerError,
+    view: `{{{ ServerError }}}`,
   },
   {
     path: '*',
-    view: NotFound,
+    view: `{{{ NotFound }}}`,
   },
 ];

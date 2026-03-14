@@ -5,13 +5,20 @@
     <fieldset
       class="fieldset_border {{styles.auth-form__fieldset}} {{styles.login-form__fieldset_m}}"
     >
-      {{{inputs}}}
+      {{#each data}}
+        {{{ InputAuth
+                type=this.type
+                label=this.label
+                placeholder=this.placeholder
+                name=this.name
+                ref=this.name
+        }}}
+      {{/each}}
     </fieldset>
 
     <div class="{{styles.auth-form__control}}">
-      {{{button}}}
-      {{{link}}}
+      {{{ BaseButton type="submit" title=formControl.buttonTitle }}}
+      {{{ BaseLink href=formControl.link title=formControl.linkTitle }}}
     </div>
-
   </form>
 </div>

@@ -39,13 +39,6 @@ body {
   line-height: 1;
 }
 
-.link {
-  text-decoration: none;
-  color: var(--accent-color);
-  font-size: 0.6875rem;
-  line-height: var(--base-line-height);
-}
-
 .visually-hidden {
   position: absolute;
   width: 1px;

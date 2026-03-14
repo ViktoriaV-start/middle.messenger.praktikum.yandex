@@ -1,13 +1,47 @@
-import Handlebars from 'handlebars';
+// import Handlebars from 'handlebars';
+// import templateSource from './base-link.hbs?raw';
+// import styles from './base-link.module.css';
+//
+// const template = Handlebars.compile(templateSource);
+//
+// export function BaseLink(title: string, href: string) {
+//   return template({
+//     styles,
+//     title,
+//     href,
+//   });
+// }
+
 import templateSource from './base-link.hbs?raw';
-import styles from './base-link.module.css';
+import type { BaseLinkProps } from '@shared/types';
 
-const template = Handlebars.compile(templateSource);
+import Block from '@app/block.ts';
+import baseStyles from './base-link.module.css';
 
-export function BaseLink(title: string, href: string) {
-  return template({
-    styles,
-    title,
-    href,
-  });
+export class BaseLink extends Block<BaseLinkProps> {
+  static componentName = 'BaseLink';
+  protected template = templateSource;
+
+  constructor(props: BaseLinkProps) {
+    const styles = {
+      ...baseStyles,
+      ...props.styles,
+    };
+
+    const classNames = props.styles
+      ? `navigation-link ${styles['base-link']} ${props.styles}`
+      : `navigation-link ${styles['base-link']}`;
+
+    super({ ...props, styles, classNames });
+  }
+
+  public setProps(props: BaseLinkProps) {
+    super.setProps(props);
+  }
+
+  componentDidMount() {}
+
+  componentWillUnmount() {}
+
+  protected events = {};
 }
