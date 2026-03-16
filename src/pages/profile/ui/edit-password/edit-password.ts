@@ -1,28 +1,26 @@
-import Handlebars from 'handlebars';
-import templateSource from './edit-password.hbs?raw';
+import Block from '@app/block.ts';
 import styles from '../profile.module.css';
+import templateSource from './edit-password.hbs?raw';
 import { BUTTONS, PASSWORD_INPUTS } from '../../constants';
-import { Input } from '@shared/ui/input';
-import { URLS } from '@shared/constants';
-import { BaseButton } from '@shared/ui/base-button';
 
-const template = Handlebars.compile(templateSource);
+export class EditPassword extends Block<{}> {
+  static componentName = 'EditPassword';
 
-export function EditPassword() {
-  const passwordInputs = Object.values(PASSWORD_INPUTS)
-    .map((input) => {
-      return Input({ ...input }, true);
-    })
-    .join('');
+  protected template = templateSource;
 
-  const loginLink = URLS.login;
+  constructor() {
+    const data = {
+      button: {
+        title: BUTTONS.save,
+      },
+      passwordInputs: PASSWORD_INPUTS,
+    };
+    super({ ...data, styles });
+  }
 
-  const saveBtn = BaseButton(BUTTONS.save, [styles['profile__save-button']]);
+  componentDidMount() {}
 
-  return template({
-    styles,
-    passwordInputs,
-    loginLink,
-    saveBtn,
-  });
+  componentWillUnmount() {}
+
+  protected events = {};
 }

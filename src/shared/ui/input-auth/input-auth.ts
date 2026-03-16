@@ -8,11 +8,11 @@ export class InputAuth extends Block<InputProps> {
 
   protected template = templateSource;
 
-  constructor(props: any) {
+  constructor(props: InputProps) {
     super({ ...props, styles });
   }
 
-  public setProps(props: any) {
+  public setProps(props: InputProps) {
     super.setProps(props);
   }
 

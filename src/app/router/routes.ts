@@ -13,21 +13,21 @@ export const routes: Route[] = [
   //   path: '/chats',
   //   view: Chats,
   // },
-  // {
-  //   path: '/profile',
-  //   view: Profile,
-  // },
-  // {
-  //   path: '/edit-profile',
-  //   view: EditProfile,
-  // },
-  // {
-  //   path: '/edit-password',
-  //   view: EditPassword,
-  // },
+  {
+    path: '/profile',
+    view: `{{{ Profile }}}`,
+  },
+  {
+    path: '/edit-profile',
+    view: `{{{EditProfile}}}`,
+  },
+  {
+    path: '/edit-password',
+    view: `{{{ EditPassword }}}`,
+  },
   {
     path: '/registration',
-    view: `{{{Registration}}}`,
+    view: `{{{ Registration }}}`,
   },
   {
     path: '/server-error',

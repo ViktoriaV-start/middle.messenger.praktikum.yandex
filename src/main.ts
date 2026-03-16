@@ -1,21 +1,29 @@
 import App from './app/app';
 import { registerComponent } from '@app/register-component.ts';
-import { AuthForm, BaseButton, Info, InputAuth } from '@shared/ui';
+import { AuthForm, BaseButton, Info, InputAuth, Input } from '@shared/ui';
 import { NotFound, ServerError } from '@pages/error';
 import { Login } from '@pages/login';
 import { BaseLink } from '@shared/ui/base-link';
 import { Registration } from '@pages/registration';
+import { Profile } from '@pages/profile';
+import { EditPassword } from '@pages/profile/ui/edit-password';
+import { EditProfile } from '@pages/profile/ui/edit-profile';
 
 registerComponent(InputAuth);
+registerComponent(Input);
 registerComponent(BaseButton);
 registerComponent(BaseLink);
 registerComponent(AuthForm);
-
 registerComponent(Info);
+
 registerComponent(NotFound);
 registerComponent(ServerError);
+registerComponent(Login);
 registerComponent(Registration);
 registerComponent(Login);
+registerComponent(Profile);
+registerComponent(EditPassword);
+registerComponent(EditProfile);
 
 const root = document.querySelector<HTMLDivElement>('#app');
 
@@ -34,21 +42,6 @@ function render() {
     }
   }
 }
-
-// function initRouter() {
-//   document.addEventListener('click', (event) => {
-//     const target = event.target as HTMLElement;
-//     const link = target.closest<HTMLAnchorElement>('.navigation-link');
-//
-//     if (!link) return;
-//
-//     event.preventDefault();
-//     navigate(link.pathname);
-//     render();
-//   });
-//
-//   window.addEventListener('popstate', render); // перерендер при back/forward
-// }
 
 function initInputAuth() {
   document.addEventListener('focusin', (e) => {

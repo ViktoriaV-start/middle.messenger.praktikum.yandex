@@ -20,8 +20,7 @@ export default class App extends Block<{}> {
   protected events = {
     submit: (event: Event) => {
       event.preventDefault();
-      console.log((this.refs.login as HTMLInputElement).value);
-      console.log((this.refs.login as HTMLInputElement).value);
+      // console.log((this.refs.login as HTMLInputElement).value);
     },
     click: (event: Event) => {
       const target = event.target as HTMLElement;

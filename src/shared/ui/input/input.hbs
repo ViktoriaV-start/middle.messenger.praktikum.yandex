@@ -1,11 +1,11 @@
-<label class="{{styles.input__label}}">
-  <span class="{{styles.input__label-text}}">{{input.label}}</span>
+<label class="{{styles.input__label}} {{editableClass}}">
+  <span class="{{styles.input__label-text}}">{{label}}</span>
   <input
-    class="input-auth {{editableClass}} {{styles.input__field}}"
-    type="{{input.type}}"
-    placeholder="{{input.placeholder}}"
-    name="{{input.name}}"
+    class="input-auth {{styles.input__field}}"
+    type="{{type}}"
+    placeholder="{{placeholder}}"
+    name="{{name}}"
     {{readonly}}
-    value="{{input.value}}"
+    value="{{value}}"
   />
 </label>

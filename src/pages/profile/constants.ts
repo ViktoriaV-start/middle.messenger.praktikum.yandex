@@ -63,19 +63,19 @@ export const BUTTONS = {
 
 export const PASSWORD_INPUTS = {
   oldPassword: {
-    type: 'text',
+    type: 'password',
     name: 'old-password',
     placeholder: '*********',
     label: 'Старый пароль',
   },
   newPassword: {
-    type: 'text',
+    type: 'password',
     name: 'new-password',
     placeholder: '*********',
     label: 'Новый пароль',
   },
   repeatedPassword: {
-    type: 'text',
+    type: 'password',
     name: 'repeated-password',
     placeholder: '*********',
     label: 'Повторите новый пароль',

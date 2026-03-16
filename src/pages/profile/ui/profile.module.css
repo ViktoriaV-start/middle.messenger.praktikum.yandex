@@ -58,8 +58,8 @@
   margin-block-end: 1rem;
 }
 
-.profile__link {
-  color: var(--critical-color) !important;
+.profile__exit-link {
+  color: var(--critical-color);
 }
 
 .profile__save-button {

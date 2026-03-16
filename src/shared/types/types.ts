@@ -15,6 +15,13 @@ export interface InputProps extends BlockOwnProps {
   placeholder: string;
   label: string;
   value?: string;
+  styles?: Record<string, string>;
+}
+
+export interface EditableInputProps extends InputProps {
+  isEditable?: boolean;
+  readonly?: string;
+  editableClass?: string;
 }
 
 export interface AuthFormProps extends BlockOwnProps {

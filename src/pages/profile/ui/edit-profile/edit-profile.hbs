@@ -3,9 +3,19 @@
   <div class="{{styles.profile__avatar}} {{styles.edit-profile__avatar_mbe}}" id="avatar"></div>
 
   <div class="{{styles.profile__inputs}} {{styles.profile__inputs_mbe}}">
-    {{{profileInputs}}}
+    {{#each profileInputs}}
+      {{{ Input
+              type=this.type
+              label=this.label
+              placeholder=this.placeholder
+              name=this.name
+              ref=this.name
+              value=(lookup ../user this.name)
+              isEditable=true
+      }}}
+    {{/each}}
   </div>
 
-  {{{saveBtn}}}
+  {{{ BaseButton title=button.title styles=styles.profile__save-button }}}
 
 </form>
