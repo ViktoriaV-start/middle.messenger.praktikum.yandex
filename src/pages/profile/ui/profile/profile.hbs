@@ -1,31 +1,35 @@
-<section class="{{styles.profile}}">
+<div class="{{styles.profile__wrapper}}">
+  {{{ BackButton ref='back' }}}
+  <section class="{{styles.profile}}">
+    {{{ Navigation }}}
 
-  <div class="{{styles.profile__avatar}} {{styles.profile__avatar_mbe}}" id="avatar">
-  </div>
+    <div class="{{styles.profile__avatar}} {{styles.profile__avatar_mbe}}" id="avatar">
+    </div>
 
-  <h1 class="h {{styles.profile__user-name}} {{styles.profile__user-name_mbe}}">{{user.firstName}}</h1>
+    <h1 class="h {{styles.profile__user-name}} {{styles.profile__user-name_mbe}}">{{user.firstName}}</h1>
 
-  <div class="{{styles.profile__inputs}} {{styles.profile__inputs_mbe}}">
-    {{#each profileInputs}}
-      {{{ Input
-              type=this.type
-              label=this.label
-              placeholder=this.placeholder
-              name=this.name
-              ref=this.name
-              value=(lookup ../user this.name)
-      }}}
-    {{/each}}
-  </div>
+    <div class="{{styles.profile__inputs}} {{styles.profile__inputs_mbe}}">
+      {{#each profileInputs}}
+        {{{ Input
+                type=this.type
+                label=this.label
+                placeholder=this.placeholder
+                name=this.name
+                ref=this.name
+                value=(lookup ../user this.name)
+        }}}
+      {{/each}}
+    </div>
 
-  <nav class="{{styles.profile__nav}} {{styles.profile__nav_mbe}}">
-    {{#each profileLinks}}
-      <div>
-        {{{ BaseLink title=title href=type }}}
-      </div>
-    {{/each}}
-  </nav>
+    <nav class="{{styles.profile__nav}} {{styles.profile__nav_mbe}}">
+      {{#each profileLinks}}
+        <div>
+          {{{ BaseLink title=title href=type }}}
+        </div>
+      {{/each}}
+    </nav>
 
-  {{{ BaseLink title=exitLinkTitle href=chatLink styles=styles.profile__exit-link }}}
+    {{{ BaseLink title=exitLinkTitle href=chatLink styles=styles.profile__exit-link }}}
 
-</section>
+  </section>
+</div>

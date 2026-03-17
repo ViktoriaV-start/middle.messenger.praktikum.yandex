@@ -1,15 +1,26 @@
-import Handlebars from 'handlebars';
 import templateSource from './message.hbs?raw';
 import styles from './message.module.css';
 import clipIcon from '@app/assets/icons/clip-icon.svg?raw';
 import sendMessageIcon from '@app/assets/icons/right-arrow-icon.svg?raw';
 
-const template = Handlebars.compile(templateSource);
+import Block from '@app/block.ts';
 
-export function Message() {
-  return template({
-    styles,
-    sendMessageIcon,
-    clipIcon,
-  });
+export class Message extends Block<{}> {
+  static componentName = 'Message';
+
+  protected template = templateSource;
+
+  constructor() {
+    super({ sendMessageIcon, clipIcon, styles });
+  }
+
+  public setProps(props: any) {
+    super.setProps(props);
+  }
+
+  componentDidMount() {}
+
+  componentWillUnmount() {}
+
+  protected events = {};
 }

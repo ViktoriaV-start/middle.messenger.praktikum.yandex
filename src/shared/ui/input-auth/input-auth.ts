@@ -19,11 +19,4 @@ export class InputAuth extends Block<InputProps> {
   componentDidMount() {}
 
   componentWillUnmount() {}
-
-  protected events = {
-    input: (event: Event) => {
-      const input = event.target as HTMLInputElement;
-      console.log(`[InputAuth:${this.props.name}] input event:`, input.value);
-    },
-  };
 }

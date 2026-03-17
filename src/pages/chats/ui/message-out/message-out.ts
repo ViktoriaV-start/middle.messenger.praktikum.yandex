@@ -1,11 +1,22 @@
-import Handlebars from 'handlebars';
 import templateSource from './message-out.hbs?raw';
 import styles from './message-out.module.css';
 
-const template = Handlebars.compile(templateSource);
+import Block from '@app/block.ts';
 
-export function MessageOut() {
-  return template({
-    styles,
-  });
+export class MessageOut extends Block<{}> {
+  static componentName = 'MessageOut';
+
+  protected template = templateSource;
+
+  constructor() {
+    super({ styles });
+  }
+
+  public setProps() {}
+
+  componentDidMount() {}
+
+  componentWillUnmount() {}
+
+  protected events = {};
 }

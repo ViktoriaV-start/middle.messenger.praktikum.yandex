@@ -1,3 +1,8 @@
+.profile__wrapper {
+  display: flex;
+  block-size: 100%;
+}
+
 .profile {
   block-size: 100%;
   margin: 0 auto;

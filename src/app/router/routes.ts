@@ -3,16 +3,15 @@ export type Route = {
   view: string;
 };
 
-// @ts-ignore
 export const routes: Route[] = [
   {
     path: '/',
     view: `{{{ Login }}}`,
   },
-  // {
-  //   path: '/chats',
-  //   view: Chats,
-  // },
+  {
+    path: '/chats',
+    view: `{{{ Chats }}}`,
+  },
   {
     path: '/profile',
     view: `{{{ Profile }}}`,

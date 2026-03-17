@@ -54,7 +54,7 @@ export interface FormControl {
   registration: FormControlItem;
 }
 
-export interface Profile {
+export interface User {
   email: string;
   login: string;
   firstName: string;
@@ -63,11 +63,20 @@ export interface Profile {
   phone: string;
 }
 
-export interface User {
-  email: string;
-  login: string;
-  firstName: string;
-  secondName: string;
-  display_name: string;
-  phone: string;
+export interface ChatItemProps extends BlockOwnProps {
+  id: number;
+  avatarUrl: string;
+  title: string;
+  unreadCount?: number;
+  lastMessage?: {
+    text: string;
+    time: string;
+  };
+  styles?: Record<string, string>;
+}
+
+export interface BackButtonProps extends BlockOwnProps {
+  backUrl: string;
+  icon: string;
+  styles?: Record<string, string>;
 }

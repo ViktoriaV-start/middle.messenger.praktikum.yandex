@@ -1,18 +1,20 @@
-import Handlebars from 'handlebars';
 import templateSource from './chats.hbs?raw';
+
+import Block from '@app/block.ts';
 import styles from './chats.module.css';
-import { Sidebar } from '../sidebar';
-import { ChatMessages } from '@pages/chats/ui/chat-messages';
 
-const template = Handlebars.compile(templateSource);
+export class Chats extends Block<{}> {
+  static componentName = 'Chats';
 
-export function Chats() {
-  const sidebar = Sidebar();
-  const chatMessages = ChatMessages();
+  protected template = templateSource;
 
-  return template({
-    styles,
-    sidebar,
-    chatMessages,
-  });
+  constructor() {
+    super({ styles });
+  }
+
+  componentDidMount() {}
+
+  componentWillUnmount() {}
+
+  protected events = {};
 }

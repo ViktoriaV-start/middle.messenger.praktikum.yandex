@@ -2,6 +2,7 @@ import Block from '@app/block.ts';
 import styles from '../profile.module.css';
 import templateSource from './edit-password.hbs?raw';
 import { BUTTONS, PASSWORD_INPUTS } from '../../constants';
+import { getFormData } from '@shared/utils/form/getFormData.ts';
 
 export class EditPassword extends Block<{}> {
   static componentName = 'EditPassword';
@@ -22,5 +23,12 @@ export class EditPassword extends Block<{}> {
 
   componentWillUnmount() {}
 
-  protected events = {};
+  protected events = {
+    submit: (event: Event) => {
+      event.preventDefault();
+      const formData = getFormData(event);
+
+      console.log(formData);
+    },
+  };
 }

@@ -1,23 +1,25 @@
-import Handlebars from 'handlebars';
 import templateSource from './chat-item.hbs?raw';
+import type { ChatItemProps } from '@shared/types';
+
+import Block from '@app/block.ts';
 import styles from './chat-item.module.css';
 
-export interface ChatItemProps {
-  id: number;
-  avatarUrl: string;
-  title: string;
-  unreadCount?: number;
-  lastMessage?: {
-    text: string;
-    time: string;
-  };
-}
+export class ChatItem extends Block<ChatItemProps> {
+  static componentName = 'ChatItem';
 
-const template = Handlebars.compile(templateSource);
+  protected template = templateSource;
 
-export function ChatItem(props: ChatItemProps) {
-  return template({
-    ...props,
-    styles,
-  });
+  constructor(props: ChatItemProps) {
+    super({ ...props, styles });
+  }
+
+  public setProps(props: ChatItemProps) {
+    super.setProps(props);
+  }
+
+  componentDidMount() {}
+
+  componentWillUnmount() {}
+
+  protected events = {};
 }

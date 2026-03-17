@@ -1,18 +1,25 @@
-import Handlebars from 'handlebars';
 import templateSource from './sidebar.hbs?raw';
+
+import Block from '@app/block.ts';
+import { URLS, CHATS } from '@shared/constants';
 import styles from './sidebar.module.css';
 
-import { ChatItem } from '@shared/ui/chat-item';
-import { URLS, chats } from '@shared/constants';
+export class Sidebar extends Block<{}> {
+  static componentName = 'Sidebar';
 
-const template = Handlebars.compile(templateSource);
+  protected template = templateSource;
 
-export function Sidebar() {
-  const renderedChats = chats.map((chat) => ChatItem(chat)).join('');
+  constructor() {
+    const data = {
+      chats: CHATS,
+      urls: URLS,
+    };
+    super({ ...data, styles });
+  }
 
-  return template({
-    styles,
-    URLS,
-    chats: renderedChats,
-  });
+  componentDidMount() {}
+
+  componentWillUnmount() {}
+
+  protected events = {};
 }

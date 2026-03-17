@@ -1,11 +1,22 @@
-import Handlebars from 'handlebars';
 import templateSource from './message-in.hbs?raw';
 import styles from './message-in.module.css';
 
-const template = Handlebars.compile(templateSource);
+import Block from '@app/block.ts';
 
-export function MessageIn() {
-  return template({
-    styles,
-  });
+export class MessageIn extends Block<{}> {
+  static componentName = 'MessageIn';
+
+  protected template = templateSource;
+
+  constructor() {
+    super({ styles });
+  }
+
+  public setProps() {}
+
+  componentDidMount() {}
+
+  componentWillUnmount() {}
+
+  protected events = {};
 }

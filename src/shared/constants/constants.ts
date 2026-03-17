@@ -1,10 +1,10 @@
 import { URLS } from '@shared/constants/urls.ts';
 
-export const chats = [
+export const CHATS = [
   {
     id: 1,
     title: 'Приветственный чат',
-    avatarUrl: 'welcome.jpg', // **исправлено: avatar → avatarUrl**
+    avatarUrl: 'welcome.jpg',
     unreadCount: 2,
     lastMessage: {
       author: 'Бот',
@@ -15,7 +15,7 @@ export const chats = [
   {
     id: 2,
     title: 'Frontend Crew',
-    avatarUrl: 'frontend.jpg', // **исправлено: avatar → avatarUrl**
+    avatarUrl: 'frontend.jpg',
     unreadCount: 0,
     lastMessage: {
       author: 'Витя',
