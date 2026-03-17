@@ -1,7 +1,6 @@
+import Block from '../../lib/block';
+import type { BaseButtonProps } from '../../types';
 import templateSource from './base-button.hbs?raw';
-import type { BaseButtonProps } from '@shared/types';
-
-import Block from '@app/block.ts';
 import baseStyles from './base-button.module.css';
 
 export class BaseButton extends Block<BaseButtonProps> {

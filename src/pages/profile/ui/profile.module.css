@@ -16,7 +16,7 @@
   width: 8.125rem;
   height: 8.125rem;
   border-radius: 50%;
-  background: #efefef url('@app/assets/icons/avatar-icon.svg') no-repeat center;
+  background: #efefef url('@shared/assets/icons/avatar-icon.svg') no-repeat center;
 }
 
 .profile__avatar_mbe {

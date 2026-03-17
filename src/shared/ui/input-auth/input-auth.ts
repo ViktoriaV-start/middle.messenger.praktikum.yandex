@@ -1,7 +1,7 @@
-import Block from '@app/block.ts';
-import styles from './input-auth.module.css';
+import Block from '../../lib/block';
+import type { InputProps } from '../../types';
 import templateSource from './input-auth.hbs?raw';
-import type { InputProps } from '@shared/types';
+import styles from './input-auth.module.css';
 
 export class InputAuth extends Block<InputProps> {
   static componentName = 'InputAuth';

@@ -1,16 +1,16 @@
-import App from './app/app';
 import { registerComponent } from '@app/register-component.ts';
-import { AuthForm, BaseButton, Info, InputAuth, Input, ChatItem, Navigation } from '@shared/ui';
+import { Chats, Message, MessageIn, MessageOut, Sidebar } from '@pages/chats';
+import { ChatMessages } from '@pages/chats';
 import { NotFound, ServerError } from '@pages/error';
 import { Login } from '@pages/login';
-import { BaseLink } from '@shared/ui/base-link';
-import { Registration } from '@pages/registration';
 import { Profile } from '@pages/profile';
-import { EditPassword } from '@pages/profile/ui/edit-password';
-import { EditProfile } from '@pages/profile/ui/edit-profile';
-import { Chats, Message, MessageIn, MessageOut, Sidebar } from '@pages/chats';
-import { ChatMessages } from '@pages/chats/ui/chat-messages';
+import { EditPassword } from '@pages/profile';
+import { EditProfile } from '@pages/profile';
+import { Registration } from '@pages/registration';
+import { AuthForm, BaseButton, Info, InputAuth, Input, ChatItem, Navigation } from '@shared/ui';
 import { BackButton } from '@shared/ui/back-button';
+import { BaseLink } from '@shared/ui/base-link';
+import App from './app/app';
 
 registerComponent(Navigation);
 registerComponent(InputAuth);
@@ -42,7 +42,9 @@ const root = document.querySelector<HTMLDivElement>('#app');
 let app: App;
 
 function render() {
-  if (!root) return console.error('Root element is null');
+  if (!root) {
+    return console.error('Root element is null');
+  }
 
   // Создаём App один раз
   if (!app) {

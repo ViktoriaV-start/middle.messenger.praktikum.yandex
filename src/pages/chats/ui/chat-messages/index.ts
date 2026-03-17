@@ -1,1 +1,1 @@
-export { ChatMessages } from './chat-messages.ts';
+export { ChatMessages } from './chat-messages';

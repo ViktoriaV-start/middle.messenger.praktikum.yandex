@@ -8,9 +8,10 @@
     "build": "tsc -p . && vite build",
     "preview": "vite preview",
     "type-check": "tsc --noEmit",
-    "format": "prettier --write \"src/**/*.{ts,js,json,md}\"",
-    "format:check": "prettier --check \"src/**/*.{ts,js,json,md}\"",
-    "format:hbs": "prettier --write \"src/**/*.hbs\""
+    "format:fix": "prettier --write \"src/**/*.{ts,js,json,hbs,md}\"",
+    "format:check": "prettier --check \"src/**/*.{ts,js,json,hbs,md}\"",
+    "check-lint": "eslint \"src/**/*.{js,ts}\"",
+    "lint": "eslint --fix \"**/*.{js,ts}\""
   },
   "engines": {
     "node": ">= 22"
@@ -20,11 +21,20 @@
     "handlebars": "^4.7.8"
   },
   "devDependencies": {
+    "@conarti/eslint-plugin-feature-sliced": "^1.0.5",
+    "@eslint/js": "^9.25.0",
+    "@trivago/prettier-plugin-sort-imports": "^6.0.2",
     "@types/node": "^25.3.1",
     "autoprefixer": "^10.4.27",
+    "eslint": "^9.25.0",
+    "eslint-plugin-import": "^2.32.0",
+    "eslint-plugin-unicorn": "^63.0.0",
+    "globals": "^17.4.0",
+    "husky": "^9.1.7",
     "postcss": "^8.5.6",
     "prettier": "3.8.1",
     "typescript": "~5.9.3",
+    "typescript-eslint": "^8.57.1",
     "vite": "^7.3.1"
   }
 }

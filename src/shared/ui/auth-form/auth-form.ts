@@ -1,20 +1,19 @@
+import Block from '../../lib/block';
+import type { AuthFormProps } from '../../types';
+import { getFormData } from '../../utils/form';
 import templateSource from './auth-form.hbs?raw';
 import styles from './auth-form.module.css';
-
-import Block from '@app/block.ts';
-import type { AuthFormProps } from '@shared/types';
-import { getFormData } from '@shared/utils/form/getFormData.ts';
 
 export class AuthForm extends Block<AuthFormProps> {
   static componentName = 'AuthForm';
 
   protected template = templateSource;
 
-  constructor(props: any) {
+  constructor(props: AuthFormProps) {
     super({ ...props, styles });
   }
 
-  public setProps(props: any) {
+  public setProps(props: AuthFormProps) {
     super.setProps(props);
   }
 

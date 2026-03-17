@@ -1,9 +1,8 @@
+import Block from '@shared/lib/block';
 import templateSource from './chat-messages.hbs?raw';
 import styles from './chat-messages.module.css';
 
-import Block from '@app/block.ts';
-
-export class ChatMessages extends Block<{}> {
+export class ChatMessages extends Block<object> {
   static componentName = 'ChatMessages';
 
   protected template = templateSource;

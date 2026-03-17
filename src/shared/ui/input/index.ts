@@ -1,1 +1,1 @@
-export { Input } from './input.ts';
+export { Input } from './input';

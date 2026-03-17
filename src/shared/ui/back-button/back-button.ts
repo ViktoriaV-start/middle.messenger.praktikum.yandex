@@ -1,9 +1,8 @@
+import LeftArrowIcon from '../../assets/icons/left-arrow-icon.svg?raw';
+import Block from '../../lib/block';
+import type { BackButtonProps } from '../../types';
 import templateSource from './back-button.hbs?raw';
 import styles from './back-button.module.css';
-
-import Block from '@app/block.ts';
-import type { BackButtonProps } from '@shared/types';
-import LeftArrowIcon from '@app/assets/icons/left-arrow-icon.svg?raw';
 
 export class BackButton extends Block<BackButtonProps> {
   static componentName = 'BackButton';

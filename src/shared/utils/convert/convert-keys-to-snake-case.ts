@@ -1,5 +1,5 @@
-import { checkIsObject } from '../mydash/checkIsObject';
-import { convertCamelToSnake } from './convertCamelToSnake';
+import { checkIsObject } from '../mydash';
+import { convertCamelToSnake } from './convert-camel-to-snake';
 
 export const convertKeysToSnakeCase = (obj: Record<string, unknown>): Record<string, unknown> => {
   const isObject = checkIsObject(obj);

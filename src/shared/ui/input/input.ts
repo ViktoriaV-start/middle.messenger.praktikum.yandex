@@ -1,7 +1,7 @@
-import Block from '@app/block.ts';
-import styles from './input.module.css';
+import Block from '../../lib/block';
+import type { EditableInputProps } from '../../types';
 import templateSource from './input.hbs?raw';
-import type { EditableInputProps } from '@shared/types';
+import styles from './input.module.css';
 
 export class Input extends Block<EditableInputProps> {
   static componentName = 'Input';

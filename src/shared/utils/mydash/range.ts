@@ -6,6 +6,7 @@ export const baseRange = (start: number, end: number, step: number): number[] =>
     for (let i = 0; i < length; i++) {
       result.push(start);
     }
+
     return result;
   }
 
@@ -29,5 +30,6 @@ export const range = (start = 0, end: number, step: number | undefined) => {
   }
 
   step = step === undefined ? (start < end ? 1 : -1) : step;
+
   return baseRange(start, end, step);
 };

@@ -1,12 +1,10 @@
+import Block from '@shared/lib/block';
+import { resolveRoute, navigate } from './router';
+import './styles/app.css';
+import './styles/app.css';
 import './styles/variables.css';
-import './styles/app.css';
-import { resolveRoute } from './router';
 
-import './styles/app.css';
-import Block from './block';
-import { navigate } from '@app/router/router.ts';
-
-export default class App extends Block<{}> {
+export default class App extends Block<object> {
   protected template: string;
 
   constructor() {
@@ -24,7 +22,9 @@ export default class App extends Block<{}> {
       const target = event.target as HTMLElement;
       const linkElement = target.closest<HTMLAnchorElement>('.navigation-link');
 
-      if (!linkElement) return;
+      if (!linkElement) {
+        return;
+      }
 
       event.preventDefault();
       navigate(linkElement.pathname);

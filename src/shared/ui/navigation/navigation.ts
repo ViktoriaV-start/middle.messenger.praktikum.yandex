@@ -1,10 +1,9 @@
+import { URLS } from '../../constants';
+import Block from '../../lib/block';
 import templateSource from './navigation.hbs?raw';
 import styles from './navigation.module.css';
 
-import Block from '@app/block.ts';
-import { URLS } from '@shared/constants';
-
-export class Navigation extends Block<{}> {
+export class Navigation extends Block<object> {
   static componentName = 'Navigation';
 
   protected template = templateSource;
@@ -13,9 +12,7 @@ export class Navigation extends Block<{}> {
     super({ ...URLS, styles });
   }
 
-  public setProps(props: any) {
-    super.setProps(props);
-  }
+  public setProps() {}
 
   componentDidMount() {}
 

@@ -1,10 +1,10 @@
-import Block from '@app/block.ts';
+import { URLS } from '@shared/constants';
+import Block from '@shared/lib/block';
+import { PROFILE_INPUTS, PROFILE_LINKS, USER } from '../../constants';
 import styles from '../profile.module.css';
 import templateSource from './profile.hbs?raw';
-import { PROFILE_INPUTS, PROFILE_LINKS, USER } from '../../constants';
-import { URLS } from '@shared/constants';
 
-export class Profile extends Block<{}> {
+export class Profile extends Block<object> {
   static componentName = 'Profile';
 
   protected template = templateSource;

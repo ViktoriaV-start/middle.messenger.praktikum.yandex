@@ -1,7 +1,6 @@
+import Block from '../../lib/block';
+import type { BaseLinkProps } from '../../types';
 import templateSource from './base-link.hbs?raw';
-import type { BaseLinkProps } from '@shared/types';
-
-import Block from '@app/block.ts';
 import baseStyles from './base-link.module.css';
 
 export class BaseLink extends Block<BaseLinkProps> {

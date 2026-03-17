@@ -1,5 +1,5 @@
-import type { BlockOwnProps } from '@shared/types/global-types.ts';
-import { URLS } from '@shared/constants';
+import { URLS } from '../constants';
+import type { BlockOwnProps } from '../types';
 
 export interface InfoProps extends BlockOwnProps {
   title: string;
@@ -27,6 +27,7 @@ export interface EditableInputProps extends InputProps {
 export interface AuthFormProps extends BlockOwnProps {
   data: Record<string, InputProps>;
   formControl: FormControlItem;
+  styles?: Record<string, string>;
 }
 
 export interface BaseButtonProps extends BlockOwnProps {
@@ -73,10 +74,29 @@ export interface ChatItemProps extends BlockOwnProps {
     time: string;
   };
   styles?: Record<string, string>;
+  unreadCountClass?: string;
 }
 
 export interface BackButtonProps extends BlockOwnProps {
   backUrl: string;
   icon: string;
+  styles?: Record<string, string>;
+}
+
+export interface FormItem {
+  type: string;
+  name: string;
+  placeholder: string;
+  label: string;
+}
+
+export interface LoginForm {
+  login: FormItem;
+  password: FormItem;
+}
+
+export interface LoginProps extends BlockOwnProps {
+  data: LoginForm;
+  formControl: FormControlItem;
   styles?: Record<string, string>;
 }

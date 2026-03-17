@@ -1,9 +1,9 @@
-import Block from '@app/block.ts';
-import templateSource from './login.hbs?raw';
-import { LOGIN_FORM } from '../../constants';
 import { FORM_CONTROL } from '@shared/constants';
+import Block from '@shared/lib/block';
+import type { LoginProps } from '@shared/types';
+import { LOGIN_FORM } from '../../constants';
+import templateSource from './login.hbs?raw';
 import styles from './login.module.css';
-import type { LoginProps } from '@pages/login/types.ts';
 
 export class Login extends Block<LoginProps> {
   static componentName = 'Login';

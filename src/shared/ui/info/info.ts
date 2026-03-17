@@ -1,7 +1,6 @@
+import Block from '../../lib/block';
+import type { InfoProps } from '../../types';
 import templateSource from './info.hbs?raw';
-import type { InfoProps } from '@shared/types';
-
-import Block from '@app/block.ts';
 import styles from './info.module.css';
 
 export class Info extends Block<InfoProps> {

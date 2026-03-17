@@ -1,7 +1,6 @@
+import Block from '../../lib/block';
+import type { ChatItemProps } from '../../types';
 import templateSource from './chat-item.hbs?raw';
-import type { ChatItemProps } from '@shared/types';
-
-import Block from '@app/block.ts';
 import styles from './chat-item.module.css';
 
 export class ChatItem extends Block<ChatItemProps> {
@@ -10,7 +9,8 @@ export class ChatItem extends Block<ChatItemProps> {
   protected template = templateSource;
 
   constructor(props: ChatItemProps) {
-    super({ ...props, styles });
+    const unreadCountClass = props.unreadCount ? styles.unread : '';
+    super({ ...props, unreadCountClass, styles });
   }
 
   public setProps(props: ChatItemProps) {

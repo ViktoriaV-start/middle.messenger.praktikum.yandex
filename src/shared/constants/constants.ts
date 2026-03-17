@@ -1,4 +1,4 @@
-import { URLS } from '@shared/constants/urls.ts';
+import { URLS } from './urls';
 
 export const CHATS = [
   {

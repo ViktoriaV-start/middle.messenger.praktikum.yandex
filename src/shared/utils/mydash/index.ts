@@ -1,3 +1,5 @@
 export * from './identity';
+
 export * from './last';
-export * from './checkIsObject';
+
+export * from './check-is-object';

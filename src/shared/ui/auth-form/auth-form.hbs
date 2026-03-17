@@ -1,24 +1,24 @@
 <div class="{{styles.auth-form__wrapper}}">
   <form class="{{styles.auth-form}}">
-    <h1 class="h {{styles.auth-form__title}} {{styles.auth-form__title_mb}}">Вход</h1>
+    <h1 class="{{styles.auth-form__title}} {{styles.auth-form__title_mb}}">Вход</h1>
 
     <fieldset
       class="fieldset_border {{styles.auth-form__fieldset}} {{styles.login-form__fieldset_m}}"
     >
       {{#each data}}
-        {{{ InputAuth
-                type=this.type
-                label=this.label
-                placeholder=this.placeholder
-                name=this.name
-                ref=this.name
+        {{{InputAuth
+          type=this.type
+          label=this.label
+          placeholder=this.placeholder
+          name=this.name
+          ref=this.name
         }}}
       {{/each}}
     </fieldset>
 
     <div class="{{styles.auth-form__control}}">
-      {{{ BaseButton type="submit" title=formControl.buttonTitle }}}
-      {{{ BaseLink href=formControl.link title=formControl.linkTitle }}}
+      {{{BaseButton type="submit" title=formControl.buttonTitle}}}
+      {{{BaseLink href=formControl.link title=formControl.linkTitle}}}
     </div>
   </form>
 </div>

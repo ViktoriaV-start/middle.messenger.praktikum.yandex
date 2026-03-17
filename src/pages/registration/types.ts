@@ -1,7 +1,6 @@
-import type { REGISTRATION_FORM } from '@pages/registration/constants.ts';
-import type { BlockOwnProps } from '@shared/types/global-types.ts';
+import type { BlockOwnProps, LoginForm } from '@shared/types';
 import type { FormControlItem } from '@shared/types';
-import type { LoginForm } from '@pages/login/types.ts';
+import type { REGISTRATION_FORM } from './constants';
 
 export interface RegistrationFormItem {
   type: string;

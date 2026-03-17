@@ -1,4 +1,4 @@
-import { PASSWORD_INPUTS, PROFILE_INPUTS } from '@pages/profile/constants.ts';
+import { PASSWORD_INPUTS, PROFILE_INPUTS } from './constants';
 
 export interface ProfileItem {
   type: string;

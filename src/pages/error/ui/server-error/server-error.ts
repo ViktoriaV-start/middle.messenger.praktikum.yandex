@@ -1,8 +1,8 @@
-import templateSource from './server-error.hbs?raw';
+import Block from '@shared/lib/block';
 import { SERVER_ERROR_INFO } from '../../constants';
-import Block from '@app/block.ts';
+import templateSource from './server-error.hbs?raw';
 
-export class ServerError extends Block<{}> {
+export class ServerError extends Block<object> {
   static componentName = 'ServerError';
   protected template = templateSource;
 

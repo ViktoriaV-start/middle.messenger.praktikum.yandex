@@ -1,11 +1,12 @@
+// eslint-disable-next-line import/extensions
+import clipIcon from '@shared/assets/icons/clip-icon.svg?raw';
+// eslint-disable-next-line import/extensions
+import sendMessageIcon from '@shared/assets/icons/right-arrow-icon.svg?raw';
+import Block from '@shared/lib/block';
 import templateSource from './message.hbs?raw';
 import styles from './message.module.css';
-import clipIcon from '@app/assets/icons/clip-icon.svg?raw';
-import sendMessageIcon from '@app/assets/icons/right-arrow-icon.svg?raw';
 
-import Block from '@app/block.ts';
-
-export class Message extends Block<{}> {
+export class Message extends Block<object> {
   static componentName = 'Message';
 
   protected template = templateSource;
@@ -14,9 +15,7 @@ export class Message extends Block<{}> {
     super({ sendMessageIcon, clipIcon, styles });
   }
 
-  public setProps(props: any) {
-    super.setProps(props);
-  }
+  public setProps() {}
 
   componentDidMount() {}
 

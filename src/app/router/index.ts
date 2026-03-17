@@ -1,1 +1,1 @@
-export { resolveRoute } from './router';
+export { resolveRoute, navigate } from './router';

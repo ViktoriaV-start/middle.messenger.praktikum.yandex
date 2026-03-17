@@ -1,9 +1,8 @@
+import Block from '@shared/lib/block';
 import templateSource from './message-out.hbs?raw';
 import styles from './message-out.module.css';
 
-import Block from '@app/block.ts';
-
-export class MessageOut extends Block<{}> {
+export class MessageOut extends Block<object> {
   static componentName = 'MessageOut';
 
   protected template = templateSource;

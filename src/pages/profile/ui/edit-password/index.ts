@@ -1,1 +1,1 @@
-export { EditPassword } from './edit-password.ts';
+export { EditPassword } from './edit-password';

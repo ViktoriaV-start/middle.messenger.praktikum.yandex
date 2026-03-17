@@ -1,11 +1,11 @@
-import Block from '@app/block.ts';
+import { URLS } from '@shared/constants';
+import Block from '@shared/lib/block';
+import { getFormData } from '@shared/utils/form';
+import { BUTTONS, PROFILE_INPUTS, PROFILE_LINKS, USER } from '../../constants';
 import styles from '../profile.module.css';
 import templateSource from './edit-profile.hbs?raw';
-import { BUTTONS, PROFILE_INPUTS, PROFILE_LINKS, USER } from '../../constants';
-import { URLS } from '@shared/constants';
-import { getFormData } from '@shared/utils/form/getFormData.ts';
 
-export class EditProfile extends Block<{}> {
+export class EditProfile extends Block<object> {
   static componentName = 'EditProfile';
 
   protected template = templateSource;

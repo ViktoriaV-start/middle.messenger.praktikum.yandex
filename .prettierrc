@@ -9,6 +9,8 @@
   "endOfLine": "auto",
   "useTabs": false,
   "bracketSameLine": false,
+  "plugins": ["@trivago/prettier-plugin-sort-imports"],
+  "importOrder": ["<THIRD_PARTY_MODULES>", "^[@/]", "^[./]"],
 
   "overrides": [
     {

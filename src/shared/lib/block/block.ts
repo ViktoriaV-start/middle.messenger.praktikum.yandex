@@ -1,5 +1,5 @@
 import Handlebars from 'handlebars';
-import type { BlockOwnProps } from '@shared/types/global-types.ts';
+import type { BlockOwnProps } from '../../types';
 
 type EventListType = Partial<Record<keyof HTMLElementEventMap, (e: Event) => void>>;
 
@@ -29,6 +29,7 @@ export default abstract class Block<Props extends BlockOwnProps = BlockOwnProps>
     if (!this.domElement) {
       this.render();
     }
+
     return this.domElement;
   }
 
@@ -40,13 +41,16 @@ export default abstract class Block<Props extends BlockOwnProps = BlockOwnProps>
       // Простое сравнение для примитивов
       if (newValue !== oldValue) {
         console.log(`[${this.constructor.name}] Изменился проп ${key}:`, oldValue, '->', newValue);
+
         return true;
       }
+
       return false;
     });
 
     if (!hasChanges) {
       console.log(`[${this.constructor.name}] Нет изменений в пропсах, рендер не требуется`);
+
       return; // Выходим, не вызывая рендер
     }
 
@@ -126,6 +130,7 @@ export default abstract class Block<Props extends BlockOwnProps = BlockOwnProps>
       const key = element.getAttribute('ref') as string;
       list[key] = element as HTMLElement;
       element.removeAttribute('ref');
+
       return list;
     }, defaultRefs);
 

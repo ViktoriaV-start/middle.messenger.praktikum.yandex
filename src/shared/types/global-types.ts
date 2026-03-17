@@ -1,4 +1,4 @@
-import Block from '@app/block.ts';
+import Block from '../lib/block';
 
 export interface BlockOwnProps {
   __children?: Array<{

@@ -1,9 +1,8 @@
+import Block from '@shared/lib/block';
 import templateSource from './chats.hbs?raw';
-
-import Block from '@app/block.ts';
 import styles from './chats.module.css';
 
-export class Chats extends Block<{}> {
+export class Chats extends Block<object> {
   static componentName = 'Chats';
 
   protected template = templateSource;

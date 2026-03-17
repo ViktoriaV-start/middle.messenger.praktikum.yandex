@@ -1,1 +1,1 @@
-export { BaseLink } from './base-link.ts';
+export { BaseLink } from './base-link';

@@ -1,9 +1,15 @@
 import Handlebars from 'handlebars';
 import type { HelperOptions } from 'handlebars';
+import Block from '@shared/lib';
 
 let uniqueId = 0;
 
-function registerComponent(Component: any) {
+type BlockClass = {
+  new (props: Record<string, unknown>): Block<Record<string, unknown>>;
+  componentName: string;
+};
+
+function registerComponent(Component: BlockClass) {
   const dataAttribute = `data-component-hbs-id="${++uniqueId}"`;
 
   Handlebars.registerHelper(

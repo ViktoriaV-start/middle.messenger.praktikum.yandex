@@ -1,1 +1,1 @@
-export { BackButton } from './back-button.ts';
+export { BackButton } from './back-button';

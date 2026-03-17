@@ -1,10 +1,10 @@
-import Block from '@app/block.ts';
-import templateSource from './registration.hbs?raw';
-import { REGISTRATION_FORM } from '@pages/registration/constants.ts';
 import { FORM_CONTROL } from '@shared/constants';
+import Block from '@shared/lib/block';
+import { getFormData } from '@shared/utils/form';
+import { REGISTRATION_FORM } from '../../constants';
+import type { RegistrationProps } from '../../types';
+import templateSource from './registration.hbs?raw';
 import styles from './registration.module.css';
-import type { RegistrationProps } from '@pages/registration/types.ts';
-import { getFormData } from '@shared/utils/form/getFormData.ts';
 
 export class Registration extends Block<RegistrationProps> {
   static componentName = 'Registration';
