@@ -1,15 +1,10 @@
 import Handlebars from 'handlebars';
 import type { HelperOptions } from 'handlebars';
-import Block from '@shared/lib';
 
 let uniqueId = 0;
 
-type BlockClass = {
-  new (props: Record<string, unknown>): Block<Record<string, unknown>>;
-  componentName: string;
-};
-
-function registerComponent(Component: BlockClass) {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function registerComponent(Component: any) {
   const dataAttribute = `data-component-hbs-id="${++uniqueId}"`;
 
   Handlebars.registerHelper(

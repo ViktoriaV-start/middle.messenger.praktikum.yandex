@@ -6,7 +6,7 @@ import Block from '@shared/lib/block';
 import templateSource from './message.hbs?raw';
 import styles from './message.module.css';
 
-export class Message extends Block<object> {
+export class Message extends Block<Record<string, unknown>> {
   static componentName = 'Message';
 
   protected template = templateSource;

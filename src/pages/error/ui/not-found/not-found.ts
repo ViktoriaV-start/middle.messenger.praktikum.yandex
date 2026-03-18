@@ -2,7 +2,7 @@ import Block from '@shared/lib/block';
 import { NOT_FOUND_INFO } from '../../constants';
 import templateSource from './not-found.hbs?raw';
 
-export class NotFound extends Block<object> {
+export class NotFound extends Block<Record<string, unknown>> {
   static componentName = 'NotFound';
   protected template = templateSource;
 

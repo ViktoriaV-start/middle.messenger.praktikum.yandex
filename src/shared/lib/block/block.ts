@@ -3,10 +3,10 @@ import type { BlockOwnProps } from '../../types';
 
 type EventListType = Partial<Record<keyof HTMLElementEventMap, (e: Event) => void>>;
 
-export interface BaseProps extends BlockOwnProps {
-  // Индексная сигнатура для любых дополнительных полей
-  [key: string]: unknown;
-}
+// export interface BaseProps extends BlockOwnProps {
+//   // Индексная сигнатура для любых дополнительных полей
+//   [key: string]: unknown;
+// }
 
 export default abstract class Block<Props extends BlockOwnProps = BlockOwnProps> {
   protected abstract template: string;

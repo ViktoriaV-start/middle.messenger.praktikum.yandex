@@ -2,7 +2,7 @@ import Block from '@shared/lib/block';
 import templateSource from './chats.hbs?raw';
 import styles from './chats.module.css';
 
-export class Chats extends Block<object> {
+export class Chats extends Block<Record<string, unknown>> {
   static componentName = 'Chats';
 
   protected template = templateSource;

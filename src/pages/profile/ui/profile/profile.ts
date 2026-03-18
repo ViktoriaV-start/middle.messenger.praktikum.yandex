@@ -4,7 +4,7 @@ import { PROFILE_INPUTS, PROFILE_LINKS, USER } from '../../constants';
 import styles from '../profile.module.css';
 import templateSource from './profile.hbs?raw';
 
-export class Profile extends Block<object> {
+export class Profile extends Block<Record<string, unknown>> {
   static componentName = 'Profile';
 
   protected template = templateSource;

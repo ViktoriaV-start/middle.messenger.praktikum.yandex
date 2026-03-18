@@ -1,6 +1,6 @@
 <div class="{{styles.auth-form__wrapper}}">
   <form class="{{styles.auth-form}}">
-    <h1 class="{{styles.auth-form__title}} {{styles.auth-form__title_mb}}">Вход</h1>
+    <h1 class="h {{styles.auth-form__title}} {{styles.auth-form__title_mb}}">Вход</h1>
 
     <fieldset
       class="fieldset_border {{styles.auth-form__fieldset}} {{styles.login-form__fieldset_m}}"
@@ -17,7 +17,7 @@
     </fieldset>
 
     <div class="{{styles.auth-form__control}}">
-      {{{BaseButton type="submit" title=formControl.buttonTitle}}}
+      {{{BaseButton type="submit" title=formControl.buttonTitle additionalStyles=styles.auth-form__button_width}}}
       {{{BaseLink href=formControl.link title=formControl.linkTitle}}}
     </div>
   </form>

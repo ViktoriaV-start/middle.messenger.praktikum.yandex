@@ -4,7 +4,7 @@ import { BUTTONS, PASSWORD_INPUTS } from '../../constants';
 import styles from '../profile.module.css';
 import templateSource from './edit-password.hbs?raw';
 
-export class EditPassword extends Block<object> {
+export class EditPassword extends Block<Record<string, unknown>> {
   static componentName = 'EditPassword';
 
   protected template = templateSource;

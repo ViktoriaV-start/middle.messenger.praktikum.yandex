@@ -3,7 +3,7 @@ import Block from '@shared/lib/block';
 import templateSource from './sidebar.hbs?raw';
 import styles from './sidebar.module.css';
 
-export class Sidebar extends Block<object> {
+export class Sidebar extends Block<Record<string, unknown>> {
   static componentName = 'Sidebar';
 
   protected template = templateSource;

@@ -5,7 +5,7 @@ import { BUTTONS, PROFILE_INPUTS, PROFILE_LINKS, USER } from '../../constants';
 import styles from '../profile.module.css';
 import templateSource from './edit-profile.hbs?raw';
 
-export class EditProfile extends Block<object> {
+export class EditProfile extends Block<Record<string, unknown>> {
   static componentName = 'EditProfile';
 
   protected template = templateSource;

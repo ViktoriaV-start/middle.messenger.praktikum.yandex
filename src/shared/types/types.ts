@@ -35,12 +35,15 @@ export interface BaseButtonProps extends BlockOwnProps {
   type: string;
   classNames: string;
   styles?: Record<string, string>;
+  additionalStyles?: string;
 }
 
 export interface BaseLinkProps extends BlockOwnProps {
   title: string;
   href: string;
   classNames: string;
+  color: string;
+  additionalStyles?: string;
   styles?: Record<string, string>;
 }
 

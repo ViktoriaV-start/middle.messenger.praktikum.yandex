@@ -1,41 +1,4 @@
-import { registerComponent } from '@app/register-component.ts';
-import { Chats, Message, MessageIn, MessageOut, Sidebar } from '@pages/chats';
-import { ChatMessages } from '@pages/chats';
-import { NotFound, ServerError } from '@pages/error';
-import { Login } from '@pages/login';
-import { Profile } from '@pages/profile';
-import { EditPassword } from '@pages/profile';
-import { EditProfile } from '@pages/profile';
-import { Registration } from '@pages/registration';
-import { AuthForm, BaseButton, Info, InputAuth, Input, ChatItem, Navigation } from '@shared/ui';
-import { BackButton } from '@shared/ui/back-button';
-import { BaseLink } from '@shared/ui/base-link';
 import App from './app/app';
-
-registerComponent(Navigation);
-registerComponent(InputAuth);
-registerComponent(Input);
-registerComponent(BaseButton);
-registerComponent(BaseLink);
-registerComponent(AuthForm);
-registerComponent(Info);
-registerComponent(ChatItem);
-registerComponent(BackButton);
-
-registerComponent(NotFound);
-registerComponent(ServerError);
-registerComponent(Login);
-registerComponent(Registration);
-registerComponent(Login);
-registerComponent(Profile);
-registerComponent(EditPassword);
-registerComponent(EditProfile);
-registerComponent(Message);
-registerComponent(MessageIn);
-registerComponent(MessageOut);
-registerComponent(ChatMessages);
-registerComponent(Sidebar);
-registerComponent(Chats);
 
 const root = document.querySelector<HTMLDivElement>('#app');
 

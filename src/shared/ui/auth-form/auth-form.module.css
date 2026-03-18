@@ -23,9 +23,7 @@
 }
 
 .auth-form__title_mb {
-  margin: 0 0 2.5rem 0;
-  padding: 0;
-  font-weight: 500;
+  margin-block-end: 2.5rem;
 }
 
 .auth-form__fieldset {
@@ -51,4 +49,8 @@
 
 .auth-form__link_size {
   font-size: 0.6875rem;
+}
+
+.auth-form__button_width {
+  inline-size: 100%;
 }
