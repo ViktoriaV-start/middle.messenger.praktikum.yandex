@@ -46,3 +46,11 @@
   background-color: var(--bg-color-secondary);
   border-radius: 0.4rem;
 }
+
+.input-editable__valid {
+  border-block-end: 1px solid transparent;
+}
+
+.input-editable__invalid {
+  border-block-end: 1px solid var(--critical-color);
+}

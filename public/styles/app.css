@@ -58,3 +58,9 @@ body {
   position: absolute;
   top: -8px;
 }
+
+.error-message {
+  font-size: var(--small-font-size);
+  color: var(--critical-color);
+  block-size: 1rem;
+}

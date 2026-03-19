@@ -1,27 +1,33 @@
 import { URLS } from '@shared/constants';
 import Block from '@shared/lib/block';
 import { getFormData } from '@shared/utils/form';
+import { normalizeValidateForm } from '@shared/utils/normalize-validate-form';
 import { BUTTONS, PROFILE_INPUTS, PROFILE_LINKS, USER } from '../../constants';
+import type { EditProfileProps } from '../../types';
 import styles from '../profile.module.css';
 import templateSource from './edit-profile.hbs?raw';
 
-export class EditProfile extends Block<Record<string, unknown>> {
+export class EditProfile extends Block<EditProfileProps> {
   static componentName = 'EditProfile';
 
   protected template = templateSource;
+  private error = false;
 
   constructor() {
-    const data = {
+    const initialEditProfileData = {
       user: USER,
       exitLinkTitle: 'Выйти',
       chatLink: URLS.login,
       profileInputs: PROFILE_INPUTS,
       profileLinks: PROFILE_LINKS,
-      button: {
-        title: BUTTONS.save,
-      },
+      button: BUTTONS.save,
+      error: false,
     };
-    super({ ...data, styles });
+    super({ ...initialEditProfileData, styles });
+  }
+
+  public setProps(props: EditProfileProps) {
+    super.setProps({ ...props, error: this.error });
   }
 
   componentDidMount() {}
@@ -33,7 +39,20 @@ export class EditProfile extends Block<Record<string, unknown>> {
       event.preventDefault();
       const formData = getFormData(event);
 
-      console.log(formData);
+      const form = normalizeValidateForm(formData);
+
+      if (form.error) {
+        this.error = true;
+        this.setProps({ ...this.props, error: true });
+      }
+
+      console.log('Данный формы - Профиль: ', form.validatedForm);
+    },
+    focusin: () => {
+      if (this.error) {
+        this.error = false;
+        this.setProps({ ...this.props, error: false });
+      }
     },
   };
 }

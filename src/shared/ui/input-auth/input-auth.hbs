@@ -1,9 +1,10 @@
 <label class="{{styles.input-auth__label}}">
   <span class="visually-hidden label-auth {{styles.input-auth__label-text}}">{{label}}</span>
   <input
-    class="input-auth {{styles.input-auth__field}}"
+    class="input-auth {{styles.input-auth__field}} {{styles.input-auth__valid}}"
     type="{{type}}"
     placeholder="{{placeholder}}"
     name="{{name}}"
+    {{#if autofocus}}autofocus{{/if}}
   />
 </label>

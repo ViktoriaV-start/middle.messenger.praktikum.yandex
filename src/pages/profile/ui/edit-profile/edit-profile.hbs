@@ -18,7 +18,15 @@
       {{/each}}
     </div>
 
-    {{{BaseButton title=button.title additionalStyles=styles.profile__save-button}}}
+    <div class="error-message">
+      {{#if error}}
+        Неверно заполненные поля
+      {{/if}}
+    </div>
+
+    {{{BaseButton title=button additionalStyles=styles.profile__save-button}}}
+
+
 
   </form>
 

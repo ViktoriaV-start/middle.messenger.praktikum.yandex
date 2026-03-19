@@ -15,7 +15,6 @@
   line-height: var(--base-line-height);
   border-width: 0 0 1px;
   border-style: solid;
-  border-color: var(--accent-color);
   padding: 0.5rem 0 0.438rem;
   color: currentColor;
   background-color: transparent;
@@ -32,4 +31,12 @@
 
 .input-auth__field:focus {
   outline: none;
+}
+
+.input-auth__valid {
+  border-color: var(--accent-color);
+}
+
+.input-auth__invalid {
+  border-color: red;
 }

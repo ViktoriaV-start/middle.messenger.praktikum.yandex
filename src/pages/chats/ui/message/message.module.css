@@ -11,13 +11,20 @@
 .message__input {
   width: 100%;
   border: 1px solid #efefef;
-  background-color: #efefef;
   border-radius: 1.875rem;
   padding: 0.625rem 1.25rem;
   font-family: 'Inter', 'Arial', sans-serif;
   font-weight: 500;
   font-size: var(--main-font-size);
   line-height: var(--base-line-height);
+}
+
+.message__input_bg-default {
+  background-color: #efefef;
+}
+
+.message__input_bg-error {
+  background-color: #ffeeee;
 }
 
 .message__input::placeholder {

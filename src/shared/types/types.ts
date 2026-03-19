@@ -16,6 +16,7 @@ export interface InputProps extends BlockOwnProps {
   label: string;
   value?: string;
   styles?: Record<string, string>;
+  autofocus?: boolean;
 }
 
 export interface EditableInputProps extends InputProps {
@@ -28,6 +29,7 @@ export interface AuthFormProps extends BlockOwnProps {
   data: Record<string, InputProps>;
   formControl: FormControlItem;
   styles?: Record<string, string>;
+  error: boolean;
 }
 
 export interface BaseButtonProps extends BlockOwnProps {
@@ -63,7 +65,7 @@ export interface User {
   login: string;
   firstName: string;
   secondName: string;
-  display_name: string;
+  displayName: string;
   phone: string;
 }
 

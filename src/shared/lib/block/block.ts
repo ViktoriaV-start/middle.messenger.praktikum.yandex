@@ -3,11 +3,6 @@ import type { BlockOwnProps } from '../../types';
 
 type EventListType = Partial<Record<keyof HTMLElementEventMap, (e: Event) => void>>;
 
-// export interface BaseProps extends BlockOwnProps {
-//   // Индексная сигнатура для любых дополнительных полей
-//   [key: string]: unknown;
-// }
-
 export default abstract class Block<Props extends BlockOwnProps = BlockOwnProps> {
   protected abstract template: string;
 
@@ -38,7 +33,7 @@ export default abstract class Block<Props extends BlockOwnProps = BlockOwnProps>
       const newValue = props[key as keyof Props];
       const oldValue = this.props[key as keyof Props];
 
-      // Простое сравнение для примитивов
+      // Для примитивов
       if (newValue !== oldValue) {
         console.log(`[${this.constructor.name}] Изменился проп ${key}:`, oldValue, '->', newValue);
 
@@ -49,12 +44,8 @@ export default abstract class Block<Props extends BlockOwnProps = BlockOwnProps>
     });
 
     if (!hasChanges) {
-      console.log(`[${this.constructor.name}] Нет изменений в пропсах, рендер не требуется`);
-
-      return; // Выходим, не вызывая рендер
+      return;
     }
-
-    console.log(`[${this.constructor.name}] Есть изменения, выполняем setProps`);
     this.props = { ...this.props, ...props, __children: [], __refs: {} } as Props;
     this.render();
   }
@@ -81,7 +72,11 @@ export default abstract class Block<Props extends BlockOwnProps = BlockOwnProps>
     for (const eventName in this.events) {
       const eventCallback = this.events[eventName as keyof HTMLElementEventMap];
       if (typeof eventCallback == 'function' && this.domElement) {
-        this.domElement.addEventListener(eventName, eventCallback);
+        if (eventName === 'blur') {
+          this.domElement.addEventListener(eventName, eventCallback, true);
+        } else {
+          this.domElement.addEventListener(eventName, eventCallback);
+        }
       }
     }
   }
