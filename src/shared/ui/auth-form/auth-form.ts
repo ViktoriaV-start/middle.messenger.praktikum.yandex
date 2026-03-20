@@ -1,3 +1,4 @@
+import { convertKeysToSnakeCase } from '@shared/utils';
 import Block from '../../lib/block';
 import type { AuthFormProps } from '../../types';
 import { getFormData } from '../../utils/form';
@@ -35,7 +36,9 @@ export class AuthForm extends Block<AuthFormProps> {
         this.setProps({ ...this.props, error: true });
       }
 
-      console.log('Данные формы: ', form.validatedForm);
+      const dataDTO = convertKeysToSnakeCase(form.validatedForm);
+
+      console.log('Данные формы: ', dataDTO);
     },
     focusin: () => {
       if (this.error) {

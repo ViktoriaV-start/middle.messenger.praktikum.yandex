@@ -51,7 +51,7 @@ export const normalizeValue = ({ value, name }: NormalizeValue): string => {
       return value.replace(UNALLOWED_PHONE_CHARS_REGEXP, '');
     }
     default: {
-      return '';
+      return value;
     }
   }
 };

@@ -1,5 +1,6 @@
 import { URLS } from '@shared/constants';
 import Block from '@shared/lib/block';
+import { convertKeysToSnakeCase } from '@shared/utils';
 import { getFormData } from '@shared/utils/form';
 import { normalizeValidateForm } from '@shared/utils/normalize-validate-form';
 import { BUTTONS, PROFILE_INPUTS, PROFILE_LINKS, USER } from '../../constants';
@@ -46,7 +47,9 @@ export class EditProfile extends Block<EditProfileProps> {
         this.setProps({ ...this.props, error: true });
       }
 
-      console.log('Данный формы - Профиль: ', form.validatedForm);
+      const dataDTO = convertKeysToSnakeCase(form.validatedForm);
+
+      console.log('Данный формы - Профиль: ', dataDTO);
     },
     focusin: () => {
       if (this.error) {

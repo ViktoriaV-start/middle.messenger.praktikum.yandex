@@ -36,3 +36,9 @@ export interface EditProfileProps extends BlockOwnProps {
   error?: boolean;
   styles?: Record<string, string>;
 }
+
+export interface EditPasswordProps extends BlockOwnProps {
+  button?: string;
+  error?: boolean;
+  passwordInputs?: EditPassword;
+}

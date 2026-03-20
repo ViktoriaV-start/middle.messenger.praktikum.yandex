@@ -8,8 +8,7 @@ interface InputContext {
 
 export function handleInputChange(this: InputContext, target: HTMLInputElement) {
   const inputValue = target.value.trim();
-  const inputName = target.name as 'login' | 'password';
-
+  const inputName = target.name as string;
   const normalizedValue = normalizeValue({
     value: inputValue,
     name: inputName,
