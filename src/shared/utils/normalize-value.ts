@@ -1,4 +1,5 @@
 import {
+  MAX_NAME_LENGTH,
   MORE_THAN_ONE_SPACE_REG_EXP,
   NOT_LETTER_OR_HYPHEN_REGEXP,
   UNALLOWED_EMAIL_CHARS_REGEXP,
@@ -18,6 +19,14 @@ export const normalizeValue = ({ value, name }: NormalizeValue): string => {
       const normalizedMessage = value
         .replace(UNALLOWED_TEXT_CHARACTERS_REGEXP, '')
         .replace(MORE_THAN_ONE_SPACE_REG_EXP, ' ');
+
+      return normalizedMessage;
+    }
+    case 'displayName': {
+      const normalizedMessage = value
+        .replace(UNALLOWED_TEXT_CHARACTERS_REGEXP, '')
+        .replace(MORE_THAN_ONE_SPACE_REG_EXP, ' ')
+        .slice(0, MAX_NAME_LENGTH);
 
       return normalizedMessage;
     }

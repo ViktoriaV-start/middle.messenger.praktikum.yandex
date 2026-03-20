@@ -8,7 +8,7 @@
     - `npm run build`
     - `npm run preview`
 - Или запуск локального dev сервера с hot-reload
-    - `npm run dev`
+    - `npm run start`
 
 ## Деплой
 - [Netlyfy](https://sparkly-buttercream-307007.netlify.app/)
@@ -21,3 +21,6 @@
 - Vite
 - postcss
 - Handlebars
+- Prettier
+- ESLint
+- Stylelint

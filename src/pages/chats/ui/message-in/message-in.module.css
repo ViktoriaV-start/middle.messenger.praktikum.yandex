@@ -1,7 +1,7 @@
 .message-in {
   inline-size: fit-content;
   max-inline-size: 70%;
-  word-wrap: break-word;
+  overflow-wrap: break-word;
   background-color: var(--bg-color-secondary);
   font-size: var(--small-font-size);
   line-height: 0.94rem;

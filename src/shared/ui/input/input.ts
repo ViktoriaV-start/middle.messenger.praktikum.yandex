@@ -8,8 +8,8 @@ export class Input extends Block<EditableInputProps> {
   static componentName = 'Input';
 
   protected template = templateSource;
-  public defaultBorder = styles['input-editable__valid'];
-  public errorBorder = styles['input-editable__invalid'];
+  public defaultStyle = styles['input-editable__valid'];
+  public errorStyle = styles['input-editable__invalid'];
 
   constructor(props: EditableInputProps) {
     const readonly = props.isEditable ? '' : 'readonly';
@@ -33,8 +33,8 @@ export class Input extends Block<EditableInputProps> {
     },
     focusin: (event: Event) => {
       const target = event.target as HTMLInputElement;
-      target.classList.remove(this.errorBorder);
-      target.classList.add(this.defaultBorder);
+      target.classList.remove(this.errorStyle);
+      target.classList.add(this.defaultStyle);
     },
   };
 }

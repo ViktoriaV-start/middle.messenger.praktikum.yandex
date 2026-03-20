@@ -8,8 +8,8 @@ export class InputAuth extends Block<InputProps> {
   static componentName = 'InputAuth';
 
   protected template = templateSource;
-  public defaultBorder = styles['input-auth__valid'];
-  public errorBorder = styles['input-auth__invalid'];
+  public defaultStyle = styles['input-auth__valid'];
+  public errorStyle = styles['input-auth__invalid'];
 
   constructor(props: InputProps) {
     super({ ...props, styles });
@@ -31,8 +31,8 @@ export class InputAuth extends Block<InputProps> {
     },
     focusin: (event: Event) => {
       const target = event.target as HTMLInputElement;
-      target.classList.remove(this.errorBorder);
-      target.classList.add(this.defaultBorder);
+      target.classList.remove(this.errorStyle);
+      target.classList.add(this.defaultStyle);
     },
   };
 }

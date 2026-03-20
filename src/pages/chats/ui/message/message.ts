@@ -13,8 +13,8 @@ export class Message extends Block<Record<string, unknown>> {
 
   protected template = templateSource;
   private error = false;
-  private bgColor = styles['message__input_bg-default'];
-  private errorBgColor = styles['message__input_bg-error'];
+  private defaultStyle = styles['message__input_bg-default'];
+  private errorStyle = styles['message__input_bg-error'];
 
   constructor() {
     super({ sendMessageIcon, clipIcon, styles });
@@ -31,8 +31,8 @@ export class Message extends Block<Record<string, unknown>> {
   resetError = (target: HTMLInputElement) => {
     if (this.error) {
       this.error = false;
-      target.classList.remove(this.errorBgColor);
-      target.classList.add(this.bgColor);
+      target.classList.remove(this.errorStyle);
+      target.classList.add(this.defaultStyle);
     }
   };
 
@@ -43,14 +43,12 @@ export class Message extends Block<Record<string, unknown>> {
       console.warn('Сообщение не может быть пустым');
 
       this.error = true;
-      target.classList.remove(this.bgColor);
-      target.classList.add(this.errorBgColor);
+      target.classList.remove(this.defaultStyle);
+      target.classList.add(this.errorStyle);
 
       return;
     }
     target.value = normalizeValue({ value: inputValue, name: inputName });
-
-    console.log(inputValue, inputName);
   };
 
   protected events = {
@@ -58,7 +56,7 @@ export class Message extends Block<Record<string, unknown>> {
       event.preventDefault();
       const formData = getFormData(event);
 
-      console.log(formData);
+      console.log('Данный формы - Новое сообщение: ', formData);
     },
     blur: (event: Event) => {
       const target = event.target as HTMLInputElement;

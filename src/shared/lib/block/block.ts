@@ -33,7 +33,6 @@ export default abstract class Block<Props extends BlockOwnProps = BlockOwnProps>
       const newValue = props[key as keyof Props];
       const oldValue = this.props[key as keyof Props];
 
-      // Для примитивов
       if (newValue !== oldValue) {
         console.log(`[${this.constructor.name}] Изменился проп ${key}:`, oldValue, '->', newValue);
 

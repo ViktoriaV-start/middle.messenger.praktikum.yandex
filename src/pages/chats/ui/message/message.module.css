@@ -13,7 +13,7 @@
   border: 1px solid #efefef;
   border-radius: 1.875rem;
   padding: 0.625rem 1.25rem;
-  font-family: 'Inter', 'Arial', sans-serif;
+  font-family: Inter, Arial, sans-serif;
   font-weight: 500;
   font-size: var(--main-font-size);
   line-height: var(--base-line-height);
@@ -24,7 +24,7 @@
 }
 
 .message__input_bg-error {
-  background-color: #ffeeee;
+  background-color: #fee;
 }
 
 .message__input::placeholder {
@@ -32,12 +32,6 @@
   font-size: var(--small-font-size);
   line-height: var(--base-line-height);
   font-weight: 500;
-}
-
-.message__send-btn {
-  border: none;
-  background-color: transparent;
-  padding: 0;
 }
 
 .message__send-btn {

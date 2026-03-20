@@ -10,8 +10,11 @@
     "type-check": "tsc --noEmit",
     "format:fix": "prettier --write \"src/**/*.{ts,js,json,hbs,md}\"",
     "format:check": "prettier --check \"src/**/*.{ts,js,json,hbs,md}\"",
-    "check-lint": "eslint \"src/**/*.{js,ts}\"",
-    "lint": "eslint --fix \"**/*.{js,ts}\""
+    "lint:ts": "eslint \"src/**/*.{js,ts}\"",
+    "lint:ts:fix": "eslint --fix \"**/*.{js,ts}\"",
+    "lint:css": "stylelint **/*.css",
+    "lint:css:fix": "stylelint --fix **/*.css",
+    "lint": "npm run lint:ts && npm run lint:css"
   },
   "engines": {
     "node": ">= 22"
@@ -33,6 +36,8 @@
     "husky": "^9.1.7",
     "postcss": "^8.5.6",
     "prettier": "3.8.1",
+    "stylelint": "^17.5.0",
+    "stylelint-config-standard": "^40.0.0",
     "typescript": "~5.9.3",
     "typescript-eslint": "^8.57.1",
     "vite": "^7.3.1"

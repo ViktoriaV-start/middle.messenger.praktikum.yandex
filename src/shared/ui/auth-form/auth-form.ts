@@ -35,7 +35,7 @@ export class AuthForm extends Block<AuthFormProps> {
         this.setProps({ ...this.props, error: true });
       }
 
-      console.log('Данный формы - Логин: ', form.error);
+      console.log('Данные формы: ', form.validatedForm);
     },
     focusin: () => {
       if (this.error) {

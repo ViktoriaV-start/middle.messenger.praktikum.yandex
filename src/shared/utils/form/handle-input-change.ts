@@ -2,8 +2,8 @@ import { normalizeValue } from '../normalize-value';
 import { validateValue } from '../validate-value';
 
 interface InputContext {
-  defaultBorder: string;
-  errorBorder: string;
+  defaultStyle: string;
+  errorStyle: string;
 }
 
 export function handleInputChange(this: InputContext, target: HTMLInputElement) {
@@ -20,19 +20,14 @@ export function handleInputChange(this: InputContext, target: HTMLInputElement) 
     name: inputName,
   });
 
-  target.value = normalizeValue({
-    value: inputValue,
-    name: inputName,
-  });
+  target.value = normalizedValue;
 
   if (!isValueValid) {
     console.warn('Некорректное значение');
 
-    target.classList.remove(this.defaultBorder);
-    target.classList.add(this.errorBorder);
+    target.classList.remove(this.defaultStyle);
+    target.classList.add(this.errorStyle);
 
     return;
   }
-
-  console.log(inputName, inputValue);
 }
