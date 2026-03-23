@@ -1,6 +1,6 @@
-import { convertKeysToSnakeCase } from '@shared/utils';
 import Block from '../../lib/block';
 import type { AuthFormProps } from '../../types';
+import { convertKeysToSnakeCase } from '../../utils';
 import { getFormData } from '../../utils/form';
 import { normalizeValidateForm } from '../../utils/normalize-validate-form';
 import templateSource from './auth-form.hbs?raw';
