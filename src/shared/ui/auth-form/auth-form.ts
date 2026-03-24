@@ -6,14 +6,16 @@ import { normalizeValidateForm } from '../../utils/normalize-validate-form';
 import templateSource from './auth-form.hbs?raw';
 import styles from './auth-form.module.css';
 
+const COMPONENT_NAME = 'AuthForm';
+
 export class AuthForm extends Block<AuthFormProps> {
-  static componentName = 'AuthForm';
+  static componentName = COMPONENT_NAME;
 
   protected template = templateSource;
   private error = false;
 
   constructor(props: AuthFormProps) {
-    super({ ...props, styles, error: false });
+    super({ ...props, componentName: COMPONENT_NAME, styles, error: false });
   }
 
   public setProps(props: AuthFormProps) {

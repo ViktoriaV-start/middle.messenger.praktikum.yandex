@@ -1,7 +1,7 @@
 <div class="{{styles.profile__wrapper}}">
-  {{{BackButton ref="back"}}}
+  {{{BackButton ref=this.componentName}}}
   <section class="{{styles.profile}}">
-    {{{Navigation}}}
+    {{{Navigation ref=this.componentName}}}
 
     <div class="{{styles.profile__avatar}} {{styles.profile__avatar_mbe}}" id="avatar">
     </div>
@@ -17,7 +17,7 @@
           label=this.label
           placeholder=this.placeholder
           name=this.name
-          ref=this.name
+          ref=this.componentName
           value=(lookup @root.user this.name)
         }}}
       {{/each}}
@@ -26,12 +26,12 @@
     <nav class="{{styles.profile__nav}} {{styles.profile__nav_mbe}}">
       {{#each profileLinks}}
         <div>
-          {{{BaseLink title=title href=type}}}
+          {{{BaseLink title=title href=type ref=this.componentName}}}
         </div>
       {{/each}}
     </nav>
 
-    {{{BaseLink title=exitLinkTitle href=chatLink color="red"}}}
+    {{{BaseLink title=exitLinkTitle href=chatLink color="red" ref=this.componentName}}}
 
   </section>
 </div>

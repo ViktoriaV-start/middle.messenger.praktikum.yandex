@@ -5,14 +5,17 @@ import { LOGIN_FORM } from '../../constants';
 import templateSource from './login.hbs?raw';
 import styles from './login.module.css';
 
+const COMPONENT_NAME = 'Login';
+
 export class Login extends Block<LoginProps> {
-  static componentName = 'Login';
+  static componentName = COMPONENT_NAME;
   protected template = templateSource;
 
   constructor() {
     super({
       data: LOGIN_FORM,
       formControl: FORM_CONTROL.login,
+      componentName: COMPONENT_NAME,
       styles,
     });
   }

@@ -8,8 +8,10 @@ import type { EditProfileProps } from '../../types';
 import styles from '../profile.module.css';
 import templateSource from './edit-profile.hbs?raw';
 
+const COMPONENT_NAME = 'EditProfile';
+
 export class EditProfile extends Block<EditProfileProps> {
-  static componentName = 'EditProfile';
+  static componentName = COMPONENT_NAME;
 
   protected template = templateSource;
   private error = false;
@@ -24,7 +26,7 @@ export class EditProfile extends Block<EditProfileProps> {
       button: BUTTONS.save,
       error: false,
     };
-    super({ ...initialEditProfileData, styles });
+    super({ ...initialEditProfileData, componentName: COMPONENT_NAME, styles });
   }
 
   public setProps(props: EditProfileProps) {

@@ -4,8 +4,10 @@ import { PROFILE_INPUTS, PROFILE_LINKS, USER } from '../../constants';
 import styles from '../profile.module.css';
 import templateSource from './profile.hbs?raw';
 
+const COMPONENT_NAME = 'Profile';
+
 export class Profile extends Block<Record<string, unknown>> {
-  static componentName = 'Profile';
+  static componentName = COMPONENT_NAME;
 
   protected template = templateSource;
 
@@ -17,7 +19,7 @@ export class Profile extends Block<Record<string, unknown>> {
       profileInputs: PROFILE_INPUTS,
       profileLinks: PROFILE_LINKS,
     };
-    super({ ...data, styles });
+    super({ ...data, componentName: COMPONENT_NAME, styles });
   }
 
   componentDidMount() {}

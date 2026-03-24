@@ -41,11 +41,13 @@ registerComponent(ChatMessages);
 registerComponent(Sidebar);
 registerComponent(Chats);
 
+const COMPONENT_NAME = 'App';
+
 export default class App extends Block<object> {
   protected template: string;
 
   constructor() {
-    super();
+    super({ componentName: COMPONENT_NAME });
     this.template = resolveRoute();
     window.addEventListener('popstate', () => this.rerender());
   }

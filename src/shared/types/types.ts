@@ -6,6 +6,7 @@ export interface InfoProps extends BlockOwnProps {
   text: string;
   link: string;
   linkTitle: string;
+  componentName: string;
   styles?: Record<string, string>;
 }
 
@@ -15,6 +16,7 @@ export interface InputProps extends BlockOwnProps {
   placeholder: string;
   label: string;
   value?: string;
+  componentName: string;
   styles?: Record<string, string>;
   autofocus?: boolean;
 }
@@ -28,6 +30,7 @@ export interface EditableInputProps extends InputProps {
 export interface AuthFormProps extends BlockOwnProps {
   data: Record<string, InputProps>;
   formControl: FormControlItem;
+  componentName: string;
   styles?: Record<string, string>;
   error: boolean;
 }
@@ -36,6 +39,7 @@ export interface BaseButtonProps extends BlockOwnProps {
   title: string;
   type: string;
   classNames: string;
+  componentName: string;
   styles?: Record<string, string>;
   additionalStyles?: string;
 }
@@ -45,6 +49,7 @@ export interface BaseLinkProps extends BlockOwnProps {
   href: string;
   classNames: string;
   color: string;
+  componentName: string;
   additionalStyles?: string;
   styles?: Record<string, string>;
 }
@@ -78,6 +83,7 @@ export interface ChatItemProps extends BlockOwnProps {
     text: string;
     time: string;
   };
+  componentName: string;
   styles?: Record<string, string>;
   unreadCountClass?: string;
 }
@@ -85,6 +91,7 @@ export interface ChatItemProps extends BlockOwnProps {
 export interface BackButtonProps extends BlockOwnProps {
   backUrl: string;
   icon: string;
+  componentName: string;
   styles?: Record<string, string>;
 }
 
@@ -103,5 +110,6 @@ export interface LoginForm {
 export interface LoginProps extends BlockOwnProps {
   data: LoginForm;
   formControl: FormControlItem;
+  componentName: string;
   styles?: Record<string, string>;
 }

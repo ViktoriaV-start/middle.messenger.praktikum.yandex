@@ -16,5 +16,6 @@ export type RegistrationForm = Record<RegistrationFormKeys, RegistrationFormItem
 export interface RegistrationProps extends BlockOwnProps {
   data: LoginForm;
   formControl: FormControlItem;
+  componentName: string;
   styles?: Record<string, string>;
 }

@@ -1,7 +1,7 @@
 <div class="{{styles.profile__wrapper}}">
-  {{{BackButton ref="back"}}}
+  {{{BackButton ref=this.componentName}}}
   <form class="profile {{styles.profile}}">
-    {{{Navigation}}}
+    {{{Navigation ref=this.componentName}}}
     <div class="{{styles.profile__avatar}} {{styles.edit-profile__avatar_mbe}}" id="avatar"></div>
 
     <div class="{{styles.profile__inputs}} {{styles.profile__inputs_mbe}}">
@@ -11,7 +11,7 @@
           label=this.label
           placeholder=this.placeholder
           name=this.name
-          ref=this.name
+          ref=this.componentName
           value=(lookup @root.user this.name)
           isEditable=true
         }}}
@@ -24,10 +24,7 @@
       {{/if}}
     </div>
 
-    {{{BaseButton title=button additionalStyles=styles.profile__save-button}}}
-
-
+    {{{BaseButton title=button additionalStyles=styles.profile__save-button ref=this.componentName}}}
 
   </form>
-
 </div>

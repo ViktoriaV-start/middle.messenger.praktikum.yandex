@@ -7,8 +7,10 @@ import type { EditPasswordProps } from '../../types';
 import styles from '../profile.module.css';
 import templateSource from './edit-password.hbs?raw';
 
+const COMPONENT_NAME = 'EditPassword';
+
 export class EditPassword extends Block<Record<string, unknown>> {
-  static componentName = 'EditPassword';
+  static componentName = COMPONENT_NAME;
 
   protected template = templateSource;
   private error = false;
@@ -20,7 +22,7 @@ export class EditPassword extends Block<Record<string, unknown>> {
       error: false,
       passwordInputs: PASSWORD_INPUTS,
     };
-    super({ ...initialEditPasswordData, styles });
+    super({ ...initialEditPasswordData, componentName: COMPONENT_NAME, styles });
   }
 
   componentDidMount() {}

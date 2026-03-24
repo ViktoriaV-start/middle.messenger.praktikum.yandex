@@ -34,6 +34,7 @@ export interface EditProfileProps extends BlockOwnProps {
   profileLinks?: Links;
   button?: string;
   error?: boolean;
+  componentName: string;
   styles?: Record<string, string>;
 }
 

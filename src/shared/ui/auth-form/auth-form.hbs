@@ -11,7 +11,7 @@
           label=this.label
           placeholder=this.placeholder
           name=this.name
-          ref=this.name
+          ref=this.componentName
           autofocus=@first
         }}}
       {{/each}}
@@ -24,8 +24,8 @@
       </div>
 
     <div class="{{styles.auth-form__control}}">
-      {{{BaseButton type="submit" title=formControl.buttonTitle additionalStyles=styles.auth-form__button_width}}}
-      {{{BaseLink href=formControl.link title=formControl.linkTitle}}}
+      {{{BaseButton type="submit" title=formControl.buttonTitle additionalStyles=styles.auth-form__button_width ref=this.componentName}}}
+      {{{BaseLink href=formControl.link title=formControl.linkTitle ref=this.componentName}}}
     </div>
   </form>
 

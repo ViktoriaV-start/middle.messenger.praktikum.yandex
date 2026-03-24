@@ -3,8 +3,10 @@ import Block from '@shared/lib/block';
 import templateSource from './sidebar.hbs?raw';
 import styles from './sidebar.module.css';
 
+const COMPONENT_NAME = 'Sidebar';
+
 export class Sidebar extends Block<Record<string, unknown>> {
-  static componentName = 'Sidebar';
+  static componentName = COMPONENT_NAME;
 
   protected template = templateSource;
 
@@ -13,7 +15,7 @@ export class Sidebar extends Block<Record<string, unknown>> {
       chats: CHATS,
       urls: URLS,
     };
-    super({ ...data, styles });
+    super({ ...data, componentName: COMPONENT_NAME, styles });
   }
 
   componentDidMount() {}

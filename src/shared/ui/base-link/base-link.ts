@@ -3,8 +3,10 @@ import type { BaseLinkProps } from '../../types';
 import templateSource from './base-link.hbs?raw';
 import styles from './base-link.module.css';
 
+const COMPONENT_NAME = 'BaseLink';
+
 export class BaseLink extends Block<BaseLinkProps> {
-  static componentName = 'BaseLink';
+  static componentName = COMPONENT_NAME;
   protected template = templateSource;
 
   constructor(props: BaseLinkProps) {
@@ -13,7 +15,7 @@ export class BaseLink extends Block<BaseLinkProps> {
 
     const additionalStyles = `${color} ${props.additionalStyles}`;
 
-    super({ ...props, styles, additionalStyles });
+    super({ ...props, componentName: COMPONENT_NAME, styles, additionalStyles });
   }
 
   public setProps(props: BaseLinkProps) {

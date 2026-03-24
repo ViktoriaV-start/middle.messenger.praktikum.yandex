@@ -4,13 +4,15 @@ import type { BackButtonProps } from '../../types';
 import templateSource from './back-button.hbs?raw';
 import styles from './back-button.module.css';
 
+const COMPONENT_NAME = 'BackButton';
+
 export class BackButton extends Block<BackButtonProps> {
-  static componentName = 'BackButton';
+  static componentName = COMPONENT_NAME;
 
   protected template = templateSource;
 
   constructor(props: BackButtonProps) {
-    super({ ...props, icon: LeftArrowIcon, styles });
+    super({ ...props, componentName: COMPONENT_NAME, icon: LeftArrowIcon, styles });
   }
 
   public setProps(props: BackButtonProps) {

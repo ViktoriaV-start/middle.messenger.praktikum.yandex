@@ -4,15 +4,17 @@ import { handleInputChange } from '../../utils/form';
 import templateSource from './input-auth.hbs?raw';
 import styles from './input-auth.module.css';
 
+const COMPONENT_NAME = 'InputAuth';
+
 export class InputAuth extends Block<InputProps> {
-  static componentName = 'InputAuth';
+  static componentName = COMPONENT_NAME;
 
   protected template = templateSource;
   public defaultStyle = styles['input-auth__valid'];
   public errorStyle = styles['input-auth__invalid'];
 
   constructor(props: InputProps) {
-    super({ ...props, styles });
+    super({ ...props, componentName: InputAuth.componentName, styles });
   }
 
   public setProps(props: InputProps) {
