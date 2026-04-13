@@ -19,9 +19,10 @@ export class BackButton extends Block<BackButtonProps> {
     super.setProps(props);
   }
 
-  componentDidMount() {}
-
-  componentWillUnmount() {}
-
-  protected events = {};
+  protected events = {
+    click: (event: Event) => {
+      event.preventDefault();
+      window.history.back();
+    },
+  };
 }

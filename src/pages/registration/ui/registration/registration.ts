@@ -1,5 +1,6 @@
 import { FORM_CONTROL } from '@shared/constants';
 import Block from '@shared/lib/block';
+import { FormType } from '@shared/types';
 import { REGISTRATION_FORM } from '../../constants';
 import type { RegistrationProps } from '../../types';
 import templateSource from './registration.hbs?raw';
@@ -16,11 +17,14 @@ export class Registration extends Block<RegistrationProps> {
       data: REGISTRATION_FORM,
       formControl: FORM_CONTROL.registration,
       componentName: COMPONENT_NAME,
+      formType: FormType.Registration,
       styles,
     });
   }
 
-  componentDidMount() {}
+  getContent() {
+    this.render();
 
-  componentWillUnmount() {}
+    return this.element();
+  }
 }

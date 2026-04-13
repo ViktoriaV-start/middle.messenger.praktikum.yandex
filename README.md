@@ -24,3 +24,12 @@
 - Prettier
 - ESLint
 - Stylelint
+
+## Документация по API     
+- [API](https://ya-praktikum.tech/api/v2/swagger/#/)
+- Используйте только тестовые данные: никаких реальных имён, email или телефонов
+- Тестовый вход: 
+  - login: Lit
+  - password: veryStrongPASS
+  
+

@@ -34,6 +34,8 @@ export const normalizeValue = ({ value, name }: NormalizeValue): string => {
       return value.replace(UNALLOWED_LOGIN_CHARACTERS_REGEXP, '');
     }
     case 'password': {
+      console.log(123);
+
       return value;
     }
     case 'firstName':

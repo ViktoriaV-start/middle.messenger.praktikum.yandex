@@ -24,7 +24,7 @@ export type Profile = Record<keyof typeof PROFILE_INPUTS, ProfileItem>;
 
 export type Links = Record<keyof typeof PROFILE_LINKS, linkItem>;
 
-export type EditPassword = Record<keyof typeof PASSWORD_INPUTS, PasswordInput>;
+export type EditPasswordFields = Record<keyof typeof PASSWORD_INPUTS, PasswordInput>;
 
 export interface EditProfileProps extends BlockOwnProps {
   user?: User;
@@ -41,5 +41,5 @@ export interface EditProfileProps extends BlockOwnProps {
 export interface EditPasswordProps extends BlockOwnProps {
   button?: string;
   error?: boolean;
-  passwordInputs?: EditPassword;
+  passwordInputs?: EditPasswordFields;
 }

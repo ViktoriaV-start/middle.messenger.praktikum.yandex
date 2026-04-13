@@ -45,6 +45,7 @@ function registerComponent(Component: any) {
           }
 
           const element = component.element();
+          
           if (!element) {
             throw new Error('Component element is not created');
           }

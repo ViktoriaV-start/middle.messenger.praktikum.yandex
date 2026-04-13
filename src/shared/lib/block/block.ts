@@ -45,6 +45,7 @@ export default abstract class Block<Props extends BlockOwnProps = BlockOwnProps>
     if (!hasChanges) {
       return;
     }
+
     this.props = { ...this.props, ...props, __children: [], __refs: {} } as Props;
     this.render();
   }
@@ -58,7 +59,7 @@ export default abstract class Block<Props extends BlockOwnProps = BlockOwnProps>
 
   protected componentWillUnmount() {}
 
-  private unmountComponent() {
+  public unmountComponent() {
     if (this.domElement) {
       this.children.reverse().forEach((child) => child.unmountComponent());
 
@@ -70,6 +71,7 @@ export default abstract class Block<Props extends BlockOwnProps = BlockOwnProps>
   private attachListeners() {
     for (const eventName in this.events) {
       const eventCallback = this.events[eventName as keyof HTMLElementEventMap];
+
       if (typeof eventCallback == 'function' && this.domElement) {
         if (eventName === 'blur') {
           this.domElement.addEventListener(eventName, eventCallback, true);
@@ -83,13 +85,14 @@ export default abstract class Block<Props extends BlockOwnProps = BlockOwnProps>
   private removeListeners() {
     for (const eventName in this.events) {
       const eventCallback = this.events[eventName as keyof HTMLElementEventMap];
+
       if (typeof eventCallback === 'function' && this.domElement) {
         this.domElement.removeEventListener(eventName, eventCallback);
       }
     }
   }
 
-  protected render() {
+  public render() {
     this.unmountComponent();
     this.children = [];
 
@@ -98,6 +101,7 @@ export default abstract class Block<Props extends BlockOwnProps = BlockOwnProps>
     if (this.domElement && fragment) {
       this.domElement.replaceWith(fragment);
     }
+
     this.domElement = fragment;
     this.mountComponent();
   }

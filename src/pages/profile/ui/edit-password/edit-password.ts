@@ -1,5 +1,6 @@
+import { EditProfileApi } from '@shared/api/edit-profile';
+import { SUCCESS } from '@shared/constants';
 import Block from '@shared/lib/block';
-import { convertKeysToSnakeCase } from '@shared/utils';
 import { getFormData } from '@shared/utils/form';
 import { normalizeValidateForm } from '@shared/utils/normalize-validate-form';
 import { BUTTONS, PASSWORD, PASSWORD_INPUTS } from '../../constants';
@@ -25,9 +26,30 @@ export class EditPassword extends Block<Record<string, unknown>> {
     super({ ...initialEditPasswordData, componentName: COMPONENT_NAME, styles });
   }
 
-  componentDidMount() {}
+  private async handleSubmit(data: Record<string, unknown>): Promise<boolean> {
+    const { oldPassword, newPassword } = data;
 
-  componentWillUnmount() {}
+    try {
+      const response = await EditProfileApi.editPassword({
+        oldPassword: oldPassword as string,
+        newPassword: newPassword as string,
+      });
+
+      if (response && response === SUCCESS) {
+        return true;
+      }
+    } catch (error) {
+      console.error(error);
+    }
+
+    return false;
+  }
+
+  getContent() {
+    this.render();
+
+    return this.element();
+  }
 
   public setProps(props: EditPasswordProps) {
     super.setProps({ ...props, error: this.error });
@@ -47,9 +69,9 @@ export class EditPassword extends Block<Record<string, unknown>> {
         this.setProps({ ...this.props, error: true });
       }
 
-      const dataDTO = convertKeysToSnakeCase(form.validatedForm);
-
-      console.log('Данный формы - Пароль: ', dataDTO);
+      if (!this.error) {
+        this.handleSubmit(form.validatedForm);
+      }
     },
     focusin: () => {
       if (this.error) {

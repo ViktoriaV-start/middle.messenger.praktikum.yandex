@@ -10,12 +10,13 @@ export class BaseLink extends Block<BaseLinkProps> {
   protected template = templateSource;
 
   constructor(props: BaseLinkProps) {
+    const type = props.type && props.type === 'exit' ? 'exit' : null;
     const color =
       props.color && props.color === 'red' ? styles['base-link_red'] : styles['base-link_primary'];
 
     const additionalStyles = `${color} ${props.additionalStyles}`;
 
-    super({ ...props, componentName: COMPONENT_NAME, styles, additionalStyles });
+    super({ ...props, componentName: COMPONENT_NAME, styles, additionalStyles, type });
   }
 
   public setProps(props: BaseLinkProps) {

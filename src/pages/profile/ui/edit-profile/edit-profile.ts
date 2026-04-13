@@ -1,9 +1,11 @@
-import { URLS } from '@shared/constants';
+import { EditProfileApi } from '@shared/api/edit-profile';
 import Block from '@shared/lib/block';
-import { convertKeysToSnakeCase } from '@shared/utils';
+import { store } from '@shared/store';
+import type { User } from '@shared/types';
+import { convertKeysToCamelCase, convertKeysToSnakeCase } from '@shared/utils';
 import { getFormData } from '@shared/utils/form';
 import { normalizeValidateForm } from '@shared/utils/normalize-validate-form';
-import { BUTTONS, PROFILE_INPUTS, PROFILE_LINKS, USER } from '../../constants';
+import { BUTTONS, PROFILE_INPUTS } from '../../constants';
 import type { EditProfileProps } from '../../types';
 import styles from '../profile.module.css';
 import templateSource from './edit-profile.hbs?raw';
@@ -17,12 +19,11 @@ export class EditProfile extends Block<EditProfileProps> {
   private error = false;
 
   constructor() {
+    const user = store.getState().user as User;
+
     const initialEditProfileData = {
-      user: USER,
-      exitLinkTitle: 'Выйти',
-      chatLink: URLS.login,
+      user,
       profileInputs: PROFILE_INPUTS,
-      profileLinks: PROFILE_LINKS,
       button: BUTTONS.save,
       error: false,
     };
@@ -33,9 +34,29 @@ export class EditProfile extends Block<EditProfileProps> {
     super.setProps({ ...props, error: this.error });
   }
 
-  componentDidMount() {}
+  getContent() {
+    this.render();
 
-  componentWillUnmount() {}
+    return this.element();
+  }
+
+  private async handleSubmit(
+    data: Record<string, unknown>
+  ): Promise<Record<string, unknown> | null> {
+    const dataDTO = convertKeysToSnakeCase(data);
+
+    try {
+      const response = (await EditProfileApi.editProfile(dataDTO)) as Record<string, unknown>;
+
+      if (response) {
+        return response;
+      }
+    } catch (error) {
+      console.error(error);
+    }
+
+    return null;
+  }
 
   protected events = {
     submit: (event: Event) => {
@@ -49,9 +70,18 @@ export class EditProfile extends Block<EditProfileProps> {
         this.setProps({ ...this.props, error: true });
       }
 
-      const dataDTO = convertKeysToSnakeCase(form.validatedForm);
+      this.handleSubmit(form.validatedForm).then((user) => {
+        if (user) {
+          const userConverted = convertKeysToCamelCase(user) as unknown as User;
 
-      console.log('Данный формы - Профиль: ', dataDTO);
+          this.setProps({
+            ...this.props,
+            user: userConverted,
+          });
+
+          store.setUser(userConverted);
+        }
+      });
     },
     focusin: () => {
       if (this.error) {

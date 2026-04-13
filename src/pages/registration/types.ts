@@ -1,5 +1,4 @@
-import type { BlockOwnProps, LoginForm } from '@shared/types';
-import type { FormControlItem } from '@shared/types';
+import { type BlockOwnProps, FormType, type LoginForm, type FormControlItem } from '@shared/types';
 import type { REGISTRATION_FORM } from './constants';
 
 export interface RegistrationFormItem {
@@ -17,5 +16,6 @@ export interface RegistrationProps extends BlockOwnProps {
   data: LoginForm;
   formControl: FormControlItem;
   componentName: string;
+  formType: FormType;
   styles?: Record<string, string>;
 }

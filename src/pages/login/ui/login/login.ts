@@ -1,6 +1,6 @@
 import { FORM_CONTROL } from '@shared/constants';
 import Block from '@shared/lib/block';
-import type { LoginProps } from '@shared/types';
+import { FormType, type LoginProps } from '@shared/types';
 import { LOGIN_FORM } from '../../constants';
 import templateSource from './login.hbs?raw';
 import styles from './login.module.css';
@@ -16,13 +16,14 @@ export class Login extends Block<LoginProps> {
       data: LOGIN_FORM,
       formControl: FORM_CONTROL.login,
       componentName: COMPONENT_NAME,
+      formType: FormType.Login,
       styles,
     });
   }
 
-  componentDidMount() {}
+  getContent() {
+    this.render();
 
-  componentWillUnmount() {}
-
-  protected events = {};
+    return this.element();
+  }
 }

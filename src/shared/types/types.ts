@@ -1,6 +1,11 @@
 import { URLS } from '../constants';
 import type { BlockOwnProps } from '../types';
 
+export enum FormType {
+  Login = 'login',
+  Registration = 'registration',
+}
+
 export interface InfoProps extends BlockOwnProps {
   title: string;
   text: string;
@@ -52,6 +57,7 @@ export interface BaseLinkProps extends BlockOwnProps {
   componentName: string;
   additionalStyles?: string;
   styles?: Record<string, string>;
+  type: string | null;
 }
 
 export interface FormControlItem {
@@ -72,6 +78,7 @@ export interface User {
   secondName: string;
   displayName: string;
   phone: string;
+  avatar?: string;
 }
 
 export interface ChatItemProps extends BlockOwnProps {
@@ -111,5 +118,6 @@ export interface LoginProps extends BlockOwnProps {
   data: LoginForm;
   formControl: FormControlItem;
   componentName: string;
+  formType: FormType;
   styles?: Record<string, string>;
 }

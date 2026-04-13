@@ -9,11 +9,11 @@ export const routes: Route[] = [
     view: `{{{ Login }}}`,
   },
   {
-    path: '/chats',
+    path: '/messenger',
     view: `{{{ Chats }}}`,
   },
   {
-    path: '/profile',
+    path: '/settings',
     view: `{{{ Profile }}}`,
   },
   {
@@ -25,12 +25,16 @@ export const routes: Route[] = [
     view: `{{{ EditPassword }}}`,
   },
   {
-    path: '/registration',
+    path: '/sign-up',
     view: `{{{ Registration }}}`,
   },
   {
-    path: '/server-error',
+    path: '/500',
     view: `{{{ ServerError }}}`,
+  },
+  {
+    path: '404',
+    view: `{{{ NotFound }}}`,
   },
   {
     path: '*',

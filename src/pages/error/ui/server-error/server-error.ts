@@ -15,9 +15,9 @@ export class ServerError extends Block<Record<string, unknown>> {
     });
   }
 
-  componentDidMount() {}
+  getContent() {
+    this.render();
 
-  componentWillUnmount() {}
-
-  protected events = {};
+    return this.element();
+  }
 }
