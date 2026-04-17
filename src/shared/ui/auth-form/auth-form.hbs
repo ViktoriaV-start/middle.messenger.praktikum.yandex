@@ -17,17 +17,21 @@
       {{/each}}
     </fieldset>
 
-      <div class="error-message">
-        {{#if error}}
+    <div class="error-message">
+      {{#if error}}
         Неверно заполненные поля
-        {{/if}}
-      </div>
+      {{/if}}
+    </div>
 
     <div class="{{styles.auth-form__control}}">
-      {{{BaseButton type="submit" title=formControl.buttonTitle additionalStyles=styles.auth-form__button_width ref=this.componentName}}}
+      {{{BaseButton
+        type="submit"
+        title=formControl.buttonTitle
+        additionalStyles=styles.auth-form__button_width
+        ref=this.componentName
+      }}}
       {{{BaseLink href=formControl.link title=formControl.linkTitle ref=this.componentName}}}
     </div>
   </form>
-
 
 </div>

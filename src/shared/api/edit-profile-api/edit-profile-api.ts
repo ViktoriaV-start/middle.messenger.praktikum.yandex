@@ -11,8 +11,6 @@ export class EditProfileApi {
   }
 
   static editPassword(data: EditPasswordData) {
-    console.log(111, data);
-
     return editProfileApiInstance.put('/api/v2/user/password', {
       data: { ...data },
     });

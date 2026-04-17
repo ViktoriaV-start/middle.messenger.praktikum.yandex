@@ -43,7 +43,6 @@ export class AuthForm extends Block<AuthFormProps> {
 
   private async handleSignin(event: Event): Promise<boolean> {
     const data = this.gatherDate(event);
-    console.log(data);
 
     try {
       const response = await LoginApi.signin(data);
@@ -105,7 +104,6 @@ export class AuthForm extends Block<AuthFormProps> {
 
       const target = event.target as HTMLElement;
       const formType = target.getAttribute('data-id');
-      console.log(formType);
 
       if (formType === FormType.Login) {
         this.handleSignin(event).then((result: boolean) => {

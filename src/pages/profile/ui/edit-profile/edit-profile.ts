@@ -1,4 +1,4 @@
-import { EditProfileApi } from '@shared/api/edit-profile';
+import { EditProfileApi } from '@shared/api';
 import Block from '@shared/lib/block';
 import { store } from '@shared/store';
 import type { User } from '@shared/types';

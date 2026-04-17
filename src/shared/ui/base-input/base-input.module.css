@@ -1,0 +1,32 @@
+.input__label {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  inline-size: 100%;
+}
+
+.input__field {
+  font-family: Inter, Arial, sans-serif;
+  font-weight: 500;
+  font-size: var(--main-font-size);
+  line-height: var(--base-line-height);
+  border-width: 0 0 1px;
+  border-style: solid;
+  padding: 0.5rem 0 0.438rem;
+  color: currentcolor;
+  background-color: transparent;
+  cursor: text;
+  appearance: none;
+  border-color: var(--accent-color);
+}
+
+.input__field::placeholder {
+  color: var(--muted-color);
+  font-size: var(--main-font-size);
+  line-height: var(--base-line-height);
+  font-weight: 500;
+}
+
+.input__field:focus {
+  outline: none;
+}

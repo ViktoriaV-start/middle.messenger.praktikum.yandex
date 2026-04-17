@@ -4,7 +4,7 @@ export interface Message {
   time: string;
 }
 
-export interface Chat {
+export interface ChatItem {
   id: number;
   title: string;
   avatarUrl: string;

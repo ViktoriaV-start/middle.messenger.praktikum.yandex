@@ -26,6 +26,16 @@ export interface InputProps extends BlockOwnProps {
   autofocus?: boolean;
 }
 
+export interface BaseInputProps extends BlockOwnProps {
+  type: string;
+  name: string;
+  placeholder: string;
+  label: string;
+  value?: string;
+  componentName: string;
+  styles?: Record<string, string>;
+}
+
 export interface EditableInputProps extends InputProps {
   isEditable?: boolean;
   readonly?: string;
@@ -72,6 +82,7 @@ export interface FormControl {
 }
 
 export interface User {
+  id: number;
   email: string;
   login: string;
   firstName: string;
@@ -93,6 +104,19 @@ export interface ChatItemProps extends BlockOwnProps {
   componentName: string;
   styles?: Record<string, string>;
   unreadCountClass?: string;
+}
+
+export interface Chat {
+  id: number;
+  createdBy: number;
+  title: string;
+  unreadCount: number;
+  lastMessage: {
+    user: User;
+    time: string;
+    content: string;
+  } | null;
+  avatar: string | null;
 }
 
 export interface BackButtonProps extends BlockOwnProps {

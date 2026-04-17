@@ -1,5 +1,52 @@
 <section class="{{styles.chat}}">
-  <div>Header</div>
+  <header class="chat__header {{styles.chat__header}}">
+    <p>Header</p>
+    <button class="{{styles.chat__user-control}}" type="button">{{{dotsIcon}}}</button>
+    <div class="{{styles.chat__menu}}">
+      <button class="control add-control__btn {{styles.chat__menu-item}}">
+        <div class="{{styles.chat__menu-icon}}">{{{addIcon}}}</div>
+        <span>Добавить пользователя</span>
+      </button>
+      <button class="control delete-control__btn {{styles.chat__menu-item}}">
+        <div class="{{styles.chat__menu-icon}}">{{{deleteIcon}}}</div>
+        <span>Удалить пользователя</span>
+      </button>
+    </div>
+    <form class="user-form add-user__form {{styles.user__form}} {{styles.hidden}}">
+      <p>Добавить пользователя</p>
+      {{{BaseInput
+        ref=this.componentName
+        type="text"
+        name="login"
+        placeholder="Логин"
+        label="Логин"
+      }}}
+      {{{BaseButton
+        ref=this.componentName
+        type="submit"
+        title="Добавить"
+        additionalStyles=styles.add-user__button
+      }}}
+
+    </form>
+    <form class="user-form delete-user__form {{styles.user__form}} {{styles.hidden}}">
+      <p>Удалить пользователя</p>
+      {{{BaseInput
+        ref=this.componentName
+        type="text"
+        name="login"
+        placeholder="Логин"
+        label="Логин"
+      }}}
+      {{{BaseButton
+        ref=this.componentName
+        type="submit"
+        title="Удалить"
+        additionalStyles=styles.add-user__button
+      }}}
+
+    </form>
+  </header>
   <div class="{{styles.chat__messages}}">
     {{{MessageIn ref=this.componentName}}}
     {{{MessageOut ref=this.componentName}}}

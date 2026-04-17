@@ -1,4 +1,4 @@
-import { EditProfileApi } from '@shared/api/edit-profile';
+import { EditProfileApi } from '@shared/api';
 import { SUCCESS } from '@shared/constants';
 import Block from '@shared/lib/block';
 import { getFormData } from '@shared/utils/form';

@@ -31,5 +31,10 @@
 - Тестовый вход: 
   - login: Lit
   - password: veryStrongPASS
-  
+
+  - login: someLi
+  - password: veryStrongPASS
+
+  - login: Petrov
+  - password: 123456
 

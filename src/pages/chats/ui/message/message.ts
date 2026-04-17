@@ -41,6 +41,7 @@ export class Message extends Block<Record<string, unknown>> {
   private handleInputChange = (target: HTMLInputElement) => {
     const inputValue = target.value.trimStart();
     const inputName = target.name;
+
     if (inputValue.length === 0) {
       console.warn('Сообщение не может быть пустым');
 
@@ -50,6 +51,7 @@ export class Message extends Block<Record<string, unknown>> {
 
       return;
     }
+
     target.value = normalizeValue({ value: inputValue, name: inputName });
   };
 

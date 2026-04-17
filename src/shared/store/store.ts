@@ -1,10 +1,11 @@
 import { Router } from '../router/router';
-import type { Listener, State, User } from '../types';
+import type { Chat, Listener, StoreState, User } from '../types';
 import { merge, set } from '../utils';
 
 class Store {
-  private state: State = {
+  private state: StoreState = {
     router: new Router('#app'),
+    chats: [],
   };
   private listeners: Set<Listener> = new Set();
 
@@ -17,18 +18,24 @@ class Store {
   }
 
   public setState(path: string, value: unknown) {
-    this.state = merge(this.state, set({}, path, value)) as State;
+    this.state = merge(this.state, set({}, path, value)) as StoreState;
     this.emit();
   }
 
   public clearState() {
     this.state = {
       router: new Router('#app'),
+      chats: [],
     };
   }
 
   public setUser(user: User) {
     this.state.user = { ...user };
+    this.emit();
+  }
+
+  public setChats(chats: Chat[]) {
+    this.state.chats = [...chats];
     this.emit();
   }
 

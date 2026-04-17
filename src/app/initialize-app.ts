@@ -7,6 +7,7 @@ import { LoginApi } from '@shared/api';
 import { store } from '@shared/store';
 import { AuthForm, BaseButton, Info, InputAuth, Input, ChatItem, Navigation } from '@shared/ui';
 import { BackButton } from '@shared/ui/back-button';
+import { BaseInput } from '@shared/ui/base-input';
 import { BaseLink } from '@shared/ui/base-link';
 import { convertKeysToCamelCase } from '@shared/utils';
 import { registerComponent } from './register-component';
@@ -53,6 +54,7 @@ export const initializeApp = async () => {
   registerComponent(ChatMessages);
   registerComponent(Sidebar);
   registerComponent(Chats);
+  registerComponent(BaseInput);
 
   registerRoutes(router).start();
 

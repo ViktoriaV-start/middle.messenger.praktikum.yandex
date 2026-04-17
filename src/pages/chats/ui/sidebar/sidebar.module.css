@@ -7,3 +7,27 @@
   flex-direction: column;
   justify-content: space-between;
 }
+
+.sidebar__chats {
+  display: flex;
+  flex-direction: column;
+  row-gap: 1rem;
+}
+
+.chat-adding__form {
+  display: flex;
+  flex-direction: column;
+  row-gap: 0.4rem;
+}
+
+.chat-adding__input {
+  border: 1px solid #eaeaea;
+  padding: 0.6rem;
+  width: 100%;
+  border-radius: 0.3rem;
+  margin-top: 0.6rem;
+}
+
+.chat-adding__button {
+  width: 100%;
+}

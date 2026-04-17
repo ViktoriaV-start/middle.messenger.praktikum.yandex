@@ -1,3 +1,4 @@
+// eslint-disable-next-line
 type Indexed<T = any> = {
   [k in string | symbol]: T;
 };
