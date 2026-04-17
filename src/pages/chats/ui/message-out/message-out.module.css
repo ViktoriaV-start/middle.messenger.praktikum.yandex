@@ -1,0 +1,11 @@
+.message-out {
+  inline-size: fit-content;
+  max-inline-size: 70%;
+  overflow-wrap: break-word;
+  background-color: #e4edfd;
+  font-size: var(--small-font-size);
+  line-height: 0.94rem;
+  padding: 0.69rem;
+  border-radius: 0.5rem 0.5rem 0;
+  align-self: end;
+}

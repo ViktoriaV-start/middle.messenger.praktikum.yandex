@@ -1,0 +1,29 @@
+<div class="{{styles.chatItem}}" data-id="{{id}}">
+  <div class="{{styles.block}} {{unreadCountClass}}">
+    <div class="{{styles.avatar}}">
+      <img src="{{avatarUrl}}" alt="avatar" />
+    </div>
+
+    <div class="{{styles.name}}">
+      {{title}}
+
+      {{#with lastMessage}}
+        <time class="{{styles.date}}" datetime="{{time}}">
+          {{time}}
+        </time>
+      {{/with}}
+    </div>
+
+    {{#with lastMessage}}
+      <div class="{{styles.message}}">
+        {{{text}}}
+      </div>
+    {{/with}}
+
+    {{#if unreadCount}}
+      <span class="{{styles.badge}}">
+        {{unreadCount}}
+      </span>
+    {{/if}}
+  </div>
+</div>

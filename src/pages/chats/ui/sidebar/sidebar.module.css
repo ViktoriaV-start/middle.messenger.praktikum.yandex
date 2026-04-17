@@ -1,0 +1,9 @@
+.sidebar {
+  padding: 1.3rem 0.625rem 0;
+  inline-size: 23.1rem;
+  background: #fbfbfb;
+  border-inline-end: 1px solid #eaeaea;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}

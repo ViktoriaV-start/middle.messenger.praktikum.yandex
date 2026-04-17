@@ -1,0 +1,14 @@
+<aside class="{{styles.sidebar}}">
+  <nav class="{{styles.chatList}}">
+    {{#each chats}}
+      {{{ChatItem
+        id=this.id
+        avatarUrl=this.avatarUrl
+        title=this.title
+        unreadCount=this.unreadCount
+        lastMessage=this.lastMessage
+      }}}
+    {{/each}}
+  </nav>
+  {{{Navigation}}}
+</aside>

@@ -1,0 +1,39 @@
+.input-auth__label {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  inline-size: 100%;
+}
+
+.input-auth__field {
+  font-family: Inter, Arial, sans-serif;
+  font-weight: 500;
+  font-size: var(--main-font-size);
+  line-height: var(--base-line-height);
+  border-width: 0 0 1px;
+  border-style: solid;
+  padding: 0.5rem 0 0.438rem;
+  color: currentcolor;
+  background-color: transparent;
+  cursor: text;
+  appearance: none;
+}
+
+.input-auth__field::placeholder {
+  color: var(--muted-color);
+  font-size: var(--main-font-size);
+  line-height: var(--base-line-height);
+  font-weight: 500;
+}
+
+.input-auth__field:focus {
+  outline: none;
+}
+
+.input-auth__valid {
+  border-color: var(--accent-color);
+}
+
+.input-auth__invalid {
+  border-color: red;
+}

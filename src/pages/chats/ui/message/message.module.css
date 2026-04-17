@@ -1,0 +1,57 @@
+.message {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+}
+
+.message__label {
+  flex-grow: 1;
+}
+
+.message__input {
+  width: 100%;
+  border: 1px solid #efefef;
+  border-radius: 1.875rem;
+  padding: 0.625rem 1.25rem;
+  font-family: Inter, Arial, sans-serif;
+  font-weight: 500;
+  font-size: var(--main-font-size);
+  line-height: var(--base-line-height);
+}
+
+.message__input_bg-default {
+  background-color: #efefef;
+}
+
+.message__input_bg-error {
+  background-color: #fee;
+}
+
+.message__input::placeholder {
+  color: var(--muted-color);
+  font-size: var(--small-font-size);
+  line-height: var(--base-line-height);
+  font-weight: 500;
+}
+
+.message__send-btn {
+  display: flex;
+  align-items: center;
+  border: none;
+  background-color: transparent;
+  padding: 0;
+  color: var(--accent-color);
+}
+
+.message__send-btn svg {
+  transition: color 0.3s ease;
+}
+
+.message__send-btn:hover svg {
+  color: #6892fd;
+}
+
+.message__send-btn:active {
+  color: var(--accent-color);
+  transform: scale(0.9);
+}
