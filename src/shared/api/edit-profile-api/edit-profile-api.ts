@@ -15,4 +15,10 @@ export class EditProfileApi {
       data: { ...data },
     });
   }
+
+  static editAvatar(data: FormData) {
+    return editProfileApiInstance.put('/api/v2/user/profile/avatar', {
+      data: data,
+    });
+  }
 }

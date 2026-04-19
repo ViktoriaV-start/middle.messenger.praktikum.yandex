@@ -3,7 +3,8 @@
   <section class="{{styles.profile}}">
     {{{Navigation ref=this.componentName}}}
 
-    <div class="{{styles.profile__avatar}} {{styles.profile__avatar_mbe}}" id="avatar">
+    <div class = "{{styles.edit-profile__avatar-wrapper}} {{styles.profile__avatar-wrapper_mbe}}">
+      <img class="{{styles.profile__avatar}}" src="{{user.avatar}}" alt="" data-name="avatar-img">
     </div>
 
     <h1

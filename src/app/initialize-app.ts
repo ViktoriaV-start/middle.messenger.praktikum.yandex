@@ -4,7 +4,9 @@ import { Login } from '@pages/login';
 import { Profile, EditPassword, EditProfile } from '@pages/profile';
 import { Registration } from '@pages/registration';
 import { LoginApi } from '@shared/api';
+import { BASE_API_URL } from '@shared/constants';
 import { store } from '@shared/store';
+import type { User } from '@shared/types';
 import { AuthForm, BaseButton, Info, InputAuth, Input, ChatItem, Navigation } from '@shared/ui';
 import { BackButton } from '@shared/ui/back-button';
 import { BaseInput } from '@shared/ui/base-input';
@@ -19,8 +21,10 @@ async function checkUserAuth() {
     const response = await LoginApi.checkAuth();
 
     if (response) {
-      const responseDto = convertKeysToCamelCase({ ...response });
-      store.setState('user', responseDto);
+      const responseDto = convertKeysToCamelCase({ ...response }) as unknown as User;
+      const avatarUrl = `${BASE_API_URL}/api/v2/resources${responseDto.avatar}`;
+
+      store.setState('user', { ...responseDto, avatar: avatarUrl });
     }
   } catch (error) {
     console.log(error);

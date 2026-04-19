@@ -68,6 +68,7 @@ export class ChatMessages extends Block<Record<string, unknown>> {
   private async handleAddUser() {
     const chats = store.getState().chats;
     const exampleChatId = chats[0].id;
+    console.log(exampleChatId);
 
     if (this.userToAdd) {
       const addUserData = {

@@ -19,10 +19,6 @@
   background: #efefef url('@shared/assets/icons/avatar-icon.svg') no-repeat center;
 }
 
-.profile__avatar_mbe {
-  margin-block-end: 1.32rem;
-}
-
 .profile__avatar-img {
   width: 100%;
   height: 100%;
@@ -73,6 +69,14 @@
   margin: 0 auto;
 }
 
-.edit-profile__avatar_mbe {
+.edit-profile__avatar-wrapper {
+  display: flex;
+  flex-direction: column;
+  row-gap: 1rem;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile__avatar-wrapper_mbe {
   margin-block-end: 4rem;
 }

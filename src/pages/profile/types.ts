@@ -36,6 +36,7 @@ export interface EditProfileProps extends BlockOwnProps {
   error?: boolean;
   componentName: string;
   styles?: Record<string, string>;
+  avatarIcon: string;
 }
 
 export interface EditPasswordProps extends BlockOwnProps {

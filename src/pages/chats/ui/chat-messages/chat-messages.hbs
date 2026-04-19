@@ -49,6 +49,12 @@
     {{{Confirmation ref=this.componentName text=confirmation.text hidden=confirmation.hidden type=confirmation.type }}}
 
   </header>
+
+  <ul>
+    {{#each chatUsers}}
+      <li>this.displayName</li>
+    {{/each}}
+  </ul>
   <div class="{{styles.chat__messages}}">
     {{{MessageIn ref=this.componentName}}}
     {{{MessageOut ref=this.componentName}}}

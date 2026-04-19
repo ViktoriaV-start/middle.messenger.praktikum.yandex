@@ -4,7 +4,7 @@ import { queryStringify } from '../utils/api';
 interface Options {
   timeout?: number;
   headers?: Record<string, string>;
-  data?: Record<string, unknown>;
+  data?: Record<string, unknown> | FormData;
   responseType?: XMLHttpRequestResponseType;
   method?: string;
   [key: string]: unknown;
@@ -43,7 +43,10 @@ export class HttpTransport {
 
       const xhr = new XMLHttpRequest();
       const isGet = method === METHODS.GET;
-      const requestUrl = isGet && data ? `${host}${url}${queryStringify(data)}` : `${host}${url}`;
+      const isFormData = data instanceof FormData;
+
+      const requestUrl =
+        isGet && data && !isFormData ? `${host}${url}${queryStringify(data)}` : `${host}${url}`;
 
       // Открываем соединение
       xhr.open(method, requestUrl);
