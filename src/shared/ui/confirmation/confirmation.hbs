@@ -1,0 +1,9 @@
+<form class="modal confirmation-form {{styles.confirmation}} {{#if hidden}}{{styles.hidden}}{{/if}}" data-form-type="{{type}}">
+  <p>{{text}}</p>
+  {{{BaseButton
+          ref=this.componentName
+          type="submit"
+          title="Подтвердить"
+          additionalStyles=styles.confirmation__button
+  }}}
+</form>

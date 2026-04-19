@@ -1,8 +1,8 @@
 <section class="{{styles.chat}}">
   <header class="chat__header {{styles.chat__header}}">
     <p>Header</p>
-    <button class="{{styles.chat__user-control}}" type="button">{{{dotsIcon}}}</button>
-    <div class="{{styles.chat__menu}}">
+    <button class="control chat__control-btn {{styles.chat__user-control}}" type="button">{{{dotsIcon}}}</button>
+    <div class="chat__menu {{styles.chat__menu}} {{styles.hidden}}">
       <button class="control add-control__btn {{styles.chat__menu-item}}">
         <div class="{{styles.chat__menu-icon}}">{{{addIcon}}}</div>
         <span>Добавить пользователя</span>
@@ -12,7 +12,7 @@
         <span>Удалить пользователя</span>
       </button>
     </div>
-    <form class="user-form add-user__form {{styles.user__form}} {{styles.hidden}}">
+    <form class="user-form add-user__form {{styles.user__form}} {{styles.hidden}}" data-form-type="add-user-search">
       <p>Добавить пользователя</p>
       {{{BaseInput
         ref=this.componentName
@@ -27,9 +27,9 @@
         title="Добавить"
         additionalStyles=styles.add-user__button
       }}}
-
     </form>
-    <form class="user-form delete-user__form {{styles.user__form}} {{styles.hidden}}">
+
+    <form class="user-form delete-user__form {{styles.user__form}} {{styles.hidden}}" data-form-type="delete-user-search">
       <p>Удалить пользователя</p>
       {{{BaseInput
         ref=this.componentName
@@ -44,8 +44,10 @@
         title="Удалить"
         additionalStyles=styles.add-user__button
       }}}
-
     </form>
+
+    {{{Confirmation ref=this.componentName text=confirmation.text hidden=confirmation.hidden type=confirmation.type }}}
+
   </header>
   <div class="{{styles.chat__messages}}">
     {{{MessageIn ref=this.componentName}}}

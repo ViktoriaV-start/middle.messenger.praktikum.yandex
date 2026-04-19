@@ -145,3 +145,12 @@ export interface LoginProps extends BlockOwnProps {
   formType: FormType;
   styles?: Record<string, string>;
 }
+
+export interface ConfirmationProps extends BlockOwnProps {
+  text: string;
+  type: string;
+  componentName: string;
+  hidden: boolean;
+  additionalStyles?: string;
+  styles?: Record<string, string>;
+}

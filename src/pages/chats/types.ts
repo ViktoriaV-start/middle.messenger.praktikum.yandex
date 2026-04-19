@@ -11,3 +11,22 @@ export interface ChatItem {
   unreadCount: number;
   lastMessage: Message;
 }
+
+export interface HandleClassnameProps {
+  selector: string;
+  classname: string;
+  parent?: Document | Element | null;
+}
+
+export interface ConfirmationComponentProps {
+  confirmation: {
+    text: string;
+    hidden: boolean;
+  };
+}
+
+export interface ConfirmationFormConfigItem {
+  text: string;
+  searchFormType: string;
+  formType: string;
+}

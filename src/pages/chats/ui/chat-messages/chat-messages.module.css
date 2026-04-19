@@ -28,6 +28,10 @@
 }
 
 .chat__menu {
+  position: absolute;
+  background-color: var(--bg-color);
+  top: 0;
+  right: 0;
   padding: 1rem;
   display: flex;
   flex-direction: column;
