@@ -12,7 +12,11 @@ export class Chats extends Block<Record<string, unknown>> {
 
   constructor() {
     super({ componentName: COMPONENT_NAME, styles });
-    ChatsController.getChats();
+    this.initChats();
+  }
+
+  private async initChats() {
+    await ChatsController.getChats();
   }
 
   getContent() {

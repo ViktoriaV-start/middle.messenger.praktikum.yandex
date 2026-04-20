@@ -29,5 +29,8 @@
       }}}
     {{/each}}
   </nav>
-  {{{Navigation ref=this.componentName}}}
+
+  <div class="{{styles.sidebar__link}}">
+    {{{BaseLink title="Профиль" href=profileLink ref=this.componentName}}}
+  </div>
 </aside>

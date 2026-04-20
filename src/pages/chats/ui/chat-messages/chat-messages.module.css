@@ -102,3 +102,9 @@
 .add-user__button {
   width: 100%;
 }
+
+.chat__users {
+  display: flex;
+  gap: 1.8rem;
+  flex-wrap: wrap;
+}

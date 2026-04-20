@@ -6,7 +6,23 @@ import { convertKeysToCamelCase } from '@shared/utils';
 import { ChatsApi } from './chats-api';
 
 export class ChatsController {
-  static getChats() {
+  static async getChats() {
+    try {
+      const response = await ChatsApi.request();
+
+      if (Array.isArray(response)) {
+        const chatsDto = response.map((chat: Chat) => {
+          return convertKeysToCamelCase(chat as unknown as Record<string, unknown>);
+        });
+
+        store.setChats(chatsDto as unknown as Chat[]);
+      }
+    } catch (error) {
+      if ((error as ApiError).status >= 500) {
+        store.getState().router.go(URLS.serverError);
+      }
+    }
+
     ChatsApi.request().then((data) => {
       if (Array.isArray(data)) {
         const chatsDto = data.map((chat: Chat) => {
@@ -14,6 +30,7 @@ export class ChatsController {
         });
 
         store.setChats(chatsDto as unknown as Chat[]);
+        store.setActiveChat(chatsDto[0] as unknown as Chat);
       }
     });
   }
@@ -54,13 +71,17 @@ export class ChatsController {
     }
   }
 
-  static async getChatUsers(chatId: number): Promise<User[] | null> {
+  static async getChatUsers(chatId: number) {
     try {
       const response = (await ChatsApi.getUsers({
         id: chatId,
       })) as unknown as User[];
 
-      return response;
+      const chatUsersDto = response.map((user) =>
+        convertKeysToCamelCase(user as unknown as Record<string, unknown>)
+      );
+
+      return chatUsersDto;
     } catch (error) {
       if ((error as ApiError).status >= 500) {
         store.getState().router.go(URLS.serverError);

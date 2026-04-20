@@ -9,6 +9,7 @@
   inline-size: 31.8rem;
   max-inline-size: 31.8rem;
   min-inline-size: 25rem;
+  padding-block-start: 50px;
 }
 
 .profile__avatar {

@@ -1,6 +1,11 @@
 <section class="{{styles.chat}}">
   <header class="chat__header {{styles.chat__header}}">
-    <p>Header</p>
+    <h3>{{activeChat.title}}</h3>
+    <ul class="{{styles.chat__users}}">
+      {{#each chatUsers}}
+        <li>{{this.displayName}}</li>
+      {{/each}}
+    </ul>
     <button class="control chat__control-btn {{styles.chat__user-control}}" type="button">{{{dotsIcon}}}</button>
     <div class="chat__menu {{styles.chat__menu}} {{styles.hidden}}">
       <button class="control add-control__btn {{styles.chat__menu-item}}">
@@ -50,11 +55,6 @@
 
   </header>
 
-  <ul>
-    {{#each chatUsers}}
-      <li>this.displayName</li>
-    {{/each}}
-  </ul>
   <div class="{{styles.chat__messages}}">
     {{{MessageIn ref=this.componentName}}}
     {{{MessageOut ref=this.componentName}}}

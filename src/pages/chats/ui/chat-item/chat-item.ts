@@ -1,5 +1,5 @@
-import Block from '../../lib/block';
-import type { ChatItemProps } from '../../types';
+import Block from '@shared/lib/block';
+import type { ChatItemProps } from '@shared/types';
 import templateSource from './chat-item.hbs?raw';
 import styles from './chat-item.module.css';
 

@@ -104,6 +104,7 @@ export interface ChatItemProps extends BlockOwnProps {
   componentName: string;
   styles?: Record<string, string>;
   unreadCountClass?: string;
+  active: false;
 }
 
 export interface Chat {

@@ -20,6 +20,7 @@ export class Sidebar extends Block<Record<string, unknown>> {
     const data = {
       chats: store.getState().chats,
       urls: URLS,
+      profileLink: URLS.profile,
     };
     super({ ...data, componentName: COMPONENT_NAME, styles });
 
@@ -45,6 +46,19 @@ export class Sidebar extends Block<Record<string, unknown>> {
   };
 
   protected events = {
+    click: (event: Event) => {
+      const target = event.target as HTMLInputElement;
+      const chatItem = target.closest<HTMLAnchorElement>('.chat-item');
+      const chatId = chatItem && chatItem.dataset.id ? +chatItem.dataset.id : null;
+
+      if (chatId) {
+        const chat = store.getState().chats.find((chat) => chat.id === chatId);
+
+        if (chat) {
+          store.setActiveChat(chat);
+        }
+      }
+    },
     submit: (event: Event) => {
       event.preventDefault();
 

@@ -1,6 +1,8 @@
 import { EditProfileApi } from '@shared/api';
 import { SUCCESS } from '@shared/constants';
 import Block from '@shared/lib/block';
+import { store } from '@shared/store';
+import type { User } from '@shared/types';
 import { getFormData } from '@shared/utils/form';
 import { normalizeValidateForm } from '@shared/utils/normalize-validate-form';
 import { BUTTONS, PASSWORD, PASSWORD_INPUTS } from '../../constants';
@@ -17,7 +19,10 @@ export class EditPassword extends Block<Record<string, unknown>> {
   private error = false;
 
   constructor() {
+    const user = store.getState().user as User;
+
     const initialEditPasswordData = {
+      user,
       password: PASSWORD,
       button: BUTTONS.save,
       error: false,

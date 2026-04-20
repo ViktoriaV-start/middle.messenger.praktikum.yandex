@@ -39,6 +39,11 @@ class Store {
     this.emit();
   }
 
+  public setActiveChat(chat: Chat) {
+    this.state.activeChat = { ...chat };
+    this.emit();
+  }
+
   public subscribe(listener: Listener): () => void {
     this.listeners.add(listener);
 

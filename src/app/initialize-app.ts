@@ -1,4 +1,5 @@
 import { Chats, Message, MessageIn, MessageOut, Sidebar, ChatMessages } from '@pages/chats';
+import { ChatItem } from '@pages/chats/ui/chat-item';
 import { NotFound, ServerError } from '@pages/error';
 import { Login } from '@pages/login';
 import { Profile, EditPassword, EditProfile } from '@pages/profile';
@@ -7,7 +8,7 @@ import { LoginApi } from '@shared/api';
 import { BASE_API_URL } from '@shared/constants';
 import { store } from '@shared/store';
 import type { User } from '@shared/types';
-import { AuthForm, BaseButton, Info, InputAuth, Input, ChatItem, Navigation } from '@shared/ui';
+import { AuthForm, BaseButton, Info, InputAuth, Input, Navigation } from '@shared/ui';
 import { BackButton } from '@shared/ui/back-button';
 import { BaseInput } from '@shared/ui/base-input';
 import { BaseLink } from '@shared/ui/base-link';

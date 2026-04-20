@@ -6,7 +6,7 @@ import deleteIcon from '@shared/assets/icons/delete-icon.svg?raw';
 import dotsIcon from '@shared/assets/icons/dots-icon.svg?raw';
 import Block from '@shared/lib/block';
 import { store } from '@shared/store';
-import type { User } from '@shared/types';
+import type { Chat, User } from '@shared/types';
 import { getFormData } from '@shared/utils/form';
 import { ChatsController } from '../../api';
 import { CONFIRMATION_FORM_CONFIG } from '../../constants';
@@ -22,9 +22,14 @@ export class ChatMessages extends Block<Record<string, unknown>> {
 
   protected template = templateSource;
   private userToAdd: User | null = null;
+  protected activeChat: Chat | null = null;
 
   constructor() {
+    const activeChat = store.getState().activeChat;
+
     super({
+      activeChat,
+      chatUsers: [],
       componentName: COMPONENT_NAME,
       confirmation: { text: '', hidden: true, name: null },
       styles,
@@ -32,6 +37,28 @@ export class ChatMessages extends Block<Record<string, unknown>> {
       addIcon,
       deleteIcon,
     });
+
+    store.subscribe(async () => {
+      this.getChatUsers();
+    });
+  }
+
+  private async getChatUsers() {
+    const activeChat = store.getState().activeChat as Chat;
+
+    if (activeChat && activeChat.id) {
+      const chatUsers = await ChatsController.getChatUsers(activeChat.id);
+
+      this.setProps({
+        activeChat,
+        chatUsers,
+        confirmation: {
+          text: '',
+          hidden: true,
+          type: null,
+        },
+      });
+    }
   }
 
   public setProps(props: Record<string, unknown>) {
@@ -76,9 +103,7 @@ export class ChatMessages extends Block<Record<string, unknown>> {
         chatId: exampleChatId,
       };
 
-      const response = await ChatsController.addUserToChat(addUserData);
-
-      console.log(response);
+      await ChatsController.addUserToChat(addUserData);
     }
   }
 
@@ -144,7 +169,7 @@ export class ChatMessages extends Block<Record<string, unknown>> {
         }
       }
     },
-    submit: (event: Event) => {
+    submit: async (event: Event) => {
       event.preventDefault();
 
       const target = event.target as HTMLFormElement;
@@ -165,13 +190,13 @@ export class ChatMessages extends Block<Record<string, unknown>> {
 
       if (isAddUser) {
         this.handleAddUser().then(() => {
-          target.classList.add(styles['hidden']);
+          this.getChatUsers();
         });
       }
 
       if (isDeleteUser) {
         this.handleDeleteUser().then(() => {
-          target.classList.add(styles['hidden']);
+          this.getChatUsers();
         });
       }
     },
