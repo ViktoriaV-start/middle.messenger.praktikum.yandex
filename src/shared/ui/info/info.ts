@@ -3,13 +3,15 @@ import type { InfoProps } from '../../types';
 import templateSource from './info.hbs?raw';
 import styles from './info.module.css';
 
+const COMPONENT_NAME = 'Info';
+
 export class Info extends Block<InfoProps> {
-  static componentName = 'Info';
+  static componentName = COMPONENT_NAME;
 
   protected template = templateSource;
 
   constructor(props: InfoProps) {
-    super({ ...props, styles });
+    super({ ...props, componentName: COMPONENT_NAME, styles });
   }
 
   public setProps(props: InfoProps) {

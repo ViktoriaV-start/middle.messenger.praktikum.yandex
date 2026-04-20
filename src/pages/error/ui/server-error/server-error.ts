@@ -2,19 +2,22 @@ import Block from '@shared/lib/block';
 import { SERVER_ERROR_INFO } from '../../constants';
 import templateSource from './server-error.hbs?raw';
 
+const COMPONENT_NAME = 'ServerError';
+
 export class ServerError extends Block<Record<string, unknown>> {
-  static componentName = 'ServerError';
+  static componentName = COMPONENT_NAME;
   protected template = templateSource;
 
   constructor() {
     super({
       ...SERVER_ERROR_INFO,
+      componentName: COMPONENT_NAME,
     });
   }
 
-  componentDidMount() {}
+  getContent() {
+    this.render();
 
-  componentWillUnmount() {}
-
-  protected events = {};
+    return this.element();
+  }
 }

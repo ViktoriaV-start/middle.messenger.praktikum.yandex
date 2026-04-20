@@ -1,9 +1,64 @@
 <section class="{{styles.chat}}">
-  <div>Header</div>
+  <header class="chat__header {{styles.chat__header}}">
+    <h3>{{activeChat.title}}</h3>
+    <ul class="{{styles.chat__users}}">
+      {{#each chatUsers}}
+        <li>{{this.displayName}}</li>
+      {{/each}}
+    </ul>
+    <button class="control chat__control-btn {{styles.chat__user-control}}" type="button">{{{dotsIcon}}}</button>
+    <div class="chat__menu {{styles.chat__menu}} {{styles.hidden}}">
+      <button class="control add-control__btn {{styles.chat__menu-item}}">
+        <div class="{{styles.chat__menu-icon}}">{{{addIcon}}}</div>
+        <span>Добавить пользователя</span>
+      </button>
+      <button class="control delete-control__btn {{styles.chat__menu-item}}">
+        <div class="{{styles.chat__menu-icon}}">{{{deleteIcon}}}</div>
+        <span>Удалить пользователя</span>
+      </button>
+    </div>
+    <form class="user-form add-user__form {{styles.user__form}} {{styles.hidden}}" data-form-type="add-user-search">
+      <p>Добавить пользователя</p>
+      {{{BaseInput
+        ref=this.componentName
+        type="text"
+        name="login"
+        placeholder="Логин"
+        label="Логин"
+      }}}
+      {{{BaseButton
+        ref=this.componentName
+        type="submit"
+        title="Добавить"
+        additionalStyles=styles.add-user__button
+      }}}
+    </form>
+
+    <form class="user-form delete-user__form {{styles.user__form}} {{styles.hidden}}" data-form-type="delete-user-search">
+      <p>Удалить пользователя</p>
+      {{{BaseInput
+        ref=this.componentName
+        type="text"
+        name="login"
+        placeholder="Логин"
+        label="Логин"
+      }}}
+      {{{BaseButton
+        ref=this.componentName
+        type="submit"
+        title="Удалить"
+        additionalStyles=styles.add-user__button
+      }}}
+    </form>
+
+    {{{Confirmation ref=this.componentName text=confirmation.text hidden=confirmation.hidden type=confirmation.type }}}
+
+  </header>
+
   <div class="{{styles.chat__messages}}">
-    {{{MessageIn}}}
-    {{{MessageOut}}}
+    {{{MessageIn ref=this.componentName}}}
+    {{{MessageOut ref=this.componentName}}}
   </div>
 
-  {{{Message}}}
+  {{{Message ref=this.componentName}}}
 </section>

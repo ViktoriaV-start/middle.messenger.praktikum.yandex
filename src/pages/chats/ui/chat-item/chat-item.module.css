@@ -1,0 +1,27 @@
+.chat-item {
+  border: none;
+  border-bottom: 1px solid var(--muted-color);
+  background-color: transparent;
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.7rem;
+  font-family: Inter, Arial, sans-serif;
+  font-weight: 500;
+  color: var(--main-color);
+  cursor: pointer;
+  font-size: var(--main-font-size);
+  line-height: var(--base-line-height);
+  transition: var(--base-transition);
+}
+
+.chat-item:hover {
+  background-color: #d8e2fa;
+}
+
+.chat-item__active {
+  border-bottom-color: #ed991c;
+}
+
+.unread {
+  color: var(--accent-color);
+}

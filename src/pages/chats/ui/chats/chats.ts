@@ -1,19 +1,27 @@
 import Block from '@shared/lib/block';
+import { ChatsController } from '../../api';
 import templateSource from './chats.hbs?raw';
 import styles from './chats.module.css';
 
+const COMPONENT_NAME = 'Chats';
+
 export class Chats extends Block<Record<string, unknown>> {
-  static componentName = 'Chats';
+  static componentName = COMPONENT_NAME;
 
   protected template = templateSource;
 
   constructor() {
-    super({ styles });
+    super({ componentName: COMPONENT_NAME, styles });
+    this.initChats();
   }
 
-  componentDidMount() {}
+  private async initChats() {
+    await ChatsController.getChats();
+  }
 
-  componentWillUnmount() {}
+  getContent() {
+    this.render();
 
-  protected events = {};
+    return this.element();
+  }
 }

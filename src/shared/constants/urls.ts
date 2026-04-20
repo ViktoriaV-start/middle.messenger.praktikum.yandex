@@ -1,10 +1,10 @@
 export const URLS = {
   login: '/',
-  chats: '/chats',
-  registration: '/registration',
-  profile: '/profile',
+  chats: '/messenger',
+  registration: '/sign-up',
+  profile: '/settings',
   editProfile: '/edit-profile',
   editPassword: '/edit-password',
-  notFound: '/not-found',
-  serverError: '/server-error',
+  notFound: '/404',
+  serverError: '/500',
 } as const;

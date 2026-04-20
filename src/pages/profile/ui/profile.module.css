@@ -9,6 +9,7 @@
   inline-size: 31.8rem;
   max-inline-size: 31.8rem;
   min-inline-size: 25rem;
+  padding-block-start: 50px;
 }
 
 .profile__avatar {
@@ -17,10 +18,6 @@
   height: 8.125rem;
   border-radius: 50%;
   background: #efefef url('@shared/assets/icons/avatar-icon.svg') no-repeat center;
-}
-
-.profile__avatar_mbe {
-  margin-block-end: 1.32rem;
 }
 
 .profile__avatar-img {
@@ -73,6 +70,14 @@
   margin: 0 auto;
 }
 
-.edit-profile__avatar_mbe {
+.edit-profile__avatar-wrapper {
+  display: flex;
+  flex-direction: column;
+  row-gap: 1rem;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile__avatar-wrapper_mbe {
   margin-block-end: 4rem;
 }

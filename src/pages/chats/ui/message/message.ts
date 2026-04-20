@@ -8,8 +8,10 @@ import { getFormData } from '@shared/utils/form';
 import templateSource from './message.hbs?raw';
 import styles from './message.module.css';
 
+const COMPONENT_NAME = 'Message';
+
 export class Message extends Block<Record<string, unknown>> {
-  static componentName = 'Message';
+  static componentName = COMPONENT_NAME;
 
   protected template = templateSource;
   private error = false;
@@ -17,7 +19,7 @@ export class Message extends Block<Record<string, unknown>> {
   private errorStyle = styles['message__input_bg-error'];
 
   constructor() {
-    super({ sendMessageIcon, clipIcon, styles });
+    super({ componentName: COMPONENT_NAME, sendMessageIcon, clipIcon, styles });
   }
 
   public setProps(props: Record<string, unknown>) {
@@ -39,6 +41,7 @@ export class Message extends Block<Record<string, unknown>> {
   private handleInputChange = (target: HTMLInputElement) => {
     const inputValue = target.value.trimStart();
     const inputName = target.name;
+
     if (inputValue.length === 0) {
       console.warn('Сообщение не может быть пустым');
 
@@ -48,6 +51,7 @@ export class Message extends Block<Record<string, unknown>> {
 
       return;
     }
+
     target.value = normalizeValue({ value: inputValue, name: inputName });
   };
 
