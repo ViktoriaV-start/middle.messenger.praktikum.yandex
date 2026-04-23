@@ -13,6 +13,7 @@ const COMPONENT_NAME = 'Sidebar';
 export class Sidebar extends Block<Record<string, unknown>> {
   static componentName = COMPONENT_NAME;
   private router = store.getState().router;
+  private unsubscribe: () => void;
 
   protected template = templateSource;
 
@@ -23,10 +24,6 @@ export class Sidebar extends Block<Record<string, unknown>> {
       profileLink: URLS.profile,
     };
     super({ ...data, componentName: COMPONENT_NAME, styles });
-
-    store.subscribe(() => {
-      this.setProps({ chats: store.getState().chats });
-    });
   }
 
   private handleSubmit = async (newChat: newChatData): Promise<boolean> => {
@@ -74,4 +71,18 @@ export class Sidebar extends Block<Record<string, unknown>> {
       (event.target as HTMLFormElement).reset();
     },
   };
+
+  componentDidMount() {
+    this.unsubscribe = store.subscribe(() => {
+      this.setProps({ chats: store.getState().chats });
+    });
+  }
+
+  componentWillUnmount() {
+    super.componentWillUnmount();
+
+    if (this.unsubscribe) {
+      this.unsubscribe();
+    }
+  }
 }

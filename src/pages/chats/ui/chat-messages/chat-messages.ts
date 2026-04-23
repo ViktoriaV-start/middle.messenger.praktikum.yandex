@@ -22,7 +22,7 @@ export class ChatMessages extends Block<Record<string, unknown>> {
 
   protected template = templateSource;
   private userToAdd: User | null = null;
-  protected activeChat: Chat | null = null;
+  protected unsubscribe: () => void;
 
   constructor() {
     const activeChat = store.getState().activeChat;
@@ -38,13 +38,18 @@ export class ChatMessages extends Block<Record<string, unknown>> {
       deleteIcon,
     });
 
-    store.subscribe(async () => {
+    this.getChatUsers();
+    this.unsubscribe = store.subscribe(async () => {
       this.getChatUsers();
     });
   }
 
   private async getChatUsers() {
-    const activeChat = store.getState().activeChat as Chat;
+    let activeChat = store.getState().activeChat as Chat;
+
+    if (!activeChat) {
+      activeChat = store.getState().chats[0];
+    }
 
     if (activeChat && activeChat.id) {
       const chatUsers = await ChatsController.getChatUsers(activeChat.id);

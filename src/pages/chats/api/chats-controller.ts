@@ -22,17 +22,6 @@ export class ChatsController {
         store.getState().router.go(URLS.serverError);
       }
     }
-
-    ChatsApi.request().then((data) => {
-      if (Array.isArray(data)) {
-        const chatsDto = data.map((chat: Chat) => {
-          return convertKeysToCamelCase(chat as unknown as Record<string, unknown>);
-        });
-
-        store.setChats(chatsDto as unknown as Chat[]);
-        store.setActiveChat(chatsDto[0] as unknown as Chat);
-      }
-    });
   }
 
   static async getUserIdByLogin(user: { login: string }) {

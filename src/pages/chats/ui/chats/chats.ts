@@ -12,6 +12,9 @@ export class Chats extends Block<Record<string, unknown>> {
 
   constructor() {
     super({ componentName: COMPONENT_NAME, styles });
+  }
+
+  componentDidMount() {
     this.initChats();
   }
 
