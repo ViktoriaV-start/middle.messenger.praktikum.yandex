@@ -110,6 +110,21 @@ export class SocketController {
     }
   };
 
+  public sendMessage(content: string): void {
+    if (!this.socket || this.socket.readyState !== WebSocket.OPEN) {
+      console.warn('WebSocket не открыт, сообщение не отправлено');
+
+      return;
+    }
+
+    const message = JSON.stringify({
+      content: content,
+      type: 'message',
+    });
+
+    this.socket.send(message);
+  }
+
   private handleSocketClose = (event: CloseEvent) => {
     if (event.wasClean) {
       console.log('Соединение закрыто чисто');
@@ -122,17 +137,27 @@ export class SocketController {
   };
 
   private handleSocketMessage = (event: MessageEvent) => {
-    if (!event.data.length) {
-      return;
+    let parsedData = null;
+
+    if ('data' in event) {
+      parsedData = JSON.parse(event.data);
+    } else {
+      parsedData = JSON.parse(event);
     }
 
-    const parseData = JSON.parse(event.data);
+    if (Array.isArray(parsedData)) {
+      const data = parsedData.map((message: Record<string, unknown>) => {
+        return convertKeysToCamelCase(message);
+      });
 
-    const data = parseData.map((message: Record<string, unknown>) => {
-      return convertKeysToCamelCase(message);
-    });
-
-    store.addMessages([...(data as unknown as StoreMessage[])]);
+      store.addMessages([...(data.reverse() as unknown as StoreMessage[])]);
+    } else {
+      if ('content' in parsedData && 'type' in parsedData && parsedData.type === 'message') {
+        console.log(parsedData);
+        const parsedDTO = convertKeysToCamelCase(parsedData) as unknown as StoreMessage;
+        store.addMessages([parsedDTO]);
+      }
+    }
   };
 
   private handleSocketError = (event: Event) => {

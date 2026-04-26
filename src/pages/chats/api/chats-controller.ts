@@ -16,6 +16,8 @@ export class ChatsController {
         });
 
         store.setChats(chatsDto as unknown as Chat[]);
+        store.clearMessages();
+        store.setActiveChat(chatsDto[0] as unknown as Chat);
       }
     } catch (error) {
       if ((error as ApiError).status >= 500) {
@@ -84,5 +86,18 @@ export class ChatsController {
     }
 
     return null;
+  }
+
+  static async deleteChat(chatId: number) {
+    try {
+      const response = await ChatsApi.deleteChat({ chatId: chatId });
+      console.log(response);
+
+      return response;
+    } catch (error) {
+      if ((error as ApiError).status >= 500) {
+        store.getState().router.go(URLS.serverError);
+      }
+    }
   }
 }

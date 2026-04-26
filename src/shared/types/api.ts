@@ -41,3 +41,7 @@ export interface ChatUsersData {
   name?: string;
   email?: string;
 }
+
+export interface DeleteChatData {
+  chatId: number;
+}

@@ -1,4 +1,6 @@
 .chats {
   display: flex;
-  min-block-size: 100%;
+  flex: 1;
+  min-block-size: 0;
+  overflow: hidden;
 }

@@ -1,3 +1,5 @@
+// eslint-disable-next-line import/extensions
+import deleteIcon from '@shared/assets/icons/delete-icon.svg?raw';
 import { URLS } from '@shared/constants';
 import Block from '@shared/lib/block';
 import { store } from '@shared/store';
@@ -26,7 +28,7 @@ export class Sidebar extends Block<Record<string, unknown>> {
       profileLink: URLS.profile,
     };
 
-    super({ ...data, componentName: COMPONENT_NAME, styles });
+    super({ ...data, componentName: COMPONENT_NAME, styles, deleteIcon });
   }
 
   private handleSubmit = async (newChat: newChatData): Promise<boolean> => {
@@ -48,8 +50,15 @@ export class Sidebar extends Block<Record<string, unknown>> {
   private async getChatUsers(activeChat: Chat) {
     if (activeChat && activeChat.id) {
       const chatUsers = (await ChatsController.getChatUsers(activeChat.id)) as unknown as User[];
-      store.setChatUsers(chatUsers);
+
+      if (chatUsers) {
+        store.setChatUsers(chatUsers);
+      }
     }
+  }
+
+  private async deleteChat(chatId: string) {
+    await ChatsController.deleteChat(+chatId);
   }
 
   protected events = {
@@ -58,14 +67,37 @@ export class Sidebar extends Block<Record<string, unknown>> {
       const chatItem = target.closest<HTMLAnchorElement>('.chat-item');
       const chatId = chatItem && chatItem.dataset.id ? +chatItem.dataset.id : this.chats?.[0];
 
+      const deleteBtn = target.closest<HTMLAnchorElement>('.delete-chat');
+
+      if (deleteBtn) {
+        const chatId = deleteBtn.dataset.id;
+
+        if (chatId) {
+          await this.deleteChat(chatId);
+          await ChatsController.getChats();
+        }
+      }
+
       if (chatId) {
         const chat = store.getState().chats.find((chat) => chat.id === chatId);
         const isChatSwitched = store.getState().activeChat?.id !== chatId;
 
         if (chat && isChatSwitched) {
+          if (chat.unreadCount) {
+            const copiedChats = structuredClone(store.getState().chats);
+            const copiedChat = copiedChats.find((chat) => chat.id === chatId);
+
+            if (copiedChat) {
+              copiedChat.unreadCount = 0;
+            }
+
+            this.setProps({ chats: [...copiedChats] });
+          }
+
           await this.getChatUsers(chat);
 
           store.setActiveChat(chat);
+          store.setState('messages', chat);
           store.clearMessages();
         }
       }
@@ -77,12 +109,15 @@ export class Sidebar extends Block<Record<string, unknown>> {
 
       const trimmedValue = newChatRaw.title.trim();
       const newChat = normalizeValidateForm({ title: trimmedValue });
+      const isNotEmptyChatTitle = newChat.validatedForm.title.length && !newChat.error;
 
-      this.handleSubmit(newChat.validatedForm as unknown as newChatData).then(() => {
-        ChatsController.getChats();
-      });
+      if (isNotEmptyChatTitle) {
+        this.handleSubmit(newChat.validatedForm as unknown as newChatData).then(() => {
+          ChatsController.getChats();
+        });
 
-      (event.target as HTMLFormElement).reset();
+        (event.target as HTMLFormElement).reset();
+      }
     },
   };
 

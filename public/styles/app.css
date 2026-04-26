@@ -19,13 +19,16 @@ body {
   font-family: Inter, Arial, sans-serif;
   font-weight: 500;
   line-height: var(--base-line-height);
-  block-size: 100%;
+  block-size: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
 }
 
-.page {
-  block-size: 100%;
-  display: flex;
-}
+/*.page {*/
+/*  block-size: 100%;*/
+/*  display: flex;*/
+/*}*/
 
 .h,
 .p {

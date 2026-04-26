@@ -58,12 +58,12 @@
   <div class="{{styles.chat__messages}}">
     {{#each messages}}
       {{#if (eq this.userId ../userId)}}
-        {{{MessageIn
+        {{{MessageOut
                 message=this
                 ref=this.componentName
         }}}
       {{else}}
-        {{{MessageOut
+        {{{MessageIn
                 message=this
                 ref=this.componentName
         }}}

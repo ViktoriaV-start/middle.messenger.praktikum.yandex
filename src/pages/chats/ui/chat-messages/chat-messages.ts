@@ -48,10 +48,15 @@ export class ChatMessages extends Block<Record<string, unknown>> {
     this.unsubscribe = store.subscribe(async () => {
       await this.init();
 
+      console.log('АКТИВНЫЙ ЧАТ', store.getState().activeChat);
+
       this.setProps({
         messages: store.getState().messages,
         chatUsers: store.getState().chatUsers,
         activeChat: store.getState().activeChat,
+      });
+      this.setProps({
+        userId: store.getState().user?.id,
       });
     });
   }

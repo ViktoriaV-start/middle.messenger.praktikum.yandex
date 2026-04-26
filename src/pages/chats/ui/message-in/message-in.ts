@@ -1,4 +1,5 @@
 import { ChatsController } from '@pages/chats/api';
+import type { MessageProps } from '@pages/chats/types.ts';
 import Block from '@shared/lib/block';
 import templateSource from './message-in.hbs?raw';
 import styles from './message-in.module.css';
@@ -10,9 +11,9 @@ export class MessageIn extends Block<Record<string, unknown>> {
 
   protected template = templateSource;
 
-  constructor(props) {
+  constructor(props: MessageProps) {
     const content = props.message.content;
-    const userName = ChatsController.getUserNameById(props.message.userId);
+    const userName = ChatsController.getUserNameById(+props.message.userId);
     super({ content, userName, componentName: COMPONENT_NAME, styles });
   }
 

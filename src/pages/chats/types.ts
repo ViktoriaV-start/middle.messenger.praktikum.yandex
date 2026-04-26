@@ -1,3 +1,5 @@
+import type { BlockOwnProps, StoreMessage } from '@shared/types';
+
 export interface Message {
   author: string;
   text: string;
@@ -38,4 +40,10 @@ export interface GetChatTokenResponse {
 export interface SetSocketConnectionProps {
   userId: number;
   chatId: number;
+}
+
+export interface MessageProps extends BlockOwnProps {
+  message: StoreMessage;
+  componentName: string;
+  styles?: Record<string, string>;
 }

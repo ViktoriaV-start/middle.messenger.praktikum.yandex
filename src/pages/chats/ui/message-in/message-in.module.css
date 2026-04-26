@@ -1,4 +1,20 @@
 .message-in {
+  display: flex;
+  flex-direction: column;
+  row-gap: 0.4rem;
+} {
+
+}
+.message-in__badge {
+  background-color: #0e8f36;
+  border-radius: 0.7rem;
+  padding: 0.2rem 0.4rem;
+  font-size: 0.8rem;
+  align-self: flex-start;
+  color: #fff;
+}
+
+.message-in__content {
   inline-size: fit-content;
   max-inline-size: 70%;
   overflow-wrap: break-word;

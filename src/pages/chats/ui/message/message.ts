@@ -5,6 +5,7 @@ import sendMessageIcon from '@shared/assets/icons/right-arrow-icon.svg?raw';
 import Block from '@shared/lib/block';
 import { normalizeValue } from '@shared/utils';
 import { getFormData } from '@shared/utils/form';
+import { socketController } from '../../api';
 import templateSource from './message.hbs?raw';
 import styles from './message.module.css';
 
@@ -59,8 +60,11 @@ export class Message extends Block<Record<string, unknown>> {
     submit: (event: Event) => {
       event.preventDefault();
       const formData = getFormData(event);
+      const isValueString = typeof formData.message === 'string' && formData.message.length;
 
-      console.log('Данный формы - Новое сообщение: ', formData);
+      if (isValueString) {
+        socketController.sendMessage(formData.message as string);
+      }
     },
     blur: (event: Event) => {
       const target = event.target as HTMLInputElement;
