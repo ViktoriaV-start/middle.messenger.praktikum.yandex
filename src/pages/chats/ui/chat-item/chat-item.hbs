@@ -1,17 +1,7 @@
 
   <button class="chat-item {{styles.chat-item}} {{unreadCountClass}} {{#if active}}{{styles.chat-item__active}}{{/if}}" data-id="{{id}}">
-    <div class="{{styles.avatar}}">
-      <img src="{{avatarUrl}}" alt="avatar" />
-    </div>
-
     <div class="{{styles.name}}">
       {{title}}
-
-      {{#with lastMessage}}
-        <time class="{{styles.date}}" datetime="{{time}}">
-          {{time}}
-        </time>
-      {{/with}}
     </div>
 
     {{#with lastMessage}}

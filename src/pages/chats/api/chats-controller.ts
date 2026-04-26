@@ -36,6 +36,12 @@ export class ChatsController {
     }
   }
 
+  static getUserNameById(userId: number) {
+    const user = store.getState().chatUsers.find((user) => user.id === userId);
+
+    return user?.displayName;
+  }
+
   static async addUserToChat(addUserData: ChatUserData) {
     try {
       const response = await ChatsApi.addUser(addUserData);

@@ -3,6 +3,10 @@ import type { HelperOptions } from 'handlebars';
 
 let uniqueId = 0;
 
+Handlebars.registerHelper('eq', function (a, b) {
+  return a === b;
+});
+
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function registerComponent(Component: any) {
   const dataAttribute = `data-component-hbs-id="${++uniqueId}"`;

@@ -1,4 +1,5 @@
 import Handlebars from 'handlebars';
+import { isEqual } from '@shared/utils';
 import type { BlockOwnProps } from '../../types';
 
 type EventListType = Partial<Record<keyof HTMLElementEventMap, (e: Event) => void>>;
@@ -33,7 +34,9 @@ export default abstract class Block<Props extends BlockOwnProps = BlockOwnProps>
       const newValue = props[key as keyof Props];
       const oldValue = this.props[key as keyof Props];
 
-      if (newValue !== oldValue) {
+      const areEqualValues = isEqual(newValue, oldValue);
+
+      if (!areEqualValues) {
         console.log(`[${this.constructor.name}] Изменился проп ${key}:`, oldValue, '->', newValue);
 
         return true;

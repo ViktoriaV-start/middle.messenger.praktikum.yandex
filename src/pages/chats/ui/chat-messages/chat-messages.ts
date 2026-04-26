@@ -9,6 +9,7 @@ import { store } from '@shared/store';
 import type { Chat, User } from '@shared/types';
 import { getFormData } from '@shared/utils/form';
 import { ChatsController } from '../../api';
+import { socketController } from '../../api/socket-controller';
 import { CONFIRMATION_FORM_CONFIG } from '../../constants';
 import type { ConfirmationFormConfigItem } from '../../types';
 import { addClassname, toggleClassname } from '../../utils';
@@ -26,10 +27,14 @@ export class ChatMessages extends Block<Record<string, unknown>> {
 
   constructor() {
     const activeChat = store.getState().activeChat;
+    const messages = store.getState().messages;
+    const userId = store.getState().user?.id;
 
     super({
       activeChat,
       chatUsers: [],
+      messages,
+      userId,
       componentName: COMPONENT_NAME,
       confirmation: { text: '', hidden: true, name: null },
       styles,
@@ -38,21 +43,35 @@ export class ChatMessages extends Block<Record<string, unknown>> {
       deleteIcon,
     });
 
-    this.getChatUsers();
+    this.init();
+
     this.unsubscribe = store.subscribe(async () => {
-      this.getChatUsers();
+      await this.init();
+
+      this.setProps({
+        messages: store.getState().messages,
+        chatUsers: store.getState().chatUsers,
+        activeChat: store.getState().activeChat,
+      });
     });
   }
 
-  private async getChatUsers() {
+  private getActiveChat(): Chat {
     let activeChat = store.getState().activeChat as Chat;
 
     if (!activeChat) {
       activeChat = store.getState().chats[0];
     }
 
+    return activeChat;
+  }
+
+  private async getChatUsers() {
+    const activeChat = this.getActiveChat();
+
     if (activeChat && activeChat.id) {
-      const chatUsers = await ChatsController.getChatUsers(activeChat.id);
+      const chatUsers = (await ChatsController.getChatUsers(activeChat.id)) as unknown as User[];
+      store.setChatUsers(chatUsers);
 
       this.setProps({
         activeChat,
@@ -62,6 +81,18 @@ export class ChatMessages extends Block<Record<string, unknown>> {
           hidden: true,
           type: null,
         },
+      });
+    }
+  }
+
+  private async setConnection() {
+    const user = store.getState().user;
+    const activeChat = store.getState().activeChat as Chat;
+
+    if (user && activeChat) {
+      await socketController.setSocketConnection({
+        userId: user.id,
+        chatId: activeChat.id,
       });
     }
   }
@@ -206,4 +237,8 @@ export class ChatMessages extends Block<Record<string, unknown>> {
       }
     },
   };
+
+  private async init() {
+    await this.setConnection();
+  }
 }

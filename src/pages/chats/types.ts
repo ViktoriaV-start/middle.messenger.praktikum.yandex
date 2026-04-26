@@ -30,3 +30,12 @@ export interface ConfirmationFormConfigItem {
   searchFormType: string;
   formType: string;
 }
+
+export interface GetChatTokenResponse {
+  token: string;
+}
+
+export interface SetSocketConnectionProps {
+  userId: number;
+  chatId: number;
+}

@@ -56,8 +56,19 @@
   </header>
 
   <div class="{{styles.chat__messages}}">
-    {{{MessageIn ref=this.componentName}}}
-    {{{MessageOut ref=this.componentName}}}
+    {{#each messages}}
+      {{#if (eq this.userId ../userId)}}
+        {{{MessageIn
+                message=this
+                ref=this.componentName
+        }}}
+      {{else}}
+        {{{MessageOut
+                message=this
+                ref=this.componentName
+        }}}
+      {{/if}}
+    {{/each}}
   </div>
 
   {{{Message ref=this.componentName}}}
