@@ -44,6 +44,10 @@ export interface SetSocketConnectionProps {
 
 export interface MessageProps extends BlockOwnProps {
   message: StoreMessage;
+  content: string | File | null;
+  isFile: boolean | null;
+  src: string | null;
   componentName: string;
   styles?: Record<string, string>;
+  userName?: string;
 }

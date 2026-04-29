@@ -1,5 +1,10 @@
 <form class="{{styles.message}}">
-  {{{clipIcon}}}
+  <label class="loading-file {{styles.file-upload}}">
+    <span class="visually-hidden">Загрузить файл</span>
+    <input class="{{styles.file-upload__image}}" type="file" name="image" accept="image/*" >
+    <span class="{{styles.file-upload__icon}}">{{{clipIcon}}}</span>
+    <span class="{{styles.file-upload__info}}" id="fileInfo"></span>
+  </label>
   <label class="{{styles.message__label}}">
     <span class="visually-hidden">{{label}}</span>
     <input

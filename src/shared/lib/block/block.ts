@@ -37,8 +37,6 @@ export default abstract class Block<Props extends BlockOwnProps = BlockOwnProps>
       const areEqualValues = isEqual(newValue, oldValue);
 
       if (!areEqualValues) {
-        console.log(`[${this.constructor.name}] Изменился проп ${key}:`, oldValue, '->', newValue);
-
         return true;
       }
 

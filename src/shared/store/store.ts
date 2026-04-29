@@ -1,6 +1,5 @@
 import { Router } from '../router/router';
 import type { Chat, Listener, StoreMessage, StoreState, User } from '../types';
-import { merge, set } from '../utils';
 
 class Store {
   private state: StoreState = {
@@ -9,7 +8,7 @@ class Store {
     chats: [],
     activeChat: null,
     chatUsers: [],
-    messages: [],
+    messages: {},
   };
   private listeners: Set<Listener> = new Set();
 
@@ -21,28 +20,37 @@ class Store {
     return this.state;
   }
 
-  public setState(path: string, value: unknown) {
-    this.state = merge(this.state, set({}, path, value)) as StoreState;
+  // public setState(path: string, value: unknown) {
+  //   this.state = merge(this.state, set({}, path, value)) as StoreState;
+  //   this.emit();
+  // }
+
+  public updateState(data: Partial<StoreState>) {
+    this.state = {
+      ...this.state,
+      ...data,
+    };
     this.emit();
   }
 
-  public addMessages(messages: StoreMessage[]) {
-    this.state.messages = [...this.state.messages, ...messages];
-    this.emit();
-  }
+  public addMessages(messages: StoreMessage[], chatId: number) {
+    if (chatId in this.state.messages) {
+      this.state.messages[chatId] = [...this.state.messages[chatId], ...messages];
+    } else {
+      this.state.messages[chatId] = [...messages];
+    }
 
-  public clearMessages() {
-    this.state.messages = [];
+    this.emit();
   }
 
   public clearState() {
     this.state = {
-      user: null,
+      user: this.state.user,
       router: new Router('#app'),
       chats: [],
       activeChat: null,
       chatUsers: [],
-      messages: [],
+      messages: {},
     };
   }
 

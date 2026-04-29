@@ -2,7 +2,29 @@
   <span class="{{styles.message-in__badge}}">
     {{{userName}}}
   </span>
-  <div class="{{styles.message-in__content}}">
-    {{{content}}}
-  </div>
+
+<div class="{{styles.message-in__content}}">
+  {{#if isFile}}
+
+    <div class="{{styles.message-in__image-container}}">
+      <img class="{{styles.message-in__image}}" src="{{src}}" alt="file attachment" />
+    </div>
+
+  {{else}}
+    <span>{{content}}</span>
+
+  {{/if}}
+</div>
+
+</div>
+
+<div class="{{styles.message-out}}">
+  {{#if isFile}}
+    <div class="{{styles.message-out__image-container}}">
+      <img class="{{styles.message-out__image}}" src="{{src}}" alt="file attachment" />
+    </div>
+
+  {{else}}
+    <span>{{content}}</span>
+  {{/if}}
 </div>

@@ -10,7 +10,7 @@ export interface StoreState extends Indexed {
   chats: Chat[];
   activeChat: Chat | null;
   chatUsers: User[];
-  messages: StoreMessage[];
+  messages: Record<string, StoreMessage[]>;
 }
 
 export interface StoreMessage {

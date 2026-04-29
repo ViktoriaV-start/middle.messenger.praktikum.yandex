@@ -90,13 +90,6 @@ export class SocketController {
     console.log('Соединение установлено');
 
     if (this.socket) {
-      // this.socket.send(
-      //   JSON.stringify({
-      //     content: 'Моё первое сообщение миру!',
-      //     type: 'message',
-      //   })
-      // );
-
       this.startPing();
     }
 
@@ -125,6 +118,21 @@ export class SocketController {
     this.socket.send(message);
   }
 
+  public sendFile(content: string): void {
+    if (!this.socket || this.socket.readyState !== WebSocket.OPEN) {
+      console.warn('WebSocket не открыт, сообщение не отправлено');
+
+      return;
+    }
+
+    const message = JSON.stringify({
+      content: content,
+      type: 'file',
+    });
+
+    this.socket.send(message);
+  }
+
   private handleSocketClose = (event: CloseEvent) => {
     if (event.wasClean) {
       console.log('Соединение закрыто чисто');
@@ -145,17 +153,24 @@ export class SocketController {
       parsedData = JSON.parse(event);
     }
 
-    if (Array.isArray(parsedData)) {
+    const activeChatId = store.getState().activeChat?.id;
+
+    if (Array.isArray(parsedData) && activeChatId) {
       const data = parsedData.map((message: Record<string, unknown>) => {
         return convertKeysToCamelCase(message);
       });
 
-      store.addMessages([...(data.reverse() as unknown as StoreMessage[])]);
-    } else {
-      if ('content' in parsedData && 'type' in parsedData && parsedData.type === 'message') {
-        console.log(parsedData);
+      store.addMessages([...(data.reverse() as unknown as StoreMessage[])], activeChatId);
+    }
+
+    if (!Array.isArray(parsedData) && activeChatId) {
+      const isCorrectData = 'content' in parsedData && 'type' in parsedData;
+      const isCorrectType = parsedData.type === 'message' || parsedData.type === 'file';
+
+      if (isCorrectData && isCorrectType) {
         const parsedDTO = convertKeysToCamelCase(parsedData) as unknown as StoreMessage;
-        store.addMessages([parsedDTO]);
+
+        store.addMessages([parsedDTO], activeChatId);
       }
     }
   };

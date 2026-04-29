@@ -5,7 +5,7 @@ import sendMessageIcon from '@shared/assets/icons/right-arrow-icon.svg?raw';
 import Block from '@shared/lib/block';
 import { normalizeValue } from '@shared/utils';
 import { getFormData } from '@shared/utils/form';
-import { socketController } from '../../api';
+import { ChatsController, socketController } from '../../api';
 import templateSource from './message.hbs?raw';
 import styles from './message.module.css';
 
@@ -26,10 +26,6 @@ export class Message extends Block<Record<string, unknown>> {
   public setProps(props: Record<string, unknown>) {
     super.setProps({ ...props });
   }
-
-  componentDidMount() {}
-
-  componentWillUnmount() {}
 
   resetError = (target: HTMLInputElement) => {
     if (this.error) {
@@ -57,13 +53,42 @@ export class Message extends Block<Record<string, unknown>> {
   };
 
   protected events = {
-    submit: (event: Event) => {
+    change: (event: Event) => {
+      const fileInfo = document.getElementById('fileInfo');
+
+      const target = event.target as HTMLElement;
+      const fileContainer = target.closest<HTMLAnchorElement>('.loading-file');
+
+      if (fileContainer && event.target instanceof HTMLInputElement) {
+        const file = event.target?.files?.[0];
+
+        if (file && fileInfo) {
+          fileInfo.textContent = `✅ ${file.name}`;
+        }
+
+        if (!file && fileInfo) {
+          fileInfo.textContent = '';
+        }
+      }
+    },
+    submit: async (event: Event) => {
       event.preventDefault();
       const formData = getFormData(event);
-      const isValueString = typeof formData.message === 'string' && formData.message.length;
+      const isValueString = typeof formData.message === 'string' && formData.message.length > 0;
 
       if (isValueString) {
         socketController.sendMessage(formData.message as string);
+      }
+
+      if (formData.image && formData.image instanceof File && formData.image.size > 0) {
+        const imageFormData = new FormData();
+        imageFormData.append('resource', formData.image);
+
+        const file = await ChatsController.sendFile(imageFormData);
+
+        if (file && file.id) {
+          socketController.sendFile(String(file.id));
+        }
       }
     },
     blur: (event: Event) => {

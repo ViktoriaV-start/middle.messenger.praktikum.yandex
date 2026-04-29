@@ -27,7 +27,8 @@ export class ChatMessages extends Block<Record<string, unknown>> {
 
   constructor() {
     const activeChat = store.getState().activeChat;
-    const messages = store.getState().messages;
+    const chatId = activeChat?.id ? activeChat?.id : null;
+    const messages = chatId ? store.getState().messages[chatId] : [];
     const userId = store.getState().user?.id;
 
     super({
@@ -48,16 +49,22 @@ export class ChatMessages extends Block<Record<string, unknown>> {
     this.unsubscribe = store.subscribe(async () => {
       await this.init();
 
-      console.log('АКТИВНЫЙ ЧАТ', store.getState().activeChat);
+      const chatId = this.getActiveChat().id;
 
       this.setProps({
-        messages: store.getState().messages,
-        chatUsers: store.getState().chatUsers,
+        messages: store.getState().messages[chatId],
+      });
+      this.setProps({
         activeChat: store.getState().activeChat,
+      });
+      this.setProps({
+        chatUsers: store.getState().chatUsers,
       });
       this.setProps({
         userId: store.getState().user?.id,
       });
+
+      setTimeout(() => this.scrollToBottom(), 300);
     });
   }
 
@@ -150,17 +157,15 @@ export class ChatMessages extends Block<Record<string, unknown>> {
 
   private async handleDeleteUser() {
     const chats = store.getState().chats;
-    const exampleChatId = chats[0].id;
+    const chatId = chats[0].id;
 
     if (this.userToAdd) {
       const deleteUserData = {
         users: [this.userToAdd.id],
-        chatId: exampleChatId,
+        chatId,
       };
 
-      const response = await ChatsController.deleteUserFromChat(deleteUserData);
-
-      console.log(response);
+      await ChatsController.deleteUserFromChat(deleteUserData);
     }
   }
 
@@ -245,5 +250,58 @@ export class ChatMessages extends Block<Record<string, unknown>> {
 
   private async init() {
     await this.setConnection();
+  }
+
+  scrollToBottom() {
+    const anchor = document.getElementById('scroll-anchor');
+
+    if (anchor) {
+      anchor.scrollIntoView({ behavior: 'auto', block: 'end' });
+    }
+  }
+
+  // protected componentDidMount() {
+  //   const options = {
+  //     root: document.querySelector('.scroll-area'),
+  //     rootMargin: '100px',
+  //     threshold: 1.0,
+  //   };
+  //
+  //   const callback = function (entries, observer) {
+  //     console.log(entries);
+  //   };
+  //
+  //   const observer = new IntersectionObserver(callback, options);
+  //   const target = document.querySelector('.messages-container');
+  //
+  //   if (target) {
+  //     observer.observe(target);
+  //   }
+  // }
+
+  private scrollHandler(container: HTMLElement) {
+    if (container.scrollTop === 0) {
+      console.log(123);
+    }
+  }
+
+  protected componentDidMount() {
+    const container = document.querySelector('.messages-container') as HTMLDivElement | null;
+
+    if (!container) {
+      return;
+    }
+
+    container.addEventListener('scroll', () => this.scrollHandler(container));
+  }
+
+  protected componentWillUnmount() {
+    const container = document.querySelector('.messages-container') as HTMLDivElement | null;
+
+    if (!container) {
+      return;
+    }
+
+    container.removeEventListener('scroll', () => this.scrollHandler(container));
   }
 }

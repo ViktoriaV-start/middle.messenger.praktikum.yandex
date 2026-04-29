@@ -29,8 +29,12 @@
                 lastMessage=this.lastMessage
                 ref=this.componentName
         }}}
-        <button class="delete-chat {{../styles.sidebar__delete-chat}}" type="button" data-id="{{this.id}}">{{{../deleteIcon}}}</button>
-      </div>
+
+        {{#if (eq this.createdBy ../userId)}}
+          <button class="delete-chat {{../styles.sidebar__delete-chat}}" type="button" data-id="{{this.id}}">{{{../deleteIcon}}}</button>
+
+        {{/if}}
+         </div>
     {{/each}}
   </nav>
 

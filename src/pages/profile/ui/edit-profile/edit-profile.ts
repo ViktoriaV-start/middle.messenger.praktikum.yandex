@@ -92,7 +92,7 @@ export class EditProfile extends Block<EditProfileProps> {
         await EditProfileController.editAvatar(avatarFormData);
       }
 
-      const form = normalizeValidateForm(profile);
+      const form = normalizeValidateForm(profile as Record<string, string>);
 
       if (form.error) {
         this.error = true;

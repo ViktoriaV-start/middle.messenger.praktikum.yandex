@@ -33,8 +33,18 @@ export class ChatsApi {
   }
 
   static deleteChat(data: DeleteChatData) {
-    return chatsApiInstance.delete(`/api/v2/chats`, {
+    return chatsApiInstance.delete('/api/v2/chats', {
       data: { ...data },
     });
+  }
+
+  static uploadFile(data: FormData) {
+    return chatsApiInstance.post('/api/v2/resources', {
+      data,
+    });
+  }
+
+  static getFile(path: string) {
+    return chatsApiInstance.get(`/api/v2/resources${path}`, { responseType: 'blob' });
   }
 }

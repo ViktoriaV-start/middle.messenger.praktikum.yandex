@@ -25,7 +25,7 @@ async function checkUserAuth() {
       const responseDto = convertKeysToCamelCase({ ...response }) as unknown as User;
       const avatarUrl = `${BASE_API_URL}/api/v2/resources${responseDto.avatar}`;
 
-      store.setState('user', { ...responseDto, avatar: avatarUrl });
+      store.setUser({ ...responseDto, avatar: avatarUrl });
     }
   } catch (error) {
     console.log(error);

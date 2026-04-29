@@ -1,7 +1,7 @@
 import { UserApi } from '@shared/api/user-api';
 import { URLS } from '@shared/constants';
 import { store } from '@shared/store';
-import type { ApiError, Chat, ChatUserData, User } from '@shared/types';
+import type { ApiError, Chat, ChatUserData, SendFileResponse, User } from '@shared/types';
 import { convertKeysToCamelCase } from '@shared/utils';
 import { ChatsApi } from './chats-api';
 
@@ -15,9 +15,14 @@ export class ChatsController {
           return convertKeysToCamelCase(chat as unknown as Record<string, unknown>);
         });
 
-        store.setChats(chatsDto as unknown as Chat[]);
-        store.clearMessages();
-        store.setActiveChat(chatsDto[0] as unknown as Chat);
+        const activeChat = chatsDto[0] as unknown as Chat;
+        const chatUsers = (await ChatsController.getChatUsers(activeChat.id)) as unknown as User[];
+
+        store.updateState({
+          chats: chatsDto as unknown as Chat[],
+          activeChat: activeChat,
+          chatUsers: chatUsers,
+        });
       }
     } catch (error) {
       if ((error as ApiError).status >= 500) {
@@ -88,16 +93,41 @@ export class ChatsController {
     return null;
   }
 
+  static async sendFile(data: FormData): Promise<SendFileResponse | undefined> {
+    try {
+      const response = await ChatsApi.uploadFile(data);
+
+      return convertKeysToCamelCase(
+        response as unknown as Record<string, unknown>
+      ) as unknown as SendFileResponse;
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  static async getFile(path: string): Promise<Blob | null> {
+    try {
+      const response = await ChatsApi.getFile(path);
+
+      if (response instanceof Blob) {
+        return response;
+      }
+
+      console.error('Не Blob:', response);
+
+      return null;
+    } catch (error) {
+      console.error(error);
+
+      return null;
+    }
+  }
+
   static async deleteChat(chatId: number) {
     try {
-      const response = await ChatsApi.deleteChat({ chatId: chatId });
-      console.log(response);
-
-      return response;
+      await ChatsApi.deleteChat({ chatId: chatId });
     } catch (error) {
-      if ((error as ApiError).status >= 500) {
-        store.getState().router.go(URLS.serverError);
-      }
+      console.error(error);
     }
   }
 }

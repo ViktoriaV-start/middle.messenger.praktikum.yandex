@@ -2,7 +2,7 @@ import { LoginApi } from '../../api';
 import { SUCCESS, URLS } from '../../constants';
 import Block from '../../lib/block';
 import { store } from '../../store';
-import { type AuthFormProps, FormType } from '../../types';
+import { type AuthFormProps, FormType, type User } from '../../types';
 import { convertKeysToSnakeCase } from '../../utils';
 import { getFormData } from '../../utils/form';
 import { normalizeValidateForm } from '../../utils/normalize-validate-form';
@@ -29,7 +29,7 @@ export class AuthForm extends Block<AuthFormProps> {
   private gatherDate = (event: Event) => {
     const formData = getFormData(event);
 
-    const form = normalizeValidateForm(formData);
+    const form = normalizeValidateForm(formData as Record<string, string>);
 
     if (form.error) {
       this.error = true;
@@ -46,7 +46,7 @@ export class AuthForm extends Block<AuthFormProps> {
 
     try {
       const response = await LoginApi.signin(data);
-      store.setState('user', data);
+      store.setUser(data as unknown as User);
 
       if (response === SUCCESS) {
         return true;
@@ -63,7 +63,7 @@ export class AuthForm extends Block<AuthFormProps> {
 
     try {
       const response = (await LoginApi.signup(data)) as Record<string, string | number>;
-      store.setState('user', data);
+      store.setUser(data as unknown as User);
 
       if (response && response.id) {
         return true;

@@ -9,3 +9,12 @@
   border-radius: 0.5rem 0.5rem 0;
   align-self: end;
 }
+
+.message-out__image-container {
+  max-width: 100%;
+}
+
+.message-out__image {
+  object-fit: contain;
+  max-height: 300px;
+}

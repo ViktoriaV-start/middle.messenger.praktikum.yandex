@@ -26,6 +26,7 @@ export class Sidebar extends Block<Record<string, unknown>> {
       chats: [],
       urls: URLS,
       profileLink: URLS.profile,
+      userId: store.getState().user?.id,
     };
 
     super({ ...data, componentName: COMPONENT_NAME, styles, deleteIcon });
@@ -51,9 +52,7 @@ export class Sidebar extends Block<Record<string, unknown>> {
     if (activeChat && activeChat.id) {
       const chatUsers = (await ChatsController.getChatUsers(activeChat.id)) as unknown as User[];
 
-      if (chatUsers) {
-        store.setChatUsers(chatUsers);
-      }
+      return chatUsers;
     }
   }
 
@@ -65,6 +64,7 @@ export class Sidebar extends Block<Record<string, unknown>> {
     click: async (event: Event) => {
       const target = event.target as HTMLInputElement;
       const chatItem = target.closest<HTMLAnchorElement>('.chat-item');
+
       const chatId = chatItem && chatItem.dataset.id ? +chatItem.dataset.id : this.chats?.[0];
 
       const deleteBtn = target.closest<HTMLAnchorElement>('.delete-chat');
@@ -94,11 +94,14 @@ export class Sidebar extends Block<Record<string, unknown>> {
             this.setProps({ chats: [...copiedChats] });
           }
 
-          await this.getChatUsers(chat);
+          const chatUsers = await this.getChatUsers(chat);
 
-          store.setActiveChat(chat);
-          store.setState('messages', chat);
-          store.clearMessages();
+          store.updateState({
+            chats: store.getState().chats,
+            activeChat: chat,
+            chatUsers: chatUsers ? chatUsers : [],
+            messages: [],
+          });
         }
       }
     },
@@ -124,6 +127,8 @@ export class Sidebar extends Block<Record<string, unknown>> {
   async componentDidMount() {
     this.chats = store.getState().chats;
 
+    this.setProps({ chats: this.chats });
+
     this.unsubscribe = store.subscribe(async () => {
       const chats = store.getState().chats;
 
@@ -132,12 +137,21 @@ export class Sidebar extends Block<Record<string, unknown>> {
         const activeChat = store.getState().activeChat;
 
         if (!activeChat && chats.length) {
-          store.setActiveChat(chats[0]);
-          await this.getChatUsers(chats[0]);
+          const chatUsers = await this.getChatUsers(chats[0]);
+
+          store.updateState({
+            activeChat: chats[0],
+            chatUsers: chatUsers ? chatUsers : [],
+            messages: [],
+          });
         }
 
         if (activeChat) {
-          await this.getChatUsers(activeChat);
+          const chatUsers = await this.getChatUsers(activeChat);
+
+          if (chatUsers) {
+            store.setChatUsers(chatUsers);
+          }
         }
 
         this.setProps({ chats: store.getState().chats });
