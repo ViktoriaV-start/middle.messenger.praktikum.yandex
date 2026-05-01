@@ -259,49 +259,4 @@ export class ChatMessages extends Block<Record<string, unknown>> {
       anchor.scrollIntoView({ behavior: 'auto', block: 'end' });
     }
   }
-
-  // protected componentDidMount() {
-  //   const options = {
-  //     root: document.querySelector('.scroll-area'),
-  //     rootMargin: '100px',
-  //     threshold: 1.0,
-  //   };
-  //
-  //   const callback = function (entries, observer) {
-  //     console.log(entries);
-  //   };
-  //
-  //   const observer = new IntersectionObserver(callback, options);
-  //   const target = document.querySelector('.messages-container');
-  //
-  //   if (target) {
-  //     observer.observe(target);
-  //   }
-  // }
-
-  private scrollHandler(container: HTMLElement) {
-    if (container.scrollTop === 0) {
-      console.log(123);
-    }
-  }
-
-  protected componentDidMount() {
-    const container = document.querySelector('.messages-container') as HTMLDivElement | null;
-
-    if (!container) {
-      return;
-    }
-
-    container.addEventListener('scroll', () => this.scrollHandler(container));
-  }
-
-  protected componentWillUnmount() {
-    const container = document.querySelector('.messages-container') as HTMLDivElement | null;
-
-    if (!container) {
-      return;
-    }
-
-    container.removeEventListener('scroll', () => this.scrollHandler(container));
-  }
 }

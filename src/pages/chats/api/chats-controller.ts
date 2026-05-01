@@ -130,4 +130,14 @@ export class ChatsController {
       console.error(error);
     }
   }
+
+  static async getMessagesCount(chatId: number) {
+    try {
+      const response = await ChatsApi.getMessagesCount(chatId);
+
+      return convertKeysToCamelCase(response as unknown as Record<string, number>);
+    } catch (error) {
+      console.error(error);
+    }
+  }
 }

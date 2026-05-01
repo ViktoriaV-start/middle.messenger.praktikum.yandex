@@ -83,24 +83,12 @@ export class Sidebar extends Block<Record<string, unknown>> {
         const isChatSwitched = store.getState().activeChat?.id !== chatId;
 
         if (chat && isChatSwitched) {
-          if (chat.unreadCount) {
-            const copiedChats = structuredClone(store.getState().chats);
-            const copiedChat = copiedChats.find((chat) => chat.id === chatId);
-
-            if (copiedChat) {
-              copiedChat.unreadCount = 0;
-            }
-
-            this.setProps({ chats: [...copiedChats] });
-          }
-
           const chatUsers = await this.getChatUsers(chat);
 
           store.updateState({
             chats: store.getState().chats,
             activeChat: chat,
             chatUsers: chatUsers ? chatUsers : [],
-            messages: [],
           });
         }
       }
@@ -142,7 +130,6 @@ export class Sidebar extends Block<Record<string, unknown>> {
           store.updateState({
             activeChat: chats[0],
             chatUsers: chatUsers ? chatUsers : [],
-            messages: [],
           });
         }
 

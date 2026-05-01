@@ -33,11 +33,17 @@ class Store {
     this.emit();
   }
 
-  public addMessages(messages: StoreMessage[], chatId: number) {
+  public addMessages(messages: StoreMessage[], chatId: number, isInit: boolean) {
     if (chatId in this.state.messages) {
+      if (isInit) {
+        this.state.messages[chatId] = [];
+      }
+
+      console.log(2, this.state.messages, chatId, messages);
+
       this.state.messages[chatId] = [...this.state.messages[chatId], ...messages];
     } else {
-      this.state.messages[chatId] = [...messages];
+      this.state.messages = { ...this.state.messages, [chatId]: [...messages] };
     }
 
     this.emit();

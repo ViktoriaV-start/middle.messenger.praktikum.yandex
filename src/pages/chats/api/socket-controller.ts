@@ -12,6 +12,8 @@ export class SocketController {
   private pingInterval: number | null = null;
   private userId: number | null = null;
 
+  private isInit: boolean = true;
+
   public async getToken(chatId: number): Promise<string | null> {
     try {
       const response = (await ChatMessagesApi.getChatToken(
@@ -87,6 +89,7 @@ export class SocketController {
   }
 
   private handleSocketOpen = async () => {
+    this.isInit = true;
     console.log('Соединение установлено');
 
     if (this.socket) {
@@ -160,7 +163,11 @@ export class SocketController {
         return convertKeysToCamelCase(message);
       });
 
-      store.addMessages([...(data.reverse() as unknown as StoreMessage[])], activeChatId);
+      store.addMessages(
+        [...(data.reverse() as unknown as StoreMessage[])],
+        activeChatId,
+        this.isInit
+      );
     }
 
     if (!Array.isArray(parsedData) && activeChatId) {
@@ -170,9 +177,11 @@ export class SocketController {
       if (isCorrectData && isCorrectType) {
         const parsedDTO = convertKeysToCamelCase(parsedData) as unknown as StoreMessage;
 
-        store.addMessages([parsedDTO], activeChatId);
+        store.addMessages([parsedDTO], activeChatId, this.isInit);
       }
     }
+
+    this.isInit = false;
   };
 
   private handleSocketError = (event: Event) => {

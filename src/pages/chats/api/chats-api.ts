@@ -47,4 +47,8 @@ export class ChatsApi {
   static getFile(path: string) {
     return chatsApiInstance.get(`/api/v2/resources${path}`, { responseType: 'blob' });
   }
+
+  static getMessagesCount(chatId: number) {
+    return chatsApiInstance.get(`/api/v2/chats/new/${chatId}`);
+  }
 }
