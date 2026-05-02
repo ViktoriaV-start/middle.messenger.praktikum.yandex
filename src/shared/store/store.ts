@@ -39,8 +39,6 @@ class Store {
         this.state.messages[chatId] = [];
       }
 
-      console.log(2, this.state.messages, chatId, messages);
-
       this.state.messages[chatId] = [...this.state.messages[chatId], ...messages];
     } else {
       this.state.messages = { ...this.state.messages, [chatId]: [...messages] };
@@ -51,7 +49,7 @@ class Store {
 
   public clearState() {
     this.state = {
-      user: this.state.user,
+      user: null,
       router: new Router('#app'),
       chats: [],
       activeChat: null,

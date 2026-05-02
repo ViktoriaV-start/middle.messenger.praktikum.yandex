@@ -21,8 +21,6 @@ export class SocketController {
       )) as unknown as GetChatTokenResponse;
 
       if (response) {
-        store.setActiveChatToken(response.token);
-
         return response.token;
       }
     } catch (error) {
@@ -34,9 +32,10 @@ export class SocketController {
     return null;
   }
 
-  private closeSocket(): Promise<void> {
+  public closeSocket(): Promise<void> {
     return new Promise((resolve) => {
       if (!this.socket) {
+        this.socket = null;
         resolve();
 
         return;
@@ -47,6 +46,7 @@ export class SocketController {
       socketToClose.addEventListener(
         'close',
         () => {
+          this.socket = null;
           resolve();
         },
         { once: true }
@@ -65,6 +65,10 @@ export class SocketController {
   }
 
   public async setSocketConnection({ userId, chatId }: SetSocketConnectionProps) {
+    if (!userId || !chatId) {
+      return;
+    }
+
     if (this.currentChatId === chatId && this.socket) {
       return;
     }
@@ -83,7 +87,6 @@ export class SocketController {
     // Чат переключен - нужен новый сокет
 
     await this.closeSocket();
-    this.removeSocketListeners();
 
     this.setNewSocket();
   }
@@ -137,13 +140,16 @@ export class SocketController {
   }
 
   private handleSocketClose = (event: CloseEvent) => {
+    this.removeSocketListeners();
+    this.isInit = true;
+    this.stopPing();
+
     if (event.wasClean) {
       console.log('Соединение закрыто чисто');
     } else {
       console.log('Обрыв соединения');
     }
 
-    this.stopPing();
     console.log(`Код: ${event.code} | Причина: ${event.reason}`);
   };
 
@@ -218,6 +224,16 @@ export class SocketController {
     socket.addEventListener('close', this.handleSocketClose);
     socket.addEventListener('message', this.handleSocketMessage);
     socket.addEventListener('error', this.handleSocketError);
+  }
+
+  public async reset(): Promise<void> {
+    await this.closeSocket(); // теперь всегда завершится
+
+    this.currentChatId = null;
+    this.currentToken = null;
+    this.userId = null;
+    this.isInit = true;
+    this.stopPing();
   }
 }
 

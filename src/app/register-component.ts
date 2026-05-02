@@ -3,7 +3,7 @@ import type { HelperOptions } from 'handlebars';
 
 let uniqueId = 0;
 
-Handlebars.registerHelper('eq', function (a, b) {
+Handlebars.registerHelper('eq', function (a: string | number, b: string | number) {
   return a === b;
 });
 

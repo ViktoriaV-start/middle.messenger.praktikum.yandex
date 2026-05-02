@@ -1,6 +1,6 @@
 import Handlebars from 'handlebars';
-import { isEqual } from '@shared/utils';
 import type { BlockOwnProps } from '../../types';
+import { isEqual } from '../../utils';
 
 type EventListType = Partial<Record<keyof HTMLElementEventMap, (e: Event) => void>>;
 

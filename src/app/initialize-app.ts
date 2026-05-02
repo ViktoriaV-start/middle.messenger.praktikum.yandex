@@ -1,42 +1,30 @@
-import { Chats, Message, MessageIn, MessageOut, Sidebar, ChatMessages } from '@pages/chats';
-import { ChatItem } from '@pages/chats/ui/chat-item';
+import {
+  Chats,
+  Message,
+  MessageIn,
+  MessageOut,
+  Sidebar,
+  ChatMessages,
+  ChatItem,
+} from '@pages/chats';
 import { NotFound, ServerError } from '@pages/error';
 import { Login } from '@pages/login';
 import { Profile, EditPassword, EditProfile } from '@pages/profile';
 import { Registration } from '@pages/registration';
-import { LoginApi } from '@shared/api';
-import { BASE_API_URL } from '@shared/constants';
+import { checkUserAuth } from '@shared/api';
 import { store } from '@shared/store';
-import type { User } from '@shared/types';
-import { AuthForm, BaseButton, Info, InputAuth, Input, Navigation } from '@shared/ui';
+import { AuthForm, BaseButton, Info, InputAuth, Input } from '@shared/ui';
 import { BackButton } from '@shared/ui/back-button';
 import { BaseInput } from '@shared/ui/base-input';
 import { BaseLink } from '@shared/ui/base-link';
 import { Confirmation } from '@shared/ui/confirmation';
-import { convertKeysToCamelCase } from '@shared/utils';
 import { registerComponent } from './register-component';
 import { registerRoutes } from './router';
-
-async function checkUserAuth() {
-  try {
-    const response = await LoginApi.checkAuth();
-
-    if (response) {
-      const responseDto = convertKeysToCamelCase({ ...response }) as unknown as User;
-      const avatarUrl = `${BASE_API_URL}/api/v2/resources${responseDto.avatar}`;
-
-      store.setUser({ ...responseDto, avatar: avatarUrl });
-    }
-  } catch (error) {
-    console.log(error);
-  }
-}
 
 export const initializeApp = async () => {
   const router = store.getState().router;
   await checkUserAuth();
 
-  registerComponent(Navigation);
   registerComponent(InputAuth);
   registerComponent(Input);
   registerComponent(BaseButton);

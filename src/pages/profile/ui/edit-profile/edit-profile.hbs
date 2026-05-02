@@ -1,11 +1,10 @@
 <div class="{{styles.profile__wrapper}}">
   {{{BackButton ref=this.componentName}}}
   <form class="profile {{styles.profile}}">
-    <div class = "{{styles.edit-profile__avatar-wrapper}} {{styles.profile__avatar-wrapper_mbe}}">
-      <img class="{{styles.profile__avatar}}" src="{{user.avatar}}" alt="" data-name="avatar-img">
-      <input id="avatar" type="file" name="avatar" accept="image/*" >
+    <div class="{{styles.edit-profile__avatar-wrapper}} {{styles.profile__avatar-wrapper_mbe}}">
+      <img class="{{styles.profile__avatar}}" src="{{user.avatar}}" alt="" data-name="avatar-img" />
+      <input id="avatar" type="file" name="avatar" accept="image/*" />
     </div>
-
 
     <div class="{{styles.profile__inputs}} {{styles.profile__inputs_mbe}}">
       {{#each profileInputs}}

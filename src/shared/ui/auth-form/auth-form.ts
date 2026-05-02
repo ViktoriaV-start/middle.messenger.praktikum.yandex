@@ -1,4 +1,4 @@
-import { LoginApi } from '../../api';
+import { checkUserAuth, LoginApi } from '../../api';
 import { SUCCESS, URLS } from '../../constants';
 import Block from '../../lib/block';
 import { store } from '../../store';
@@ -45,10 +45,10 @@ export class AuthForm extends Block<AuthFormProps> {
     const data = this.gatherDate(event);
 
     try {
-      const response = await LoginApi.signin(data);
-      store.setUser(data as unknown as User);
+      const responseSignin = await LoginApi.signin(data);
+      const responseAuthUser = await checkUserAuth();
 
-      if (response === SUCCESS) {
+      if (responseSignin === SUCCESS && responseAuthUser) {
         return true;
       }
     } catch (error) {

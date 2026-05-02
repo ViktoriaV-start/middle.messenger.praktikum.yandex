@@ -1,3 +1,5 @@
+// eslint-disable-next-line @conarti/feature-sliced/layers-slices
+import { socketController } from '@pages/chats';
 import { LoginApi } from '@shared/api';
 import { SUCCESS, URLS } from '@shared/constants';
 import Block from '@shared/lib/block';
@@ -55,7 +57,7 @@ export class Profile extends Block<Record<string, unknown>> {
   }
 
   protected events = {
-    click: (event: Event) => {
+    click: async (event: Event) => {
       const target = event.target as HTMLElement;
       const linkElement = target.closest<HTMLAnchorElement>('.navigation-link');
 
@@ -66,8 +68,9 @@ export class Profile extends Block<Record<string, unknown>> {
       const isTypeExit = linkElement.dataset.id === 'exit';
 
       if (isTypeExit) {
-        this.logout().then((result) => {
+        this.logout().then(async (result) => {
           if (result) {
+            await socketController.reset();
             store.clearState();
             this.router.go(URLS.login);
           }

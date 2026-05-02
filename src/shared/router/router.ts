@@ -8,7 +8,7 @@ interface BlockWithContent {
   // добавьте другие методы, которые вы используете
 }
 
-type BlockConstructorWithContent<BlockProps extends BlockOwnProps = BlockOwnProps> = new (
+export type BlockConstructorWithContent<BlockProps extends BlockOwnProps = BlockOwnProps> = new (
   ...args: unknown[]
 ) => Block<BlockProps> & BlockWithContent;
 

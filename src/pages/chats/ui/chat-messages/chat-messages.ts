@@ -8,8 +8,7 @@ import Block from '@shared/lib/block';
 import { store } from '@shared/store';
 import type { Chat, User } from '@shared/types';
 import { getFormData } from '@shared/utils/form';
-import { ChatsController } from '../../api';
-import { socketController } from '../../api/socket-controller';
+import { socketController, ChatsController } from '../../api';
 import { CONFIRMATION_FORM_CONFIG } from '../../constants';
 import type { ConfirmationFormConfigItem } from '../../types';
 import { addClassname, toggleClassname } from '../../utils';
@@ -43,29 +42,6 @@ export class ChatMessages extends Block<Record<string, unknown>> {
       addIcon,
       deleteIcon,
     });
-
-    this.init();
-
-    this.unsubscribe = store.subscribe(async () => {
-      await this.init();
-
-      const chatId = this.getActiveChat().id;
-
-      this.setProps({
-        messages: store.getState().messages[chatId],
-      });
-      this.setProps({
-        activeChat: store.getState().activeChat,
-      });
-      this.setProps({
-        chatUsers: store.getState().chatUsers,
-      });
-      this.setProps({
-        userId: store.getState().user?.id,
-      });
-
-      setTimeout(() => this.scrollToBottom(), 300);
-    });
   }
 
   private getActiveChat(): Chat {
@@ -73,6 +49,7 @@ export class ChatMessages extends Block<Record<string, unknown>> {
 
     if (!activeChat) {
       activeChat = store.getState().chats[0];
+      store.setActiveChat(activeChat);
     }
 
     return activeChat;
@@ -99,7 +76,7 @@ export class ChatMessages extends Block<Record<string, unknown>> {
 
   private async setConnection() {
     const user = store.getState().user;
-    const activeChat = store.getState().activeChat as Chat;
+    const activeChat = this.getActiveChat();
 
     if (user && activeChat) {
       await socketController.setSocketConnection({
@@ -143,7 +120,6 @@ export class ChatMessages extends Block<Record<string, unknown>> {
   private async handleAddUser() {
     const chats = store.getState().chats;
     const exampleChatId = chats[0].id;
-    console.log(exampleChatId);
 
     if (this.userToAdd) {
       const addUserData = {
@@ -258,5 +234,32 @@ export class ChatMessages extends Block<Record<string, unknown>> {
     if (anchor) {
       anchor.scrollIntoView({ behavior: 'auto', block: 'end' });
     }
+  }
+
+  protected componentDidMount() {
+    this.unsubscribe = store.subscribe(async () => {
+      await this.init();
+
+      const chatId = this.getActiveChat().id;
+
+      this.setProps({
+        messages: store.getState().messages[chatId],
+      });
+      this.setProps({
+        activeChat: store.getState().activeChat,
+      });
+      this.setProps({
+        chatUsers: store.getState().chatUsers,
+      });
+      this.setProps({
+        userId: store.getState().user?.id,
+      });
+
+      setTimeout(() => this.scrollToBottom(), 300);
+    });
+  }
+
+  protected componentWillUnmount() {
+    this.unsubscribe();
   }
 }
