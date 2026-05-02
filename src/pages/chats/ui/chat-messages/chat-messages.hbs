@@ -1,4 +1,4 @@
-<section class="{{styles.chat}}">
+<section class="scroll-area {{styles.chat}}">
   <header class="chat__header {{styles.chat__header}}">
     <h3>{{activeChat.title}}</h3>
     <ul class="{{styles.chat__users}}">
@@ -55,9 +55,21 @@
 
   </header>
 
-  <div class="{{styles.chat__messages}}">
-    {{{MessageIn ref=this.componentName}}}
-    {{{MessageOut ref=this.componentName}}}
+  <div class="messages-container {{styles.chat__messages}}">
+    {{#each messages}}
+      {{#if (eq this.userId ../userId)}}
+        {{{MessageOut
+                message=this
+                ref=this.componentName
+        }}}
+      {{else}}
+        {{{MessageIn
+                message=this
+                ref=this.componentName
+        }}}
+      {{/if}}
+    {{/each}}
+    <div id="scroll-anchor" style="height: 0; overflow: hidden;"></div>
   </div>
 
   {{{Message ref=this.componentName}}}

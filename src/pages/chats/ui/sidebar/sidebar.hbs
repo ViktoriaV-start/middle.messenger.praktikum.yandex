@@ -17,16 +17,24 @@
       additionalStyles=styles.chat-adding__adding-button
     }}}
   </form>
+
   <nav class="{{styles.sidebar__chats}}">
     {{#each chats}}
-      {{{ChatItem
-        id=this.id
-        avatarUrl=this.avatarUrl
-        title=this.title
-        unreadCount=this.unreadCount
-        lastMessage=this.lastMessage
-        ref=this.componentName
-      }}}
+      <div class="{{../styles.sidebar__chat}}">
+        {{{ChatItem
+                id=this.id
+                avatarUrl=this.avatarUrl
+                title=this.title
+                unreadCount=this.unreadCount
+                lastMessage=this.lastMessage
+                ref=this.componentName
+        }}}
+
+        {{#if (eq this.createdBy ../userId)}}
+          <button class="delete-chat {{../styles.sidebar__delete-chat}}" type="button" data-id="{{this.id}}">{{{../deleteIcon}}}</button>
+
+        {{/if}}
+         </div>
     {{/each}}
   </nav>
 

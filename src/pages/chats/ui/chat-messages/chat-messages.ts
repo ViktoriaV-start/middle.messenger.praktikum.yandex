@@ -8,7 +8,7 @@ import Block from '@shared/lib/block';
 import { store } from '@shared/store';
 import type { Chat, User } from '@shared/types';
 import { getFormData } from '@shared/utils/form';
-import { ChatsController } from '../../api';
+import { socketController, ChatsController } from '../../api';
 import { CONFIRMATION_FORM_CONFIG } from '../../constants';
 import type { ConfirmationFormConfigItem } from '../../types';
 import { addClassname, toggleClassname } from '../../utils';
@@ -22,14 +22,19 @@ export class ChatMessages extends Block<Record<string, unknown>> {
 
   protected template = templateSource;
   private userToAdd: User | null = null;
-  protected activeChat: Chat | null = null;
+  protected unsubscribe: () => void;
 
   constructor() {
     const activeChat = store.getState().activeChat;
+    const chatId = activeChat?.id ? activeChat?.id : null;
+    const messages = chatId ? store.getState().messages[chatId] : [];
+    const userId = store.getState().user?.id;
 
     super({
       activeChat,
       chatUsers: [],
+      messages,
+      userId,
       componentName: COMPONENT_NAME,
       confirmation: { text: '', hidden: true, name: null },
       styles,
@@ -37,17 +42,25 @@ export class ChatMessages extends Block<Record<string, unknown>> {
       addIcon,
       deleteIcon,
     });
+  }
 
-    store.subscribe(async () => {
-      this.getChatUsers();
-    });
+  private getActiveChat(): Chat {
+    let activeChat = store.getState().activeChat as Chat;
+
+    if (!activeChat) {
+      activeChat = store.getState().chats[0];
+      store.setActiveChat(activeChat);
+    }
+
+    return activeChat;
   }
 
   private async getChatUsers() {
-    const activeChat = store.getState().activeChat as Chat;
+    const activeChat = this.getActiveChat();
 
     if (activeChat && activeChat.id) {
-      const chatUsers = await ChatsController.getChatUsers(activeChat.id);
+      const chatUsers = (await ChatsController.getChatUsers(activeChat.id)) as unknown as User[];
+      store.setChatUsers(chatUsers);
 
       this.setProps({
         activeChat,
@@ -57,6 +70,18 @@ export class ChatMessages extends Block<Record<string, unknown>> {
           hidden: true,
           type: null,
         },
+      });
+    }
+  }
+
+  private async setConnection() {
+    const user = store.getState().user;
+    const activeChat = this.getActiveChat();
+
+    if (user && activeChat) {
+      await socketController.setSocketConnection({
+        userId: user.id,
+        chatId: activeChat.id,
       });
     }
   }
@@ -95,7 +120,6 @@ export class ChatMessages extends Block<Record<string, unknown>> {
   private async handleAddUser() {
     const chats = store.getState().chats;
     const exampleChatId = chats[0].id;
-    console.log(exampleChatId);
 
     if (this.userToAdd) {
       const addUserData = {
@@ -109,17 +133,15 @@ export class ChatMessages extends Block<Record<string, unknown>> {
 
   private async handleDeleteUser() {
     const chats = store.getState().chats;
-    const exampleChatId = chats[0].id;
+    const chatId = chats[0].id;
 
     if (this.userToAdd) {
       const deleteUserData = {
         users: [this.userToAdd.id],
-        chatId: exampleChatId,
+        chatId,
       };
 
-      const response = await ChatsController.deleteUserFromChat(deleteUserData);
-
-      console.log(response);
+      await ChatsController.deleteUserFromChat(deleteUserData);
     }
   }
 
@@ -201,4 +223,43 @@ export class ChatMessages extends Block<Record<string, unknown>> {
       }
     },
   };
+
+  private async init() {
+    await this.setConnection();
+  }
+
+  scrollToBottom() {
+    const anchor = document.getElementById('scroll-anchor');
+
+    if (anchor) {
+      anchor.scrollIntoView({ behavior: 'auto', block: 'end' });
+    }
+  }
+
+  protected componentDidMount() {
+    this.unsubscribe = store.subscribe(async () => {
+      await this.init();
+
+      const chatId = this.getActiveChat().id;
+
+      this.setProps({
+        messages: store.getState().messages[chatId],
+      });
+      this.setProps({
+        activeChat: store.getState().activeChat,
+      });
+      this.setProps({
+        chatUsers: store.getState().chatUsers,
+      });
+      this.setProps({
+        userId: store.getState().user?.id,
+      });
+
+      setTimeout(() => this.scrollToBottom(), 300);
+    });
+  }
+
+  protected componentWillUnmount() {
+    this.unsubscribe();
+  }
 }

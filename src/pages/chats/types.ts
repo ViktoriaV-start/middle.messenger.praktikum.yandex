@@ -1,3 +1,5 @@
+import type { BlockOwnProps, StoreMessage } from '@shared/types';
+
 export interface Message {
   author: string;
   text: string;
@@ -29,4 +31,23 @@ export interface ConfirmationFormConfigItem {
   text: string;
   searchFormType: string;
   formType: string;
+}
+
+export interface GetChatTokenResponse {
+  token: string;
+}
+
+export interface SetSocketConnectionProps {
+  userId: number;
+  chatId: number;
+}
+
+export interface MessageProps extends BlockOwnProps {
+  message: StoreMessage;
+  content: string | File | null;
+  isFile: boolean | null;
+  src: string | null;
+  componentName: string;
+  styles?: Record<string, string>;
+  userName?: string;
 }

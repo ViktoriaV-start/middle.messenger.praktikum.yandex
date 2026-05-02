@@ -9,3 +9,5 @@ export { ChatMessages } from './chat-messages';
 export { MessageIn } from './message-in';
 
 export { MessageOut } from './message-out';
+
+export { ChatItem } from './chat-item';

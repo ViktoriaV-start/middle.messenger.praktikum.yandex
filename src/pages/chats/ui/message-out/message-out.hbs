@@ -1,3 +1,10 @@
 <div class="{{styles.message-out}}">
-  Исходящее сообщение
+  {{#if isFile}}
+    <div class="{{styles.message-out__image-container}}">
+      <img class="{{styles.message-out__image}}" src="{{src}}" alt="file attachment" />
+    </div>
+
+  {{else}}
+    <span>{{content}}</span>
+  {{/if}}
 </div>

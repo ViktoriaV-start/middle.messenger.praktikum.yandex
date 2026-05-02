@@ -40,7 +40,11 @@ export interface EditProfileProps extends BlockOwnProps {
 }
 
 export interface EditPasswordProps extends BlockOwnProps {
+  user: User;
+  password: Record<string, string>;
   button?: string;
   error?: boolean;
   passwordInputs?: EditPasswordFields;
+  componentName: string;
+  styles?: Record<string, string>;
 }

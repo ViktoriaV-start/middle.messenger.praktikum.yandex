@@ -4,6 +4,44 @@
   gap: 0.625rem;
 }
 
+.file-upload {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  font-family: system-ui, sans-serif;
+}
+
+.file-upload__image {
+  display: none;
+}
+
+.file-upload__icon {
+  cursor: pointer;
+  border-radius: 50%;
+  transition: 0.2s;
+  user-select: none;
+}
+
+.file-upload__icon:hover {
+  transform: scale(1.05);
+}
+
+.file-upload__info {
+  font-size: 14px;
+  background: #f0f4f8;
+  padding: 5px 12px;
+  border-radius: 20px;
+  color: #1e2a3a;
+  max-width: 300px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.file-upload__info:empty {
+  display: none;
+}
+
 .message__label {
   flex-grow: 1;
 }

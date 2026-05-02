@@ -2,12 +2,12 @@ import { normalizeValue } from './normalize-value';
 import { validateValue } from './validate-value';
 
 interface NormalizeValidateForm {
-  validatedForm: Record<string, unknown>;
+  validatedForm: Record<string, string>;
   error: boolean;
 }
 
-export const normalizeValidateForm = (form: Record<string, unknown>): NormalizeValidateForm => {
-  const validatedForm: Record<string, unknown> = {};
+export const normalizeValidateForm = (form: Record<string, string>): NormalizeValidateForm => {
+  const validatedForm: Record<string, string> = {};
   let error = false;
 
   for (const key in form) {

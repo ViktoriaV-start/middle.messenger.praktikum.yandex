@@ -1,54 +1,55 @@
 const checkIsObject = (value: unknown): value is Record<string, unknown> => {
-  const isObject = typeof value === 'object' && value !== null;
-
-  return isObject;
+  return typeof value === 'object' && value !== null && !Array.isArray(value);
 };
 
-export const isEqual = (ls: unknown, rs: unknown): boolean => {
-  if (!checkIsObject(ls) || !checkIsObject(rs)) {
-    throw new Error('Значения должны быть объектами');
+export const isEqual = (a: unknown, b: unknown): boolean => {
+  // одинаковые примитивы / ссылки (включая NaN-safe поведение тут не добавлял)
+  if (a === b) {
+    return true;
   }
 
-  const lsKeys = new Set(Object.keys(ls));
-  const rsKeys = new Set(Object.keys(rs));
+  // если один из них null или типы разные — сразу false
+  if (a === null || b === null || typeof a !== typeof b) {
+    return false;
+  }
 
-  const isSubset = <T>(a: Set<T>, b: Set<T>) => {
-    for (const item of a) {
-      if (!b.has(item)) {
+  // массивы
+  if (Array.isArray(a) && Array.isArray(b)) {
+    if (a.length !== b.length) {
+      return false;
+    }
+
+    for (let i = 0; i < a.length; i++) {
+      if (!isEqual(a[i], b[i])) {
         return false;
       }
     }
 
     return true;
-  };
+  }
 
-  if (!isSubset(lsKeys, rsKeys) || !isSubset(rsKeys, lsKeys)) {
+  // если один массив, а другой нет
+  if (Array.isArray(a) || Array.isArray(b)) {
     return false;
   }
 
-  let res = true;
+  // объекты
+  if (checkIsObject(a) && checkIsObject(b)) {
+    const aKeys = Object.keys(a);
+    const bKeys = Object.keys(b);
 
-  for (const key of lsKeys) {
-    const lsValue = ls[key];
-    const rsValue = rs[key];
-
-    const isLsValueObj = checkIsObject(lsValue);
-    const isRsValueObj = checkIsObject(rsValue);
-
-    if (isLsValueObj && !isRsValueObj) {
+    if (aKeys.length !== bKeys.length) {
       return false;
     }
 
-    if (isLsValueObj && isRsValueObj) {
-      res = isEqual(lsValue, rsValue);
-    } else {
-      res = lsValue === rsValue;
+    for (const key of aKeys) {
+      if (!isEqual(a[key], b[key])) {
+        return false;
+      }
     }
 
-    if (!res) {
-      return false;
-    }
+    return true;
   }
 
-  return res;
+  return false;
 };

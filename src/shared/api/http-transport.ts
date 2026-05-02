@@ -66,6 +66,12 @@ export class HttpTransport {
       // Обработчики
       xhr.onload = () => {
         if (xhr.status >= 200 && xhr.status < 300) {
+          if (responseType === 'blob' || responseType === 'arraybuffer') {
+            resolve(xhr.response);
+
+            return;
+          }
+
           let response;
 
           if (xhr.responseType) {

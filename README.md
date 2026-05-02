@@ -38,3 +38,5 @@
   - login: Petrov
   - password: 123456
 
+## Ссылка на документацию API для работы с сообщениями
+- [Ссылка](https://ya-praktikum.tech/api/v2/openapi/ws)

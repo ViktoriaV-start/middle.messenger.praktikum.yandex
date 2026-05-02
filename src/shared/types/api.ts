@@ -41,3 +41,17 @@ export interface ChatUsersData {
   name?: string;
   email?: string;
 }
+
+export interface DeleteChatData {
+  chatId: number;
+}
+
+export interface SendFileResponse {
+  id: number;
+  userId: number;
+  path: string;
+  filename: string;
+  contentType: string;
+  contentSize: number;
+  uploadDate: string;
+}

@@ -1,5 +1,5 @@
 import { HttpTransport } from '@shared/api';
-import type { ChatUserData, ChatUsersData, newChatData } from '@shared/types';
+import type { ChatUserData, ChatUsersData, DeleteChatData, newChatData } from '@shared/types';
 
 export const chatsApiInstance = new HttpTransport();
 
@@ -30,5 +30,25 @@ export class ChatsApi {
     return chatsApiInstance.get(`/api/v2/chats/${data.id}/users`, {
       data: { ...data },
     });
+  }
+
+  static deleteChat(data: DeleteChatData) {
+    return chatsApiInstance.delete('/api/v2/chats', {
+      data: { ...data },
+    });
+  }
+
+  static uploadFile(data: FormData) {
+    return chatsApiInstance.post('/api/v2/resources', {
+      data,
+    });
+  }
+
+  static getFile(path: string) {
+    return chatsApiInstance.get(`/api/v2/resources${path}`, { responseType: 'blob' });
+  }
+
+  static getMessagesCount(chatId: number) {
+    return chatsApiInstance.get(`/api/v2/chats/new/${chatId}`);
   }
 }
