@@ -85,9 +85,7 @@ export class SocketController {
     }
 
     // Чат переключен - нужен новый сокет
-
     await this.closeSocket();
-
     this.setNewSocket();
   }
 
@@ -227,7 +225,7 @@ export class SocketController {
   }
 
   public async reset(): Promise<void> {
-    await this.closeSocket(); // теперь всегда завершится
+    await this.closeSocket();
 
     this.currentChatId = null;
     this.currentToken = null;

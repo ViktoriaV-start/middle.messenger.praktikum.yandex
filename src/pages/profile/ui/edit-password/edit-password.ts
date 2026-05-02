@@ -12,7 +12,7 @@ import templateSource from './edit-password.hbs?raw';
 
 const COMPONENT_NAME = 'EditPassword';
 
-export class EditPassword extends Block<Record<string, unknown>> {
+export class EditPassword extends Block<EditPasswordProps> {
   static componentName = COMPONENT_NAME;
 
   protected template = templateSource;
@@ -67,7 +67,7 @@ export class EditPassword extends Block<Record<string, unknown>> {
 
       const arePasswordsCorrect = formData.newPassword === formData.repeatedPassword;
 
-      const form = normalizeValidateForm(formData);
+      const form = normalizeValidateForm(formData as Record<string, string>);
 
       if (form.error || !arePasswordsCorrect) {
         this.error = true;
