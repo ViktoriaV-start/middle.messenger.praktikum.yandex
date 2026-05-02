@@ -20,11 +20,6 @@ class Store {
     return this.state;
   }
 
-  // public setState(path: string, value: unknown) {
-  //   this.state = merge(this.state, set({}, path, value)) as StoreState;
-  //   this.emit();
-  // }
-
   public updateState(data: Partial<StoreState>) {
     this.state = {
       ...this.state,
