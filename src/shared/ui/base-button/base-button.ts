@@ -3,12 +3,14 @@ import type { BaseButtonProps } from '../../types';
 import templateSource from './base-button.hbs?raw';
 import styles from './base-button.module.css';
 
+const COMPONENT_NAME = 'BaseButton';
+
 export class BaseButton extends Block<BaseButtonProps> {
-  static componentName = 'BaseButton';
+  static componentName = COMPONENT_NAME;
   protected template = templateSource;
 
   constructor(props: BaseButtonProps) {
-    super({ ...props, styles });
+    super({ ...props, componentName: COMPONENT_NAME, styles });
   }
 
   public setProps(props: BaseButtonProps) {

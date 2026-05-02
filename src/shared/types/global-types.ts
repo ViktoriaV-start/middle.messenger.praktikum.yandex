@@ -7,3 +7,7 @@ export interface BlockOwnProps {
   }>;
   __refs?: Record<string, Element>;
 }
+
+export type Indexed<T = unknown> = {
+  [key in string]: T;
+};

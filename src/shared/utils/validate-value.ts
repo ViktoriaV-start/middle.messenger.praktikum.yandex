@@ -74,8 +74,9 @@ export const validateValue = ({ value, name }: ValidateValue): boolean => {
 
       return isLoginValid;
     }
-    case 'password':
-    case 'oldPassword':
+    case 'password': {
+      return true;
+    }
     case 'newPassword':
     case 'repeatedPassword': {
       const isPasswordValid = validatePassword(value);

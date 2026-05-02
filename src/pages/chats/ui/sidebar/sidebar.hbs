@@ -1,5 +1,23 @@
 <aside class="{{styles.sidebar}}">
-  <nav class="{{styles.chatList}}">
+  <form class="{{styles.chat-adding__form}}">
+    <label>
+      <span>Новый чат</span>
+      <input
+        class="{{styles.chat-adding__input}}"
+        type="text"
+        placeholder="Название"
+        name="title"
+        maxlength="20"
+      />
+    </label>
+    {{{BaseButton
+      ref=this.componentName
+      title="Добавить чат"
+      type="submit"
+      additionalStyles=styles.chat-adding__adding-button
+    }}}
+  </form>
+  <nav class="{{styles.sidebar__chats}}">
     {{#each chats}}
       {{{ChatItem
         id=this.id
@@ -7,8 +25,12 @@
         title=this.title
         unreadCount=this.unreadCount
         lastMessage=this.lastMessage
+        ref=this.componentName
       }}}
     {{/each}}
   </nav>
-  {{{Navigation}}}
+
+  <div class="{{styles.sidebar__link}}">
+    {{{BaseLink title="Профиль" href=profileLink ref=this.componentName}}}
+  </div>
 </aside>

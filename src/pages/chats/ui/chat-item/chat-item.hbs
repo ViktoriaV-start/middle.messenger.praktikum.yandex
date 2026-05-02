@@ -1,5 +1,5 @@
-<div class="{{styles.chatItem}}" data-id="{{id}}">
-  <div class="{{styles.block}} {{unreadCountClass}}">
+
+  <button class="chat-item {{styles.chat-item}} {{unreadCountClass}} {{#if active}}{{styles.chat-item__active}}{{/if}}" data-id="{{id}}">
     <div class="{{styles.avatar}}">
       <img src="{{avatarUrl}}" alt="avatar" />
     </div>
@@ -25,5 +25,4 @@
         {{unreadCount}}
       </span>
     {{/if}}
-  </div>
-</div>
+  </button>

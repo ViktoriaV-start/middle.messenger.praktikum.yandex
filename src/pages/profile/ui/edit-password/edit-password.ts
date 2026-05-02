@@ -1,5 +1,8 @@
+import { EditProfileApi } from '@shared/api';
+import { SUCCESS } from '@shared/constants';
 import Block from '@shared/lib/block';
-import { convertKeysToSnakeCase } from '@shared/utils';
+import { store } from '@shared/store';
+import type { User } from '@shared/types';
 import { getFormData } from '@shared/utils/form';
 import { normalizeValidateForm } from '@shared/utils/normalize-validate-form';
 import { BUTTONS, PASSWORD, PASSWORD_INPUTS } from '../../constants';
@@ -7,25 +10,51 @@ import type { EditPasswordProps } from '../../types';
 import styles from '../profile.module.css';
 import templateSource from './edit-password.hbs?raw';
 
+const COMPONENT_NAME = 'EditPassword';
+
 export class EditPassword extends Block<Record<string, unknown>> {
-  static componentName = 'EditPassword';
+  static componentName = COMPONENT_NAME;
 
   protected template = templateSource;
   private error = false;
 
   constructor() {
+    const user = store.getState().user as User;
+
     const initialEditPasswordData = {
+      user,
       password: PASSWORD,
       button: BUTTONS.save,
       error: false,
       passwordInputs: PASSWORD_INPUTS,
     };
-    super({ ...initialEditPasswordData, styles });
+    super({ ...initialEditPasswordData, componentName: COMPONENT_NAME, styles });
   }
 
-  componentDidMount() {}
+  private async handleSubmit(data: Record<string, unknown>): Promise<boolean> {
+    const { oldPassword, newPassword } = data;
 
-  componentWillUnmount() {}
+    try {
+      const response = await EditProfileApi.editPassword({
+        oldPassword: oldPassword as string,
+        newPassword: newPassword as string,
+      });
+
+      if (response && response === SUCCESS) {
+        return true;
+      }
+    } catch (error) {
+      console.error(error);
+    }
+
+    return false;
+  }
+
+  getContent() {
+    this.render();
+
+    return this.element();
+  }
 
   public setProps(props: EditPasswordProps) {
     super.setProps({ ...props, error: this.error });
@@ -45,9 +74,9 @@ export class EditPassword extends Block<Record<string, unknown>> {
         this.setProps({ ...this.props, error: true });
       }
 
-      const dataDTO = convertKeysToSnakeCase(form.validatedForm);
-
-      console.log('Данный формы - Пароль: ', dataDTO);
+      if (!this.error) {
+        this.handleSubmit(form.validatedForm);
+      }
     },
     focusin: () => {
       if (this.error) {

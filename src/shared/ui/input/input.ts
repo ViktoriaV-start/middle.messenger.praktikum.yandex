@@ -4,8 +4,10 @@ import { handleInputChange } from '../../utils/form';
 import templateSource from './input.hbs?raw';
 import styles from './input.module.css';
 
+const COMPONENT_NAME = 'Input';
+
 export class Input extends Block<EditableInputProps> {
-  static componentName = 'Input';
+  static componentName = COMPONENT_NAME;
 
   protected template = templateSource;
   public defaultStyle = styles['input-editable__valid'];
@@ -14,7 +16,7 @@ export class Input extends Block<EditableInputProps> {
   constructor(props: EditableInputProps) {
     const readonly = props.isEditable ? '' : 'readonly';
     const editableClass = props.isEditable ? styles.input__editable : '';
-    super({ ...props, readonly, editableClass, styles });
+    super({ ...props, componentName: COMPONENT_NAME, readonly, editableClass, styles });
   }
 
   public setProps(props: EditableInputProps) {

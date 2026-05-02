@@ -1,1 +1,1 @@
-export { resolveRoute, navigate } from './router';
+export { registerRoutes } from './register-routes';

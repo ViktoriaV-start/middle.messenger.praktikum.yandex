@@ -15,7 +15,8 @@ interface NormalizeValue {
 
 export const normalizeValue = ({ value, name }: NormalizeValue): string => {
   switch (name) {
-    case 'message': {
+    case 'message':
+    case 'title': {
       const normalizedMessage = value
         .replace(UNALLOWED_TEXT_CHARACTERS_REGEXP, '')
         .replace(MORE_THAN_ONE_SPACE_REG_EXP, ' ');
